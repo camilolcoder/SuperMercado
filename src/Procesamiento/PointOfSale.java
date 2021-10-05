@@ -2,6 +2,7 @@ package Procesamiento;
 
 import Modelo.Cliente;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PointOfSale {
@@ -12,11 +13,21 @@ public class PointOfSale {
         this.clientes = clientes;
     }
 
-    public void createClient(String nombre, String edad, String sexo,
-    String estadoCivil, int id, String situacionLaboral, int puntos)
+    public void createClient(String nombre, int edad, String sexo,
+    String estadoCivil, int id, String situacionLaboral)
     {
         Cliente cliente = new Cliente(nombre, edad, sexo, estadoCivil,
-        id, situacionLaboral, puntos);
+        id, situacionLaboral);
         clientes.add(cliente);
+    }
+
+    public List<Cliente> getClientes()
+    {
+        return clientes;
+    }
+
+    public void checkProduct()
+    {
+
     }
 }

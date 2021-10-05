@@ -3,21 +3,21 @@ package Modelo;
 public class Cliente {
 
     private String nombre;
-    private String edad;
+    private int edad;
     private String sexo;
     private String estadoCivil;
     private int id;
     private String situacionLaboral;
     private int puntos;
 
-    public Cliente(String nombre, String edad, String sexo, String estadoCivil, int id, String situacionLaboral, int puntos) {
+    public Cliente(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
         this.estadoCivil = estadoCivil;
         this.id = id;
         this.situacionLaboral = situacionLaboral;
-        this.puntos = puntos;
+        //this.puntos = puntos;
     }
 
     public String getNombre() {
@@ -28,11 +28,11 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
