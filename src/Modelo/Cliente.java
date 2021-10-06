@@ -75,4 +75,10 @@ public class Cliente {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+
+    public void sumarPuntos(double dineroGastado)
+    {
+        double puntosCalculados = Math.round(dineroGastado/1000);
+        this.puntos += puntosCalculados;
+    }
 }

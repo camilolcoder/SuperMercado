@@ -26,8 +26,4 @@ public class PointOfSale {
         return clientes;
     }
 
-    public void checkProduct()
-    {
-
-    }
 }

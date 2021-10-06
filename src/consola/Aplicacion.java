@@ -1,6 +1,7 @@
 package consola;
 
 import Modelo.Cliente;
+import Modelo.Producto;
 import Procesamiento.PointOfSale;
 
 import java.io.*;
@@ -76,7 +77,11 @@ public class Aplicacion {
                 {
                     ejecutarObtenerDatosClientes();
                 }
-                else if (opcion_seleccionada == 3) {
+                else if (opcion_seleccionada == 3)
+                {
+                    ejecutarRegistrarCompras();
+                }
+                else if (opcion_seleccionada == 4) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
@@ -119,9 +124,9 @@ public class Aplicacion {
         String estadoCivil = input("Ingrese el estado civl del cliente");
         int id = Integer.parseInt(input("Ingrese la id del cliente"));
         String situacionLaboral = input("Ingrese la situacion laboral del cliente");
-        //int puntos = input("Ingrese la id del cliente");
+        //int puntos = Integer.parseInt(input("Ingrese la cantidad de puntos del cliente"));
         pointOfSale.createClient(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
-        dataBase(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
+        dataBaseClientes(nombre, edad, sexo, estadoCivil, id, situacionLaboral, 0);
 
     }
 
@@ -131,7 +136,6 @@ public class Aplicacion {
         try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
-
             while (scanner.hasNext())
             {
                 System.out.print(scanner.next() + "|");
@@ -142,6 +146,29 @@ public class Aplicacion {
         {
             System.out.println("Error leyendo el archivo de la base de datos");
             e.printStackTrace();
+        }
+    }
+
+    public void ejecutarRegistrarCompras()
+    {
+        boolean continuar = true;
+        while(continuar)
+        {
+            try {
+                printMenuInventario();
+                int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
+                if (opcion_seleccionada == 1)
+                    registroProducto();
+                else if (opcion_seleccionada == 2)
+                    System.out.print("");
+                else if (opcion_seleccionada == 3) {
+                    System.out.println("Saliendo apliacacion ....");
+                    continuar = false;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor seleccione uno de los " +
+                        "numeros en el menu");
+            }
         }
     }
 
@@ -161,7 +188,7 @@ public class Aplicacion {
         return null;
     }
 
-    public void dataBase(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral)
+    public void dataBaseClientes(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral, int puntos)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
         String simpleFile = "clientes.csv";
@@ -170,12 +197,21 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(nombre).append(",").append(edad).append(",").append(sexo).append(",").append(estadoCivil).append(",").append(id).append(",").append(situacionLaboral).append("\n");
+        stringBuilder.append(nombre).append(",").append(edad).append(",").append(sexo).append(",").append(estadoCivil).append(",").append(id).append(",").append(situacionLaboral).append(",").append(puntos).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void registroProducto()
+    {
+        ArrayList<Producto> productos = new ArrayList<>();
+        System.out.print("Registrar nuevo producto");
+        String codigo = input("Ingrese el codigo del producto");
+
+
     }
 
     public static void main(String[] args)
