@@ -4,10 +4,7 @@ import Modelo.Cliente;
 import Procesamiento.PointOfSale;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Aplicacion {
 
@@ -21,8 +18,11 @@ public class Aplicacion {
 
     public void printMenuPointOfSale()
     {
+        System.out.println("");
+        System.out.println("----MENU-POINT-OF-SALE------------");
         System.out.println("1. Crear nuevo cliente");
         System.out.println("2. Consultar lista de clientes");
+        System.out.println("");
     }
 
     public void printMenuInventario()
@@ -127,12 +127,22 @@ public class Aplicacion {
 
     public void ejecutarObtenerDatosClientes()
     {
-        /*List<Cliente> datosClientes = pointOfSale.getClientes();
-        //for(int i = 0; i <= datosClientes.size(); i++)
-        for (Cliente cliente : datosClientes)
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        try(Scanner scanner = new Scanner(new File(filepath)))
         {
-            cliente.getNombre();
-        }*/
+            scanner.useDelimiter(",");
+
+            while (scanner.hasNext())
+            {
+                System.out.print(scanner.next() + "|");
+            }
+            scanner.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error leyendo el archivo de la base de datos");
+            e.printStackTrace();
+        }
     }
 
     public String input(String mensaje)
