@@ -1,7 +1,9 @@
 package consola;
 
 import Modelo.Cliente;
+import Modelo.Lote;
 import Modelo.Producto;
+import Procesamiento.Inventario;
 import Procesamiento.PointOfSale;
 
 import java.io.*;
@@ -10,6 +12,7 @@ import java.util.*;
 public class Aplicacion {
 
     private PointOfSale pointOfSale;
+    private Inventario inventario;
 
     public void printMenuPrincipal()
     {
@@ -23,6 +26,7 @@ public class Aplicacion {
         System.out.println("----MENU-POINT-OF-SALE------------");
         System.out.println("1. Crear nuevo cliente");
         System.out.println("2. Consultar lista de clientes");
+        System.out.println("3. Registrar los productos a comprar de un cliente");
         System.out.println("");
     }
 
@@ -34,6 +38,11 @@ public class Aplicacion {
 
     public void ejecutarAplicacion()
     {
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        List<Producto> productos = new ArrayList<>();
+        List<Lote> lotes = new ArrayList<>();
+        pointOfSale = new PointOfSale(clientes);
+        inventario = new Inventario(productos, lotes);
         boolean continuar = true;
         while(continuar)
         {
@@ -62,8 +71,6 @@ public class Aplicacion {
 
     public void ejecutarAplicacionPointOfSale()
     {
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        pointOfSale = new PointOfSale(clientes);
         boolean continuar = true;
         while(continuar) {
             try {
@@ -101,7 +108,7 @@ public class Aplicacion {
                 printMenuInventario();
                 int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
                 if (opcion_seleccionada == 1)
-                    System.out.print("");
+                    ejecutarCrearProducto();
                 else if (opcion_seleccionada == 2)
                     System.out.print("");
                 else if (opcion_seleccionada == 3) {
@@ -205,12 +212,47 @@ public class Aplicacion {
         }
     }
 
+    public void dataBaseProductos(String nombre, double precio, double precioPorUnidad,
+                                  String unidadPorMedida, double peso, String fresco,
+                                  String categoria, String codigo)
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
+        String simpleFile = "clientes.csv";
+        //File csvFile = new File(simpleFile);
+
+
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
+        stringBuilder.append(nombre).append(",").append(precio).append(",").append(precioPorUnidad).append(",").append(unidadPorMedida).append(",").append(peso).append(",").append(fresco).append(",").append(categoria).append(",").append(codigo).append("\n");
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ejecutarCrearProducto()
+    {
+        String nombre = input("Escriba el nombre del producto");
+        double precio = Double.parseDouble(input("Escriba el precio del producto"));
+        double precioPorUnidad = Double.parseDouble(input("Escriba el precio por unidad del producto"));
+        String unidadMedida = input("Escriba la unidad de medida del producto");
+        double peso = Double.parseDouble(input("Escriba el peso del producto"));
+        String fresco = input("Escriba si el producto es o no es fresco");
+        String categoria = input("Escriba la categoria del producto");
+        String codigo = input("Escriba el codigo del producto");
+        inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
+                peso, fresco, categoria, codigo);
+        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, codigo);
+    }
+
     public void registroProducto()
     {
         ArrayList<Producto> productos = new ArrayList<>();
-        System.out.print("Registrar nuevo producto");
+        System.out.print("Registrar producto");
         String codigo = input("Ingrese el codigo del producto");
-
+        Producto producto = pointOfSale.getProducto(codigo, inventario.getProductos());
+        System.out.println(producto.getPrecio());
 
     }
 

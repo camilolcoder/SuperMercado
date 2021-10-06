@@ -1,6 +1,7 @@
 package Procesamiento;
 
 import Modelo.Cliente;
+import Modelo.Producto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,21 @@ public class PointOfSale {
     public List<Cliente> getClientes()
     {
         return clientes;
+    }
+
+    public Producto getProducto(String codigo, List<Producto> productos)
+    {
+        boolean continuar = true;
+        int counter = 0;
+        while(continuar)
+        {
+            if (productos.get(counter).getCodigo() == codigo)
+            {
+                continuar = false;
+            }
+            counter += 1;
+        }
+        return productos.get(counter);
     }
 
 }
