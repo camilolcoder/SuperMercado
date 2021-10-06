@@ -73,7 +73,10 @@ public class Aplicacion {
                     ejecutarCrearCliente();
                 }
                 else if (opcion_seleccionada == 2)
-                    System.out.print("");
+                {
+                    //ejecutarObtenerDatosClientes();
+                    dataBase();
+                }
                 else if (opcion_seleccionada == 3) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -124,7 +127,11 @@ public class Aplicacion {
 
     public void ejecutarObtenerDatosClientes()
     {
-
+        List<Cliente> datosClientes = pointOfSale.getClientes();
+        for(int i = 0; i <= datosClientes.size(); i++)
+        {
+            System.out.print("Lets go xdxdxd");
+        }
     }
 
     public String input(String mensaje)
@@ -143,22 +150,28 @@ public class Aplicacion {
         return null;
     }
 
-    /*public void dataBase()
+    public void dataBase()
     {
-        FileWriter csvWriter = new FileWriter("new.csv");
-        csvWriter.append("Name");
-        csvWriter.append(",");
-        csvWriter.append("Sex");
-        csvWriter.append(",");
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
+        String simpleFile = "clientes.csv";
+        //File csvFile = new File(simpleFile);
 
-        csvWriter.flush();
-        csvWriter.close();
-    }*/
+
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
+        //stringBuilder.append("Juan Camilo").append(",").append("20").append(",").append("M").append("\n");
+
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args)
     {
         Aplicacion aplicacion = new Aplicacion();
         aplicacion.ejecutarAplicacion();
-        /*dataBase()*/;
+        /*dataBase()*/
     }
 }
