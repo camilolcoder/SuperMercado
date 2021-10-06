@@ -74,8 +74,7 @@ public class Aplicacion {
                 }
                 else if (opcion_seleccionada == 2)
                 {
-                    //ejecutarObtenerDatosClientes();
-                    dataBase();
+                    ejecutarObtenerDatosClientes();
                 }
                 else if (opcion_seleccionada == 3) {
                     System.out.println("Saliendo apliacacion ....");
@@ -122,16 +121,18 @@ public class Aplicacion {
         String situacionLaboral = input("Ingrese la situacion laboral del cliente");
         //int puntos = input("Ingrese la id del cliente");
         pointOfSale.createClient(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
+        dataBase(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
 
     }
 
     public void ejecutarObtenerDatosClientes()
     {
-        List<Cliente> datosClientes = pointOfSale.getClientes();
-        for(int i = 0; i <= datosClientes.size(); i++)
+        /*List<Cliente> datosClientes = pointOfSale.getClientes();
+        //for(int i = 0; i <= datosClientes.size(); i++)
+        for (Cliente cliente : datosClientes)
         {
-            System.out.print("Lets go xdxdxd");
-        }
+            cliente.getNombre();
+        }*/
     }
 
     public String input(String mensaje)
@@ -150,7 +151,7 @@ public class Aplicacion {
         return null;
     }
 
-    public void dataBase()
+    public void dataBase(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
         String simpleFile = "clientes.csv";
@@ -159,8 +160,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        //stringBuilder.append("Juan Camilo").append(",").append("20").append(",").append("M").append("\n");
-
+        stringBuilder.append(nombre).append(",").append(edad).append(",").append(sexo).append(",").append(estadoCivil).append(",").append(id).append(",").append(situacionLaboral).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
@@ -172,6 +172,5 @@ public class Aplicacion {
     {
         Aplicacion aplicacion = new Aplicacion();
         aplicacion.ejecutarAplicacion();
-        /*dataBase()*/
     }
 }
