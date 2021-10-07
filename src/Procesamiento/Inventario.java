@@ -26,18 +26,18 @@ public class Inventario {
 
     public void createProduct(String nombre, double precio, double precioPorUnidad,
                               String unidadMedida, double peso, String fresco,
-                              String categoria, String codigo)
+                              String categoria)
     {
         Producto producto = new Producto(nombre, precio, precioPorUnidad, unidadMedida,
-                peso, fresco, categoria, codigo);
+                peso, fresco, categoria);
         productos.add(producto);
     }
 
     public void createLote(int id, String fechaEntrada, String fechaVencimiento,
-                           Producto producto, double precioPagado, double ventaPublico,
+                           String codigoProducto, double precioPagado, double ventaPublico,
                            int unidades)
     {
-        Lote lote = new Lote(id, fechaEntrada, fechaVencimiento, producto, precioPagado,
+        Lote lote = new Lote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
                 ventaPublico, unidades);
         lotes.add(lote);
     }

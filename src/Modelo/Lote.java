@@ -5,17 +5,17 @@ public class Lote {
     private int id;
     private String fechaEntrada;
     private String fechaVencimiento;
-    private Producto producto;
+    private String codigoProducto;
     private double precioPagado;
     private double ventaPublico;
     private int unidades;
 
-    public Lote(int id, String fechaEntrada, String fechaVencimiento, Producto producto,
+    public Lote(int id, String fechaEntrada, String fechaVencimiento, String codigoProducto,
                 double precioPagado, double ventaPublico, int unidades) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.fechaVencimiento = fechaVencimiento;
-        this.producto = producto;
+        this.codigoProducto = codigoProducto;
         this.precioPagado = precioPagado;
         this.ventaPublico = ventaPublico;
         this.unidades = unidades;
@@ -45,12 +45,12 @@ public class Lote {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public String getCodigoProducto() {
+        return codigoProducto;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
     }
 
     public double getPrecioPagado() {

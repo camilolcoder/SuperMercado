@@ -9,11 +9,11 @@ public class Producto {
     private double peso;
     private String fresco;
     private String categoria;
-    private String codigo;
+    private int codigo;
 
     public Producto(String nombre, double precio, double precioPorUnidad,
-                    String unidadMedida, double peso, String fresco, String categoria,
-                    String codigo) {
+                    String unidadMedida, double peso, String fresco, String categoria
+                    ) {
         this.nombre = nombre;
         this.precio = precio;
         this.precioPorUnidad = precioPorUnidad;
@@ -21,7 +21,7 @@ public class Producto {
         this.peso = peso;
         this.fresco = fresco;
         this.categoria = categoria;
-        this.codigo = codigo;
+        //this.codigo = codigo;
     }
 
     public String getNombre() {
@@ -80,11 +80,11 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 }

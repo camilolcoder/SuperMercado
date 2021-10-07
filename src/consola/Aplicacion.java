@@ -13,11 +13,16 @@ public class Aplicacion {
 
     private PointOfSale pointOfSale;
     private Inventario inventario;
+    private int codigo = 0;
 
     public void printMenuPrincipal()
     {
+        System.out.println("");
+        System.out.println("----MENU-PRINCIPAL---------------");
         System.out.println("1. Abrir sistema de point of sale");
         System.out.println("2. Abrir sitema de inventario");
+        System.out.println("3. Salir de aplicación");
+        System.out.println("");
     }
 
     public void printMenuPointOfSale()
@@ -27,13 +32,25 @@ public class Aplicacion {
         System.out.println("1. Crear nuevo cliente");
         System.out.println("2. Consultar lista de clientes");
         System.out.println("3. Registrar los productos a comprar de un cliente");
+        System.out.println("4. Salir del sistema point of sale");
         System.out.println("");
     }
 
     public void printMenuInventario()
     {
-        System.out.println("1. Consultar lotes");
-        System.out.println("2. Consulat otra cosa xd");
+        System.out.println("");
+        System.out.println("----MENU-INVENTARIO------------");
+        System.out.println("1. Crear producto");
+        System.out.println("2. Obtener todos los productos");
+        System.out.println("3. Crear lote");
+        System.out.println("4. Salir del sistema de inventario");
+        System.out.println("");
+    }
+
+    public void printMenuCompras()
+    {
+        System.out.println("1. Registrar compras");
+        System.out.println("2. Salir Aplicacion");
     }
 
     public void ejecutarAplicacion()
@@ -77,13 +94,9 @@ public class Aplicacion {
                 printMenuPointOfSale();
                 int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
                 if (opcion_seleccionada == 1)
-                {
                     ejecutarCrearCliente();
-                }
                 else if (opcion_seleccionada == 2)
-                {
                     ejecutarObtenerDatosClientes();
-                }
                 else if (opcion_seleccionada == 3)
                 {
                     ejecutarRegistrarCompras();
@@ -110,8 +123,10 @@ public class Aplicacion {
                 if (opcion_seleccionada == 1)
                     ejecutarCrearProducto();
                 else if (opcion_seleccionada == 2)
-                    System.out.print("");
-                else if (opcion_seleccionada == 3) {
+                    ejecutarObtenerDatosProductos();
+                else if (opcion_seleccionada == 3)
+                    ejecutarCrearLote();
+                else if (opcion_seleccionada == 4) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
@@ -137,9 +152,62 @@ public class Aplicacion {
 
     }
 
+    public void ejecutarCrearLote()
+    {
+        int id = Integer.parseInt(input("Ingrese la id del lote"));
+        String fechaEntrada = input("Ingrese la fehca de entrada del lote");
+        String fechaVencimiento = input("Ingrese la fecha de vencimiento del lote");
+        String codigoProducto = input("Ingrese el codigo del producto del que va a ser el lote");
+        double precioPagado = Double.parseDouble(input("Ingrese el precio pagado por el lote"));
+        double ventaPublico = Double.parseDouble(input("Ingrese el precio para vender al publico del lote"));
+        int unidades = Integer.parseInt(input("Ingrese la cantidad de unidades que tiene el lote"));
+        inventario.createLote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
+                ventaPublico, unidades);
+        dataBaseLotes(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
+                ventaPublico, unidades);
+    }
+
     public void ejecutarObtenerDatosClientes()
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        try(Scanner scanner = new Scanner(new File(filepath)))
+        {
+            scanner.useDelimiter(",");
+            while (scanner.hasNext())
+            {
+                System.out.print(scanner.next() + "|");
+            }
+            scanner.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error leyendo el archivo de la base de datos");
+            e.printStackTrace();
+        }
+    }
+
+    public void ejecutarObtenerDatosProductos()
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv";
+        try(Scanner scanner = new Scanner(new File(filepath)))
+        {
+            scanner.useDelimiter(",");
+            while (scanner.hasNext())
+            {
+                System.out.print(scanner.next() + "|");
+            }
+            scanner.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error leyendo el archivo de la base de datos");
+            e.printStackTrace();
+        }
+    }
+
+    public void ejecutarObtenerDatosLotes()
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
         try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
@@ -162,7 +230,7 @@ public class Aplicacion {
         while(continuar)
         {
             try {
-                printMenuInventario();
+                printMenuCompras();
                 int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
                 if (opcion_seleccionada == 1)
                     registroProducto();
@@ -214,9 +282,9 @@ public class Aplicacion {
 
     public void dataBaseProductos(String nombre, double precio, double precioPorUnidad,
                                   String unidadPorMedida, double peso, String fresco,
-                                  String categoria, String codigo)
+                                  String categoria, int codigo)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv" ;
         String simpleFile = "clientes.csv";
         //File csvFile = new File(simpleFile);
 
@@ -224,6 +292,25 @@ public class Aplicacion {
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
         stringBuilder.append(nombre).append(",").append(precio).append(",").append(precioPorUnidad).append(",").append(unidadPorMedida).append(",").append(peso).append(",").append(fresco).append(",").append(categoria).append(",").append(codigo).append("\n");
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dataBaseLotes(int id, String fechaEntrada, String fechaVencimiento,
+                                  String codigoProducto, double precioPagado, double ventaPublico,
+                                  int unidades)
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv" ;
+        String simpleFile = "clientes.csv";
+        //File csvFile = new File(simpleFile);
+
+
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
+        stringBuilder.append(id).append(",").append(fechaEntrada).append(",").append(fechaVencimiento).append(",").append(codigoProducto).append(",").append(precioPagado).append(",").append(ventaPublico).append(",").append(unidades).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
@@ -240,17 +327,18 @@ public class Aplicacion {
         double peso = Double.parseDouble(input("Escriba el peso del producto"));
         String fresco = input("Escriba si el producto es o no es fresco");
         String categoria = input("Escriba la categoria del producto");
-        String codigo = input("Escriba el codigo del producto");
+        //String codigo = input("Escriba el codigo del producto");
         inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
-                peso, fresco, categoria, codigo);
-        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, codigo);
+                peso, fresco, categoria);
+        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, 0);
+        codigo += 1;
     }
 
     public void registroProducto()
     {
         ArrayList<Producto> productos = new ArrayList<>();
         System.out.print("Registrar producto");
-        String codigo = input("Ingrese el codigo del producto");
+        int codigo = Integer.parseInt(input("Ingrese el codigo del producto"));
         Producto producto = pointOfSale.getProducto(codigo, inventario.getProductos());
         System.out.println(producto.getPrecio());
 

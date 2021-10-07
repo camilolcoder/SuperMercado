@@ -27,7 +27,7 @@ public class PointOfSale {
         return clientes;
     }
 
-    public Producto getProducto(String codigo, List<Producto> productos)
+    public Producto getProducto(int codigo, List<Producto> productos)
     {
         boolean continuar = true;
         int counter = 0;
