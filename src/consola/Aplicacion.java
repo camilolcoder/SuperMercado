@@ -4,6 +4,8 @@ import Modelo.Cliente;
 import Modelo.Lote;
 import Modelo.Producto;
 import Procesamiento.Inventario;
+import Procesamiento.LoaderInventario;
+import Procesamiento.LoaderPointOfSale;
 import Procesamiento.PointOfSale;
 
 import java.io.*;
@@ -49,17 +51,21 @@ public class Aplicacion {
 
     public void printMenuCompras()
     {
-        System.out.println("1. Registrar compras");
-        System.out.println("2. Salir Aplicacion");
+        System.out.println("1. agregar producto de cliente");
+        System.out.println("2. finalizar compra y mostrar total a pagar por el cliente");
+        System.out.println("3. Salir Aplicacion");
     }
 
-    public void ejecutarAplicacion()
-    {
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        List<Producto> productos = new ArrayList<>();
-        List<Lote> lotes = new ArrayList<>();
-        pointOfSale = new PointOfSale(clientes);
-        inventario = new Inventario(productos, lotes);
+    public void ejecutarAplicacion() throws IOException {
+        //ArrayList<Cliente> clientes = new ArrayList<>();
+        //List<Producto> productos = new ArrayList<>();
+        //List<Lote> lotes = new ArrayList<>();
+        //pointOfSale = new PointOfSale(clientes);
+        ejecutarCargarPointOfSales();
+        ejecutarCargarInventario();
+        //inventario = new Inventario(productos, lotes);
+        List<Producto> productos = inventario.getProductos();
+        codigo = productos.get(productos.size()-1).getCodigo()+1;
         boolean continuar = true;
         while(continuar)
         {
@@ -226,16 +232,20 @@ public class Aplicacion {
 
     public void ejecutarRegistrarCompras()
     {
+        List<Producto> productosCliente = new ArrayList<>();
         boolean continuar = true;
         while(continuar)
         {
             try {
                 printMenuCompras();
                 int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
-                if (opcion_seleccionada == 1)
-                    registroProducto();
+                if (opcion_seleccionada == 1) {
+                    int codigo = Integer.parseInt(input("Ingrese el codigo del producto"));
+                    Producto productoCliente = pointOfSale.getProducto(codigo, inventario.getProductos());
+                    productosCliente.add(productoCliente);
+                }
                 else if (opcion_seleccionada == 2)
-                    System.out.print("");
+                    totalProductos(productosCliente);
                 else if (opcion_seleccionada == 3) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -245,6 +255,16 @@ public class Aplicacion {
                         "numeros en el menu");
             }
         }
+    }
+
+    public void totalProductos(List<Producto> productosCliente)
+    {
+        double values = 0;
+        for(Producto producto: productosCliente)
+        {
+            values += producto.getPrecio();
+        }
+        System.out.println("El total a pagar es: "+values);
     }
 
     public String input(String mensaje)
@@ -330,22 +350,19 @@ public class Aplicacion {
         //String codigo = input("Escriba el codigo del producto");
         inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
                 peso, fresco, categoria);
-        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, 0);
+        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, codigo);
         codigo += 1;
     }
 
-    public void registroProducto()
-    {
-        ArrayList<Producto> productos = new ArrayList<>();
-        System.out.print("Registrar producto");
-        int codigo = Integer.parseInt(input("Ingrese el codigo del producto"));
-        Producto producto = pointOfSale.getProducto(codigo, inventario.getProductos());
-        System.out.println(producto.getPrecio());
-
+    public void ejecutarCargarPointOfSales() throws IOException {
+        pointOfSale = LoaderPointOfSale.cargarArchivos();
     }
 
-    public static void main(String[] args)
-    {
+    public void ejecutarCargarInventario() throws IOException {
+        inventario = LoaderInventario.cargarArchivos();
+    }
+
+    public static void main(String[] args) throws IOException {
         Aplicacion aplicacion = new Aplicacion();
         aplicacion.ejecutarAplicacion();
     }

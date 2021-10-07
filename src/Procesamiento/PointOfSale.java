@@ -39,7 +39,7 @@ public class PointOfSale {
             }
             counter += 1;
         }
-        return productos.get(counter);
+        return productos.get(counter-1);
     }
 
 }
