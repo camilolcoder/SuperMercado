@@ -191,7 +191,7 @@ public class Aplicacion {
         codigo += 1;
     }
 
-    public void ejecutarCrearFactura(List<Producto> productos)
+    public Factura ejecutarCrearFactura(List<Producto> productos)
     {
         int idCliente = Integer.parseInt(input("Escriba la id del cliente"));
         Factura factura = new Factura(productos, idCliente, idFactura);
@@ -199,6 +199,7 @@ public class Aplicacion {
         double totalPagar = factura.getTotalPagar();
         dataBaseFacturas(productos, idCliente, idFactura, totalPagar);
         idFactura += 1;
+        return factura;
     }
 
     public void ejecutarObtenerDatosClientes()
@@ -273,8 +274,11 @@ public class Aplicacion {
                     productosCliente.add(productoCliente);
                 }
                 else if (opcion_seleccionada == 2)
-                    //totalProductos(productosCliente);
-                    ejecutarCrearFactura(productosCliente);
+                {
+                    Factura factura = ejecutarCrearFactura(productosCliente);
+                    double total = factura.getTotalPagar();
+                    factura.printInformacionFactura(total);
+                }
                 else if (opcion_seleccionada == 3) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -284,16 +288,6 @@ public class Aplicacion {
                         "numeros en el menu");
             }
         }
-    }
-
-    public void totalProductos(List<Producto> productosCliente)
-    {
-        double values = 0;
-        for(Producto producto: productosCliente)
-        {
-            values += producto.getPrecio();
-        }
-        System.out.println("El total a pagar es: "+values);
     }
 
     public String input(String mensaje)

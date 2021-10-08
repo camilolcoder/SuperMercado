@@ -47,4 +47,17 @@ public class Factura {
         }
         return total;
     }
+
+    public void printInformacionFactura(double totalPagar)
+    {
+        System.out.println("----FACTURA-----");
+        System.out.println("Id factura : "+id);
+        System.out.println("Codigo cliente : "+codigoCliente);
+        for (Producto producto : productos)
+        {
+            System.out.println(producto.getNombre()+" : "+producto.getPrecio());
+        }
+        System.out.println("TOTAL A PAGAR : "+totalPagar);
+
+    }
 }

@@ -2,6 +2,7 @@ package Procesamiento;
 
 import Modelo.Cliente;
 import Modelo.Factura;
+import Modelo.Producto;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -39,10 +40,15 @@ public class LoaderPointOfSale {
         lineaf = brf.readLine();
         while (lineaf != null)
         {
-            String[] partes = lineaf.split(",");
-            //Factura factura = new Factura(partes[0], Integer.parseInt(partes[1]), partes[2],
-             //      partes[3], Integer.parseInt(partes[4]), partes[5]);
-            //facturas.add(facturas);
+            String[] partesf = lineaf.split(",");
+            List<Producto> productos = new ArrayList<>();
+            /*for (Producto producto : productos)
+            {
+                productos.add(partesf[2]);
+            }
+            Factura factura = new Factura(partes[0], Integer.parseInt(partes[1]), partes[2],
+                   partes[3], Integer.parseInt(partes[4]), partes[5]);
+            facturas.add(facturas);*/
             lineaf = brf.readLine();
 
         }
