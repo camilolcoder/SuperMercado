@@ -40,9 +40,9 @@ public class LoaderPointOfSale {
         while (lineaf != null)
         {
             String[] partes = lineaf.split(",");
-            Cliente cliente = new Cliente(partes[0], Integer.parseInt(partes[1]), partes[2],
-                    partes[3], Integer.parseInt(partes[4]), partes[5]);
-            clientes.add(cliente);
+            //Factura factura = new Factura(partes[0], Integer.parseInt(partes[1]), partes[2],
+             //      partes[3], Integer.parseInt(partes[4]), partes[5]);
+            //facturas.add(facturas);
             lineaf = brf.readLine();
 
         }

@@ -1,6 +1,7 @@
 package consola;
 
 import Modelo.Cliente;
+import Modelo.Factura;
 import Modelo.Lote;
 import Modelo.Producto;
 import Procesamiento.Inventario;
@@ -16,6 +17,7 @@ public class Aplicacion {
     private PointOfSale pointOfSale;
     private Inventario inventario;
     private int codigo = 0;
+    private int idFactura = 0;
 
     public void printMenuPrincipal()
     {
@@ -192,8 +194,11 @@ public class Aplicacion {
     public void ejecutarCrearFactura(List<Producto> productos)
     {
         int idCliente = Integer.parseInt(input("Escriba la id del cliente"));
-        int idFactura = 0;
+        Factura factura = new Factura(productos, idCliente, idFactura);
         pointOfSale.createFactura(productos, idCliente, idFactura);
+        double totalPagar = factura.getTotalPagar();
+        dataBaseFacturas(productos, idCliente, idFactura, totalPagar);
+        idFactura += 1;
     }
 
     public void ejecutarObtenerDatosClientes()
@@ -268,7 +273,8 @@ public class Aplicacion {
                     productosCliente.add(productoCliente);
                 }
                 else if (opcion_seleccionada == 2)
-                    totalProductos(productosCliente);
+                    //totalProductos(productosCliente);
+                    ejecutarCrearFactura(productosCliente);
                 else if (opcion_seleccionada == 3) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -359,6 +365,30 @@ public class Aplicacion {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void dataBaseFacturas(List<Producto> productos, int codigoCliente, int idFactura, double totalPagar)
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\facturas.csv" ;
+        String codigosProductos = codigosProductos(productos);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(codigosProductos).append(",").append(codigoCliente).append(",").append(idFactura).append(",").append(idFactura).append("\n");
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String codigosProductos(List<Producto> productos)
+    {
+        String codigosProductos = "";
+
+        for (Producto producto : productos)
+        {
+            codigosProductos = Integer.toString(producto.getCodigo());
+        }
+        return codigosProductos;
     }
 
     public void ejecutarCargarPointOfSales() throws IOException {
