@@ -8,6 +8,9 @@ import Procesamiento.Inventario;
 import Procesamiento.LoaderInventario;
 import Procesamiento.LoaderPointOfSale;
 import Procesamiento.PointOfSale;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.util.*;
@@ -81,6 +84,8 @@ public class Aplicacion {
                     ejecutarAplicacionInventario();
                 else if (opcion_seleccionada == 3)
                 {
+                    //updateCSV("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv",
+                    //        "ferrai", 1, 1);
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
@@ -398,6 +403,25 @@ public class Aplicacion {
             codigosProductos = Integer.toString(producto.getCodigo());
         }
         return codigosProductos;
+    }
+
+    public static void updateCSV(String fileToUpdate, String replace,
+                                 int row, int col) throws IOException, CsvException {
+
+        File inputFile = new File(fileToUpdate);
+
+// Read existing file
+        CSVReader reader = new CSVReader(new FileReader(inputFile));
+        List<String[]> csvBody = reader.readAll();
+// get CSV row column  and replace with by using row and column
+        csvBody.get(row)[col] = replace;
+        reader.close();
+
+// Write to CSV file which is open
+        CSVWriter writer = new CSVWriter(new FileWriter(inputFile));
+        writer.writeAll(csvBody);
+        writer.flush();
+        writer.close();
     }
 
     public void ejecutarCargarPointOfSales() throws IOException {
