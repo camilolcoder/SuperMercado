@@ -1,6 +1,7 @@
 package Procesamiento;
 
 import Modelo.Cliente;
+import Modelo.Factura;
 import Modelo.Producto;
 
 import java.util.ArrayList;
@@ -9,9 +10,11 @@ import java.util.List;
 public class PointOfSale {
 
     private List<Cliente> clientes;
+    private List<Factura> facturas;
 
-    public PointOfSale(List<Cliente> clientes) {
+    public PointOfSale(List<Cliente> clientes, List<Factura> facturas) {
         this.clientes = clientes;
+        this.facturas = facturas;
     }
 
     public void createClient(String nombre, int edad, String sexo,
@@ -20,6 +23,12 @@ public class PointOfSale {
         Cliente cliente = new Cliente(nombre, edad, sexo, estadoCivil,
         id, situacionLaboral);
         clientes.add(cliente);
+    }
+
+    public void createFactura(List<Producto> productos, int codigoCliente, int id)
+    {
+        Factura factura = new Factura(productos, codigoCliente, id);
+        facturas.add(factura);
     }
 
     public List<Cliente> getClientes()

@@ -42,4 +42,9 @@ public class Inventario {
         lotes.add(lote);
     }
 
+    public void chequearFechaVencimiento()
+    {
+
+    }
+
 }

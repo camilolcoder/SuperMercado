@@ -173,6 +173,29 @@ public class Aplicacion {
                 ventaPublico, unidades);
     }
 
+    public void ejecutarCrearProducto()
+    {
+        String nombre = input("Escriba el nombre del producto");
+        double precio = Double.parseDouble(input("Escriba el precio del producto"));
+        double precioPorUnidad = Double.parseDouble(input("Escriba el precio por unidad del producto"));
+        String unidadMedida = input("Escriba la unidad de medida del producto");
+        double peso = Double.parseDouble(input("Escriba el peso del producto"));
+        String fresco = input("Escriba si el producto es o no es fresco");
+        String categoria = input("Escriba la categoria del producto");
+        //String codigo = input("Escriba el codigo del producto");
+        inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
+                peso, fresco, categoria);
+        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, codigo);
+        codigo += 1;
+    }
+
+    public void ejecutarCrearFactura(List<Producto> productos)
+    {
+        int idCliente = Integer.parseInt(input("Escriba la id del cliente"));
+        int idFactura = 0;
+        pointOfSale.createFactura(productos, idCliente, idFactura);
+    }
+
     public void ejecutarObtenerDatosClientes()
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
@@ -336,22 +359,6 @@ public class Aplicacion {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void ejecutarCrearProducto()
-    {
-        String nombre = input("Escriba el nombre del producto");
-        double precio = Double.parseDouble(input("Escriba el precio del producto"));
-        double precioPorUnidad = Double.parseDouble(input("Escriba el precio por unidad del producto"));
-        String unidadMedida = input("Escriba la unidad de medida del producto");
-        double peso = Double.parseDouble(input("Escriba el peso del producto"));
-        String fresco = input("Escriba si el producto es o no es fresco");
-        String categoria = input("Escriba la categoria del producto");
-        //String codigo = input("Escriba el codigo del producto");
-        inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
-                peso, fresco, categoria);
-        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, codigo);
-        codigo += 1;
     }
 
     public void ejecutarCargarPointOfSales() throws IOException {

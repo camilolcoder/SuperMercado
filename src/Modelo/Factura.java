@@ -5,12 +5,12 @@ import java.util.List;
 public class Factura {
 
     private List<Producto> productos;
-    private Cliente cliente;
+    private int codigoCliente;
     private int id;
 
-    public Factura(List<Producto> productos, Cliente cliente, int id) {
+    public Factura(List<Producto> productos, int codigoCliente, int id) {
         this.productos = productos;
-        this.cliente = cliente;
+        this.codigoCliente = codigoCliente;
         this.id = id;
     }
 
@@ -22,12 +22,12 @@ public class Factura {
         this.productos = productos;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getCliente() {
+        return codigoCliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente(int codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
     public int getId() {
