@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.*;
 
 public class Aplicacion {
-
+    //Testing
     private PointOfSale pointOfSale;
     private Inventario inventario;
     private int codigo = 0;
