@@ -48,7 +48,7 @@ public class Factura {
         return total;
     }
 
-    public void printInformacionFactura(double totalPagar)
+    public void printInformacionFactura(double totalPagar, int puntosAcumualdos)
     {
         System.out.println("----FACTURA-----");
         System.out.println("Id factura : "+id);
@@ -58,6 +58,7 @@ public class Factura {
             System.out.println(producto.getNombre()+" : "+producto.getPrecio());
         }
         System.out.println("TOTAL A PAGAR : "+totalPagar);
+        System.out.println("Puntos acumulados : "+puntosAcumualdos);
 
     }
 }

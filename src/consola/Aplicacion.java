@@ -191,9 +191,9 @@ public class Aplicacion {
         codigo += 1;
     }
 
-    public Factura ejecutarCrearFactura(List<Producto> productos)
+    public Factura ejecutarCrearFactura(List<Producto> productos, int idCliente)
     {
-        int idCliente = Integer.parseInt(input("Escriba la id del cliente"));
+        //int idCliente = Integer.parseInt(input("Escriba la id del cliente"));
         Factura factura = new Factura(productos, idCliente, idFactura);
         pointOfSale.createFactura(productos, idCliente, idFactura);
         double totalPagar = factura.getTotalPagar();
@@ -262,6 +262,7 @@ public class Aplicacion {
     public void ejecutarRegistrarCompras()
     {
         List<Producto> productosCliente = new ArrayList<>();
+        List<Cliente> clientesRegistrados = pointOfSale.getClientes();
         boolean continuar = true;
         while(continuar)
         {
@@ -275,9 +276,23 @@ public class Aplicacion {
                 }
                 else if (opcion_seleccionada == 2)
                 {
-                    Factura factura = ejecutarCrearFactura(productosCliente);
+                    int idCliente = Integer.parseInt(input("Escriba la id del cliente"));
+                    boolean confirmacion = pointOfSale.chequearId(idCliente);
+                    Factura factura = ejecutarCrearFactura(productosCliente, idCliente);
                     double total = factura.getTotalPagar();
-                    factura.printInformacionFactura(total);
+                    if (confirmacion)
+                    {
+                        int puntosAcumulados = pointOfSale.calcularPuntosAcumulados(total);
+                        factura.printInformacionFactura(total, puntosAcumulados);
+                        int clienteComprando = pointOfSale.buscarClientePorId(idCliente);
+                        clientesRegistrados.get(clienteComprando).sumarPuntos(total);
+                        //System.out.println(clientesRegistrados.get(clienteComprando).getNombre());
+                    }
+                    else
+                    {
+                        factura.printInformacionFactura(total, 0);
+                    }
+
                 }
                 else if (opcion_seleccionada == 3) {
                     System.out.println("Saliendo apliacacion ....");

@@ -50,5 +50,38 @@ public class PointOfSale {
         }
         return productos.get(counter-1);
     }
+    public boolean chequearId(int idCliente)
+    {
+        boolean confirmacion = false;
+        for (Cliente cliente : clientes)
+        {
+            if (cliente.getId() == idCliente)
+            {
+                confirmacion = true;
+            }
+        }
+        return confirmacion;
+    }
+
+    public int buscarClientePorId(int idCliente)
+    {
+        int posicion = 0;
+        int counter = 0;
+        for (Cliente cliente : clientes)
+        {
+            if (cliente.getId() == idCliente)
+            {
+                posicion = counter;
+            }
+            counter += 1;
+        }
+        return posicion;
+    }
+
+    public int calcularPuntosAcumulados(double dineroGastado)
+    {
+        double puntosCalculados = Math.round(dineroGastado/1000);
+        return (int)puntosCalculados;
+    }
 
 }
