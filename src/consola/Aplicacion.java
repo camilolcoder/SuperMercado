@@ -84,6 +84,7 @@ public class Aplicacion {
                     ejecutarAplicacionInventario();
                 else if (opcion_seleccionada == 3)
                 {
+                    csvTest("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv");
                     //updateCSV("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv",
                     //        "ferrai", 1, 1);
                     System.out.println("Saliendo apliacacion ....");
@@ -405,7 +406,7 @@ public class Aplicacion {
         return codigosProductos;
     }
 
-    public static void updateCSV(String fileToUpdate, String replace,
+    public void updateCSV(String fileToUpdate, String replace,
                                  int row, int col) throws IOException, CsvException {
 
         File inputFile = new File(fileToUpdate);
@@ -422,6 +423,24 @@ public class Aplicacion {
         writer.writeAll(csvBody);
         writer.flush();
         writer.close();
+    }
+
+    public void csvTest(String file) throws IOException {
+        File inFile = new File(file);
+        if (!inFile.delete())
+        {
+            System.out.println("Ah ocurrido un error actualizando la base de datos");
+            return;
+        }
+        try
+        {
+            File newFile = new File(file);
+            newFile.createNewFile();
+        } catch (IOException e)
+        {
+            System.out.println("Ah ocurrido un error");
+            e.printStackTrace();
+        }
     }
 
     public void ejecutarCargarPointOfSales() throws IOException {
