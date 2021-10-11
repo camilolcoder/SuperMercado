@@ -27,10 +27,12 @@ public class LoaderPointOfSale {
             String[] partes = linea.split(",");
             Cliente cliente = new Cliente(partes[0], Integer.parseInt(partes[1]), partes[2],
                     partes[3], Integer.parseInt(partes[4]), partes[5]);
+            cliente.setPuntos(Integer.parseInt(partes[6]));
             clientes.add(cliente);
             linea = br.readLine();
 
         }
+        br.close();
         //-------------------------------------------------------------------
         String filepathFacturas = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\facturas.csv";
         ArrayList<Factura> facturas = new ArrayList<>();
@@ -54,7 +56,7 @@ public class LoaderPointOfSale {
         }
 
         brf.close();
-        System.out.println(clientes.get(0).getNombre());
+        //System.out.println(clientes.get(0).getNombre());
         PointOfSale pointOfSale = new PointOfSale(clientes, facturas);
         return pointOfSale;
     }

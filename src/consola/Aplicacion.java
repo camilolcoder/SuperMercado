@@ -328,6 +328,25 @@ public class Aplicacion {
         return null;
     }
 
+    public void dataBaseAddHeader(String a, String b,String c, String d,
+                                  String es, String f, String g, String adress)
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
+        String simpleFile = "clientes.csv";
+        //File csvFile = new File(simpleFile);
+
+
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
+        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append("\n");
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void dataBaseClientes(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral, int puntos)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
@@ -340,6 +359,7 @@ public class Aplicacion {
         stringBuilder.append(nombre).append(",").append(edad).append(",").append(sexo).append(",").append(estadoCivil).append(",").append(id).append(",").append(situacionLaboral).append(",").append(puntos).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -431,7 +451,7 @@ public class Aplicacion {
         File inFile = new File(file);
         if (!inFile.delete())
         {
-            //System.out.println("Ah ocurrido un error actualizando la base de datos");
+            System.out.println("Ah ocurrido un error actualizando la base de datos");
             return;
         }
         try
@@ -448,6 +468,9 @@ public class Aplicacion {
     public void updateData() throws IOException {
         csvTest();
         List<Cliente> clientes = pointOfSale.getClientes();
+
+        dataBaseAddHeader("Nombre", "Edad", "Sexo", "Estado Civil",
+                "Id", "Situacion Laboral", "puntos", "clientes.csv");
         for (Cliente cliente : clientes)
         {
             dataBaseClientes(cliente.getNombre(), cliente.getEdad(),
