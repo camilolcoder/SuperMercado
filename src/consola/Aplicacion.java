@@ -84,7 +84,8 @@ public class Aplicacion {
                     ejecutarAplicacionInventario();
                 else if (opcion_seleccionada == 3)
                 {
-                    csvTest("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv");
+                    updateData();
+                    //csvTest("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv");
                     //updateCSV("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv",
                     //        "ferrai", 1, 1);
                     System.out.println("Saliendo apliacacion ....");
@@ -425,11 +426,12 @@ public class Aplicacion {
         writer.close();
     }
 
-    public void csvTest(String file) throws IOException {
+    public void csvTest() throws IOException {
+        String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
         File inFile = new File(file);
         if (!inFile.delete())
         {
-            System.out.println("Ah ocurrido un error actualizando la base de datos");
+            //System.out.println("Ah ocurrido un error actualizando la base de datos");
             return;
         }
         try
@@ -440,6 +442,17 @@ public class Aplicacion {
         {
             System.out.println("Ah ocurrido un error");
             e.printStackTrace();
+        }
+    }
+
+    public void updateData() throws IOException {
+        csvTest();
+        List<Cliente> clientes = pointOfSale.getClientes();
+        for (Cliente cliente : clientes)
+        {
+            dataBaseClientes(cliente.getNombre(), cliente.getEdad(),
+                    cliente.getSexo(), cliente.getEstadoCivil(), cliente.getId(),
+                    cliente.getSituacionLaboral(), cliente.getPuntos());
         }
     }
 
