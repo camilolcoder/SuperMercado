@@ -13,6 +13,8 @@ import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Aplicacion {
@@ -86,7 +88,21 @@ public class Aplicacion {
                     ejecutarAplicacionInventario();
                 else if (opcion_seleccionada == 3)
                 {
-                    //System.out.println(java.time.LocalDate.now());
+                    /*boolean test = inventario.chequearFechaVencimiento("11/8/2018");
+                    if (!test)
+                    {
+                        System.out.println("El lote esta vencido");
+                    }
+                    else
+                    {
+                        System.out.println("El lote NO esta vencido");
+                    }
+                    /*String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+                    System.out.println(now);
+                    if(now.equals("10-11-2021"))
+                    {
+                        System.out.println("Fecha correcta");
+                    }*/
                     //updateDataClientes();
                     //updateDataLotes();
                     //csvTest("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv");
@@ -149,7 +165,7 @@ public class Aplicacion {
                     ejecutarObtenerDatosLotes();
                 else if (opcion_seleccionada == 5)
                 {
-                    ejecutarEliminarLoteVencido();
+                    ejecutarEliminarLoteEspecifico();
                     dataBaseLotesReset();
                 }
                 else if (opcion_seleccionada == 6)
@@ -183,8 +199,8 @@ public class Aplicacion {
     public void ejecutarCrearLote()
     {
         int id = Integer.parseInt(input("Ingrese la id del lote"));
-        String fechaEntrada = input("Ingrese la fehca de entrada del lote");
-        String fechaVencimiento = input("Ingrese la fecha de vencimiento del lote");
+        String fechaEntrada = input("Ingrese la fehca de entrada del lote(MM/dd/yyyy)");
+        String fechaVencimiento = input("Ingrese la fecha de vencimiento del lote(MM/dd/yyyy)");
         String codigoProducto = input("Ingrese el codigo del producto del que va a ser el lote");
         double precioPagado = Double.parseDouble(input("Ingrese el precio pagado por el lote"));
         double ventaPublico = Double.parseDouble(input("Ingrese el precio para vender al publico del lote"));
@@ -465,7 +481,7 @@ public class Aplicacion {
         writer.close();
     }
 
-    public void ejecutarEliminarLoteVencido()
+    public void ejecutarEliminarLoteEspecifico()
     {
         int id = Integer.parseInt(input("Ingrese el codigo del lote que desea eliminar"));
         inventario.deleteLote(id);

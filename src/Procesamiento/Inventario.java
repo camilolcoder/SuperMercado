@@ -3,6 +3,10 @@ package Procesamiento;
 import Modelo.Lote;
 import Modelo.Producto;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Inventario {
@@ -42,9 +46,35 @@ public class Inventario {
         lotes.add(lote);
     }
 
-    public void chequearFechaVencimiento()
+    public boolean chequearFechaVencimiento(String fechaVencimiento)
     {
-
+        boolean chequeo = true;
+        List<String> fechas = Arrays.asList(fechaVencimiento.split("/"));
+        String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        List<String> fechasHoy = Arrays.asList(now.split("/"));
+        int anoProducto = Integer.parseInt(fechas.get(2));
+        int anoHoy = Integer.parseInt(fechasHoy.get(2));
+        int mesProducto = Integer.parseInt(fechas.get(1));
+        int mesHoy = Integer.parseInt(fechasHoy.get(1));
+        int diaProducto = Integer.parseInt(fechas.get(0));
+        int diaHoy = Integer.parseInt(fechasHoy.get(0));
+        //System.out.println(anoProducto +" "+ anoHoy +" "+ mesProducto +" "+mesHoy +" "+diaProducto+" "+diaHoy);
+        if (anoProducto < anoHoy)
+        {
+            chequeo = false;
+            //System.out.println("UNO");
+        }
+        else if (mesProducto < mesHoy && anoProducto == anoHoy)
+        {
+            chequeo = false;
+            //System.out.println("DOS");
+        }
+        else if (diaProducto < diaHoy && mesProducto >= mesHoy && anoProducto == anoHoy)
+        {
+            chequeo = false;
+            //System.out.println("TRES");
+        }
+        return chequeo;
     }
 
     public void deleteLote(int id)
@@ -52,8 +82,16 @@ public class Inventario {
         lotes.removeIf(lote -> lote.getId() == id);
     }
 
-    public void mostrarLotesVencidos()
+    public List<Lote> mostrarLotesVencidos()
     {
-
+        List<Lote> lotesVencidos = new ArrayList<>();
+        for (Lote lote : lotes)
+        {
+            if (!chequearFechaVencimiento(lote.getFechaVencimiento()))
+            {
+                lotesVencidos.add(lote);
+            }
+        }
+        return lotesVencidos;
     }
 }
