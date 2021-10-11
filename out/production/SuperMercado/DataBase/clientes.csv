@@ -1,3 +1,4 @@
-Nombre,Edad,Sexo, Estado Civil, id, Situacion Laboral, puntos
-Sebastian Pinzon,19,M,soltero,20205465,estudianet,0
-juan Camilo,10,M,soltero,202011856,estudiante,0
+Nombre,Edad,Sexo,Estado Civil,Id,Situacion Laboral,puntos
+Juan Camilo,19,M,soltero,202011856,estudiante,38
+Sabrina Diaz,18,F,soltero,1010020101,estudiante,76
+Sebas Pinzon,19,M,soltero,2021,estudiante,88

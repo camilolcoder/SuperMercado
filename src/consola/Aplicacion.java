@@ -50,7 +50,12 @@ public class Aplicacion {
         System.out.println("1. Crear producto");
         System.out.println("2. Obtener todos los productos");
         System.out.println("3. Crear lote");
-        System.out.println("4. Salir del sistema de inventario");
+        System.out.println("4. Obtener todos los lotes");
+        System.out.println("5. Eliminar un lote especifico");
+        System.out.println("6. Mostrar todos los lotes vencidos");
+        System.out.println("7. Eliminar todos los lotes vencidos");
+        System.out.println("8. Mostrar el desempeño financiero de los lotes");
+        System.out.println("9. Salir del sistema de inventario");
         System.out.println("");
     }
 
@@ -62,13 +67,10 @@ public class Aplicacion {
     }
 
     public void ejecutarAplicacion() throws IOException {
-        //ArrayList<Cliente> clientes = new ArrayList<>();
-        //List<Producto> productos = new ArrayList<>();
-        //List<Lote> lotes = new ArrayList<>();
-        //pointOfSale = new PointOfSale(clientes);
+
         ejecutarCargarPointOfSales();
         ejecutarCargarInventario();
-        //inventario = new Inventario(productos, lotes);
+
         List<Producto> productos = inventario.getProductos();
         codigo = productos.get(productos.size()-1).getCodigo()+1;
         boolean continuar = true;
@@ -84,7 +86,9 @@ public class Aplicacion {
                     ejecutarAplicacionInventario();
                 else if (opcion_seleccionada == 3)
                 {
-                    updateData();
+                    //System.out.println(java.time.LocalDate.now());
+                    //updateDataClientes();
+                    //updateDataLotes();
                     //csvTest("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv");
                     //updateCSV("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv",
                     //        "ferrai", 1, 1);
@@ -141,12 +145,21 @@ public class Aplicacion {
                     ejecutarObtenerDatosProductos();
                 else if (opcion_seleccionada == 3)
                     ejecutarCrearLote();
-                else if (opcion_seleccionada == 4) {
+                else if (opcion_seleccionada == 4)
+                    ejecutarObtenerDatosLotes();
+                else if (opcion_seleccionada == 5)
+                {
+                    ejecutarEliminarLoteVencido();
+                    dataBaseLotesReset();
+                }
+                else if (opcion_seleccionada == 6)
+                    ejecutarMostrarLotesVencidos();
+                else if (opcion_seleccionada == 9) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
 
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IOException e) {
                 System.out.println("Por favor seleccione uno de los " +
                         "numeros en el menu");
             }
@@ -266,6 +279,11 @@ public class Aplicacion {
         }
     }
 
+    public void ejecutarMostrarLotesVencidos()
+    {
+        inventario.mostrarLotesVencidos();
+    }
+
     public void ejecutarRegistrarCompras()
     {
         List<Producto> productosCliente = new ArrayList<>();
@@ -293,6 +311,7 @@ public class Aplicacion {
                         factura.printInformacionFactura(total, puntosAcumulados);
                         int clienteComprando = pointOfSale.buscarClientePorId(idCliente);
                         clientesRegistrados.get(clienteComprando).sumarPuntos(total);
+                        dataBaseClientesReset();
                         //System.out.println(clientesRegistrados.get(clienteComprando).getNombre());
                     }
                     else
@@ -305,7 +324,7 @@ public class Aplicacion {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IOException e) {
                 System.out.println("Por favor seleccione uno de los " +
                         "numeros en el menu");
             }
@@ -446,7 +465,14 @@ public class Aplicacion {
         writer.close();
     }
 
-    public void csvTest() throws IOException {
+    public void ejecutarEliminarLoteVencido()
+    {
+        int id = Integer.parseInt(input("Ingrese el codigo del lote que desea eliminar"));
+        inventario.deleteLote(id);
+    }
+
+    public void dataBaseClientesReset() throws IOException
+    {
         String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
         File inFile = new File(file);
         if (!inFile.delete())
@@ -465,8 +491,29 @@ public class Aplicacion {
         }
     }
 
-    public void updateData() throws IOException {
-        csvTest();
+    public void dataBaseLotesReset() throws IOException
+    {
+        String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
+        File inFile = new File(file);
+        if (!inFile.delete())
+        {
+            System.out.println("Ah ocurrido un error actualizando la base de datos");
+            return;
+        }
+        try
+        {
+            File newFile = new File(file);
+            newFile.createNewFile();
+        } catch (IOException e)
+        {
+            System.out.println("Ah ocurrido un error");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateDataClientes() throws IOException
+    {
+        dataBaseClientesReset();
         List<Cliente> clientes = pointOfSale.getClientes();
 
         dataBaseAddHeader("Nombre", "Edad", "Sexo", "Estado Civil",
@@ -476,6 +523,21 @@ public class Aplicacion {
             dataBaseClientes(cliente.getNombre(), cliente.getEdad(),
                     cliente.getSexo(), cliente.getEstadoCivil(), cliente.getId(),
                     cliente.getSituacionLaboral(), cliente.getPuntos());
+        }
+    }
+
+    public void updateDataLotes() throws IOException
+    {
+        dataBaseLotesReset();
+        List<Lote> lotes = inventario.getLotes();
+
+        dataBaseAddHeader("Id", "Fecha Entrada", "Fecha Vencimiento", "Codigo Producto",
+                "Precio Pagado", "Venta Publico", "Unidades", "lotes.csv");
+        for (Lote lote : lotes)
+        {
+            dataBaseLotes(lote.getId(), lote.getFechaEntrada(), lote.getFechaVencimiento(),
+                    lote.getCodigoProducto(), lote.getPrecioPagado(), lote.getVentaPublico(),
+                    lote.getUnidades());
         }
     }
 

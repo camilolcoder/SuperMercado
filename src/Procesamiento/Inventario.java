@@ -47,4 +47,13 @@ public class Inventario {
 
     }
 
+    public void deleteLote(int id)
+    {
+        lotes.removeIf(lote -> lote.getId() == id);
+    }
+
+    public void mostrarLotesVencidos()
+    {
+
+    }
 }
