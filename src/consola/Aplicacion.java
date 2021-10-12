@@ -57,6 +57,7 @@ public class Aplicacion {
         System.out.println("6. Mostrar todos los lotes vencidos");
         System.out.println("7. Eliminar todos los lotes vencidos");
         System.out.println("8. Mostrar el desempeño financiero de los lotes");
+        System.out.println("9. Cargar llegada de nuevos lotes desde un csv");
         System.out.println("9. Salir del sistema de inventario");
         System.out.println("");
     }
@@ -166,10 +167,15 @@ public class Aplicacion {
                 else if (opcion_seleccionada == 5)
                 {
                     ejecutarEliminarLoteEspecifico();
-                    dataBaseLotesReset();
+                    updateDataLotes();
                 }
                 else if (opcion_seleccionada == 6)
                     ejecutarMostrarLotesVencidos();
+                else if (opcion_seleccionada == 7)
+                {
+                    ejecutarEliminarLotesVencidos();
+                    updateDataLotes();
+                }
                 else if (opcion_seleccionada == 9) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -297,7 +303,12 @@ public class Aplicacion {
 
     public void ejecutarMostrarLotesVencidos()
     {
-        inventario.mostrarLotesVencidos();
+        //inventario.mostrarLotesVencidos();
+    }
+
+    public void ejecutarEliminarLotesVencidos()
+    {
+        inventario.eliminarLotesVencidos();
     }
 
     public void ejecutarRegistrarCompras()
@@ -327,7 +338,7 @@ public class Aplicacion {
                         factura.printInformacionFactura(total, puntosAcumulados);
                         int clienteComprando = pointOfSale.buscarClientePorId(idCliente);
                         clientesRegistrados.get(clienteComprando).sumarPuntos(total);
-                        dataBaseClientesReset();
+                        updateDataClientes();
                         //System.out.println(clientesRegistrados.get(clienteComprando).getNombre());
                     }
                     else
@@ -481,9 +492,9 @@ public class Aplicacion {
         writer.close();
     }
 
-    public void ejecutarEliminarLoteEspecifico()
+    public void ejecutarEliminarLoteEspecifico() throws IOException
     {
-        int id = Integer.parseInt(input("Ingrese el codigo del lote que desea eliminar"));
+        int id = Integer.parseInt(input("Ingrese la id del lote que desea eliminar"));
         inventario.deleteLote(id);
     }
 

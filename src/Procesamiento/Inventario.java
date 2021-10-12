@@ -79,6 +79,7 @@ public class Inventario {
 
     public void deleteLote(int id)
     {
+        //lotes.removeIf(lote -> lote.getId() == id);
         lotes.removeIf(lote -> lote.getId() == id);
     }
 
@@ -93,5 +94,17 @@ public class Inventario {
             }
         }
         return lotesVencidos;
+    }
+
+    public void eliminarLotesVencidos()
+    {
+        //lotes.removeIf(lote -> !chequearFechaVencimiento(lote.getFechaVencimiento()));
+        lotes.removeIf(lote -> !chequearFechaVencimiento(lote.getFechaVencimiento()));
+    }
+
+    public void consultarPerformanceLotes()
+    {
+        //Lo que me piden es el desempeño de los productos, por ende, debemos buscar
+        // todos los lotes del mismo producto y revisar su desempeño de manera conjunta
     }
 }
