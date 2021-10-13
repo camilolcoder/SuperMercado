@@ -38,7 +38,7 @@ public class Inventario {
     }
 
     public void createLote(int id, String fechaEntrada, String fechaVencimiento,
-                           String codigoProducto, double precioPagado, double ventaPublico,
+                           int codigoProducto, double precioPagado, double ventaPublico,
                            int unidades)
     {
         Lote lote = new Lote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
@@ -100,6 +100,38 @@ public class Inventario {
     {
         //lotes.removeIf(lote -> !chequearFechaVencimiento(lote.getFechaVencimiento()));
         lotes.removeIf(lote -> !chequearFechaVencimiento(lote.getFechaVencimiento()));
+    }
+
+    /*public Lote findLoteById(int id)
+    {
+        Lote loteEncontrado = null;
+        for (Lote lote : lotes)
+        {
+            if (lote.getId() == id)
+            {
+                loteEncontrado = lote;
+            }
+        }
+        return loteEncontrado;
+    }
+
+    public void updateLoteCompra(int codigoProducto)
+    {
+        //findLoteConProducto(codigoProducto).updateUnidades();
+    }*/
+
+    public void updateLoteCompra(int codigoProduco)
+    {
+        //Lote loteEncontrado = null;
+        for (Lote lote : lotes)
+        {
+            if (lote.getCodigoProducto() == codigoProduco)
+            {
+                lote.updateUnidades();
+                return;
+            }
+        }
+
     }
 
     public void consultarPerformanceLotes()

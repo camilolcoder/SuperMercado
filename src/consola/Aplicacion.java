@@ -207,7 +207,7 @@ public class Aplicacion {
         int id = Integer.parseInt(input("Ingrese la id del lote"));
         String fechaEntrada = input("Ingrese la fehca de entrada del lote(MM/dd/yyyy)");
         String fechaVencimiento = input("Ingrese la fecha de vencimiento del lote(MM/dd/yyyy)");
-        String codigoProducto = input("Ingrese el codigo del producto del que va a ser el lote");
+        int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del que va a ser el lote"));
         double precioPagado = Double.parseDouble(input("Ingrese el precio pagado por el lote"));
         double ventaPublico = Double.parseDouble(input("Ingrese el precio para vender al publico del lote"));
         int unidades = Integer.parseInt(input("Ingrese la cantidad de unidades que tiene el lote"));
@@ -345,6 +345,8 @@ public class Aplicacion {
                     {
                         factura.printInformacionFactura(total, 0);
                     }
+                    updateLotesAfterCompra(productosCliente);
+                    updateDataLotes();
 
                 }
                 else if (opcion_seleccionada == 3) {
@@ -431,7 +433,7 @@ public class Aplicacion {
     }
 
     public void dataBaseLotes(int id, String fechaEntrada, String fechaVencimiento,
-                                  String codigoProducto, double precioPagado, double ventaPublico,
+                                  int codigoProducto, double precioPagado, double ventaPublico,
                                   int unidades)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv" ;
@@ -567,6 +569,19 @@ public class Aplicacion {
                     lote.getUnidades());
         }
     }
+
+    public void updateLotesAfterCompra(List<Producto> productos)
+    {
+        for (Producto producto : productos)
+        {
+            inventario.updateLoteCompra(producto.getCodigo());
+        }
+    }
+
+    /*public void updateUnidadesLote(int codigoEspecial)
+    {
+        inventario.updateLoteCompra(codigoEspecial);
+    }*/
 
     public void ejecutarCargarPointOfSales() throws IOException {
         pointOfSale = LoaderPointOfSale.cargarArchivos();
