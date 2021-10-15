@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Inventario {
 
@@ -139,8 +140,9 @@ public class Inventario {
         }
     }
 
-    public List<String> consultarPerformanceProducto(int codigoProducto)
+    public List<List<String>> consultarPerformanceProducto(int codigoProducto)
     {
+        List<List<String>> informacion = new ArrayList<>();
         List<String> performanceData = new ArrayList<>();
         double precioLote = 0, precioVenta = 0, unidadesVendidas = 0,
         ganancias = 0, retornoInversion = 0;
@@ -165,7 +167,8 @@ public class Inventario {
         }
         performanceData = Arrays.asList(String.valueOf(ganancias),
                 String.valueOf(retornoInversion), puntoEquilibrio);
-        return performanceData;
+        informacion.add(performanceData);
+        return informacion;
     }
 
     public void printInformePerformanceProducto(List<String> datos)
@@ -179,9 +182,13 @@ public class Inventario {
 
         System.out.println("");
         System.out.println("---INFORMACION-FINANCIERA----");
+        System.out.println("");
+        System.out.println("---INFORMACION-GENERAL----");
         System.out.println("Ganancias : "+datos.get(0));
         System.out.println("Retorno de inversión: "+datos.get(1)+"%");
         System.out.println("Punto de equilibrio: "+datos.get(2));
+        System.out.println("---INFORMACION-DETALLADA-DE-CADA-LOTE----");
+
         System.out.println("");
     }
 }

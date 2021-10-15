@@ -307,8 +307,8 @@ public class Aplicacion {
     public void ejecutarConsultarPerformanceProducto()
     {
         int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
-        List<String> informeFinance = inventario.consultarPerformanceProducto(codigoProducto);
-        inventario.printInformePerformanceProducto(informeFinance);
+        List<List<String>> informeFinance = inventario.consultarPerformanceProducto(codigoProducto);
+        inventario.printInformePerformanceProducto(informeFinance.get(0));
     }
 
     public void ejecutarRegistrarCompras()
