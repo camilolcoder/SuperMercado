@@ -57,9 +57,11 @@ public class Aplicacion {
         System.out.println("6. Mostrar todos los lotes vencidos");
         System.out.println("7. Eliminar todos los lotes vencidos");
         System.out.println("8. Mostrar informacion de los lotes de un producto por su codigo");
-        System.out.println("9. Mostrar el desempeño financiero de un producto");
-        System.out.println("10. Cargar llegada de nuevos lotes desde un csv");
-        System.out.println("11. Salir del sistema de inventario");
+        System.out.println("9. Mostrar el desempeño financiero general de un producto");
+        System.out.println("10. Mostrar el desempeño financiero individual de cada lote de un producto");
+        System.out.println("11. Mostrar los n productos más vendidos");
+        System.out.println("12. Cargar llegada de nuevos lotes desde un csv");
+        System.out.println("13. Salir del sistema de inventario");
         System.out.println("");
     }
 
@@ -160,8 +162,10 @@ public class Aplicacion {
                 else if (opcion_seleccionada == 8)
                     ejecutarMostrarLotesProducto();
                 else if (opcion_seleccionada == 9)
-                    ejecutarConsultarPerformanceProducto();
-                else if (opcion_seleccionada == 11) {
+                    ejecutarConsultarPerformanceGeneralProducto();
+                else if (opcion_seleccionada == 10)
+                    ejecutarConsultarPerformanceIndProducto();
+                else if (opcion_seleccionada == 13) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
@@ -304,11 +308,17 @@ public class Aplicacion {
         inventario.eliminarLotesVencidos();
     }
 
-    public void ejecutarConsultarPerformanceProducto()
+    public void ejecutarConsultarPerformanceGeneralProducto()
     {
         int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
-        List<List<String>> informeFinance = inventario.consultarPerformanceProducto(codigoProducto);
-        inventario.printInformePerformanceProducto(informeFinance.get(0));
+        inventario.consultarPerformanceLoteProducto(codigoProducto);
+        //inventario.printInformePerformanceProducto(informeFinance.get(0).get(0));
+    }
+
+    public void ejecutarConsultarPerformanceIndProducto()
+    {
+        int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
+        inventario.InformeAllLotesProducto(codigoProducto);
     }
 
     public void ejecutarRegistrarCompras()

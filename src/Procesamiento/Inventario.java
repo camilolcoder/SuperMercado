@@ -140,10 +140,9 @@ public class Inventario {
         }
     }
 
-    public List<List<String>> consultarPerformanceProducto(int codigoProducto)
+    public void consultarPerformanceLoteProducto(int codigoProducto)
     {
-        List<List<String>> informacion = new ArrayList<>();
-        List<String> performanceData = new ArrayList<>();
+        //List<String> performanceData = new ArrayList<>();
         double precioLote = 0, precioVenta = 0, unidadesVendidas = 0,
         ganancias = 0, retornoInversion = 0;
         String puntoEquilibrio;
@@ -165,13 +164,14 @@ public class Inventario {
         {
             puntoEquilibrio = "Punto de equilibrio no alcanzado";
         }
-        performanceData = Arrays.asList(String.valueOf(ganancias),
-                String.valueOf(retornoInversion), puntoEquilibrio);
-        informacion.add(performanceData);
-        return informacion;
+        //performanceData = Arrays.asList(String.valueOf(ganancias),
+        //        String.valueOf(retornoInversion), puntoEquilibrio);
+        printInformePerformanceProducto(String.valueOf(ganancias),
+                        String.valueOf(retornoInversion), puntoEquilibrio);
     }
 
-    public void printInformePerformanceProducto(List<String> datos)
+    public void printInformePerformanceProducto(String ganancias, String retornoInversion,
+                                                String puntoEquilibrio)
     {
         //FeedBack de ideas
         //decir si ya se alcanzó el punto de
@@ -184,11 +184,49 @@ public class Inventario {
         System.out.println("---INFORMACION-FINANCIERA----");
         System.out.println("");
         System.out.println("---INFORMACION-GENERAL----");
-        System.out.println("Ganancias : "+datos.get(0));
-        System.out.println("Retorno de inversión: "+datos.get(1)+"%");
-        System.out.println("Punto de equilibrio: "+datos.get(2));
-        System.out.println("---INFORMACION-DETALLADA-DE-CADA-LOTE----");
-
+        System.out.println("Ganancias : "+ganancias);
+        System.out.println("Retorno de inversión: "+retornoInversion+"%");
+        System.out.println("Punto de equilibrio: "+puntoEquilibrio);
         System.out.println("");
+    }
+
+    public void printInformePerformanceVariosLotes(String idLote, String ganancias,
+                                                   String retornoInversion, String puntoEquilibrio)
+    {
+        System.out.println("");
+        System.out.println("---INFORMACION-DETALLADA-DE-CADA-LOTE----");
+        System.out.println("LOTE-"+idLote+"-----------------------");
+        System.out.println("Ganancias : "+ganancias);
+        System.out.println("Retorno de inversión: "+retornoInversion);
+        System.out.println("Punto de equilibrio: "+puntoEquilibrio);
+        System.out.println("");
+    }
+
+    public void InformeAllLotesProducto(int codigoProducto)
+    {
+        double precioLote = 0, precioVenta = 0, unidadesVendidas = 0,
+                ganancias = 0, retornoInversion = 0;
+        String puntoEquilibrio;
+        List<Lote> lotesProducto = getLoteByCodigoProducto(codigoProducto);
+        for (Lote lote : lotesProducto)
+        {
+            precioLote = lote.getPrecioPagado();
+            precioVenta = lote.getVentaPublico();
+            unidadesVendidas = lote.getUnidadesVendidas();
+            ganancias = (precioVenta*unidadesVendidas)-precioLote;
+            //la formula del ROI = (netProfit/costOfInvestment)*100
+            retornoInversion = ganancias/precioLote;
+            if (ganancias >= 0)
+            {
+                puntoEquilibrio = "Punto de equilibrio alcanzado";
+            }
+            else
+            {
+                puntoEquilibrio = "Punto de equilibrio no alcanzado";
+            }
+            printInformePerformanceVariosLotes(String.valueOf(lote.getId()),
+                    String.valueOf(ganancias),String.valueOf(retornoInversion),
+                    puntoEquilibrio);
+        }
     }
 }
