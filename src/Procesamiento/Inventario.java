@@ -77,6 +77,19 @@ public class Inventario {
         return chequeo;
     }
 
+    public List<Lote> getLoteByCodigoProducto(int codigoProducto)
+    {
+        List<Lote> lotesProducto = new ArrayList<>();
+        for (Lote lote : lotes)
+        {
+            if (lote.getCodigoProducto() == codigoProducto)
+            {
+                lotesProducto.add(lote);
+            }
+        }
+        return lotesProducto;
+    }
+
     public void deleteLote(int id)
     {
         //lotes.removeIf(lote -> lote.getId() == id);
@@ -102,24 +115,6 @@ public class Inventario {
         lotes.removeIf(lote -> !chequearFechaVencimiento(lote.getFechaVencimiento()));
     }
 
-    /*public Lote findLoteById(int id)
-    {
-        Lote loteEncontrado = null;
-        for (Lote lote : lotes)
-        {
-            if (lote.getId() == id)
-            {
-                loteEncontrado = lote;
-            }
-        }
-        return loteEncontrado;
-    }
-
-    public void updateLoteCompra(int codigoProducto)
-    {
-        //findLoteConProducto(codigoProducto).updateUnidades();
-    }*/
-
     public void updateLoteCompra(int codigoProduco)
     {
         //Lote loteEncontrado = null;
@@ -132,6 +127,16 @@ public class Inventario {
             }
         }
 
+    }
+
+    public void printInformacionLotes(List<Lote> lotesToPrint)
+    {
+        for(Lote lote : lotesToPrint)
+        {
+            System.out.println(lote.getId()+"|"+lote.getFechaEntrada()+"|"+lote.getFechaVencimiento()+"|"+
+                    lote.getCodigoProducto()+"|"+lote.getPrecioPagado()+"|"+lote.getVentaPublico()+"|"+
+                    lote.getUnidades());
+        }
     }
 
     public void consultarPerformanceLotes()

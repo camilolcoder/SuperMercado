@@ -56,9 +56,10 @@ public class Aplicacion {
         System.out.println("5. Eliminar un lote especifico");
         System.out.println("6. Mostrar todos los lotes vencidos");
         System.out.println("7. Eliminar todos los lotes vencidos");
-        System.out.println("8. Mostrar el desempeño financiero de los lotes");
-        System.out.println("9. Cargar llegada de nuevos lotes desde un csv");
-        System.out.println("9. Salir del sistema de inventario");
+        System.out.println("8. Mostrar informacion de los lotes de un producto por su codigo");
+        System.out.println("9. Mostrar el desempeño financiero de los lotes");
+        System.out.println("10. Cargar llegada de nuevos lotes desde un csv");
+        System.out.println("11. Salir del sistema de inventario");
         System.out.println("");
     }
 
@@ -176,6 +177,8 @@ public class Aplicacion {
                     ejecutarEliminarLotesVencidos();
                     updateDataLotes();
                 }
+                else if (opcion_seleccionada == 8)
+                    ejecutarMostrarLotesProducto();
                 else if (opcion_seleccionada == 9) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -303,7 +306,15 @@ public class Aplicacion {
 
     public void ejecutarMostrarLotesVencidos()
     {
-        //inventario.mostrarLotesVencidos();
+        List<Lote> lotesVencidos = inventario.mostrarLotesVencidos();
+        inventario.printInformacionLotes(lotesVencidos);
+    }
+
+    public void ejecutarMostrarLotesProducto()
+    {
+        int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
+        List<Lote> lotesProducto = inventario.getLoteByCodigoProducto(codigoProducto);
+        inventario.printInformacionLotes(lotesProducto);
     }
 
     public void ejecutarEliminarLotesVencidos()
@@ -577,11 +588,6 @@ public class Aplicacion {
             inventario.updateLoteCompra(producto.getCodigo());
         }
     }
-
-    /*public void updateUnidadesLote(int codigoEspecial)
-    {
-        inventario.updateLoteCompra(codigoEspecial);
-    }*/
 
     public void ejecutarCargarPointOfSales() throws IOException {
         pointOfSale = LoaderPointOfSale.cargarArchivos();
