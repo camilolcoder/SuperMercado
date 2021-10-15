@@ -144,6 +144,7 @@ public class Inventario {
         List<String> performanceData = new ArrayList<>();
         double precioLote = 0, precioVenta = 0, unidadesVendidas = 0,
         ganancias = 0, retornoInversion = 0;
+        String puntoEquilibrio;
         List<Lote> lotesProducto = getLoteByCodigoProducto(codigoProducto);
         for (Lote lote : lotesProducto)
         {
@@ -154,7 +155,16 @@ public class Inventario {
         ganancias = (precioVenta*unidadesVendidas)-precioLote;
         //la formula del ROI = (netProfit/costOfInvestment)*100
         retornoInversion = ganancias/precioLote;
-        performanceData = Arrays.asList(String.valueOf(ganancias), String.valueOf(retornoInversion));
+        if (ganancias >= 0)
+        {
+            puntoEquilibrio = "Punto de equilibrio alcanzado";
+        }
+        else
+        {
+            puntoEquilibrio = "Punto de equilibrio no alcanzado";
+        }
+        performanceData = Arrays.asList(String.valueOf(ganancias),
+                String.valueOf(retornoInversion), puntoEquilibrio);
         return performanceData;
     }
 
@@ -169,6 +179,9 @@ public class Inventario {
 
         System.out.println("");
         System.out.println("---INFORMACION-FINANCIERA----");
+        System.out.println("Ganancias : "+datos.get(0));
+        System.out.println("Retorno de inversión: "+datos.get(1)+"%");
+        System.out.println("Punto de equilibrio: "+datos.get(2));
         System.out.println("");
     }
 }
