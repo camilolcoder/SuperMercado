@@ -9,6 +9,7 @@ public class Lote {
     private double precioPagado;
     private double ventaPublico;
     private int unidades;
+    private int unidadesVendidas;
 
     public Lote(int id, String fechaEntrada, String fechaVencimiento, int codigoProducto,
                 double precioPagado, double ventaPublico, int unidades) {
@@ -77,8 +78,13 @@ public class Lote {
         this.unidades = unidades;
     }
 
+    public int getUnidadesVendidas() { return unidadesVendidas; }
+
+    public void setUnidadesVendidas(int unidadesVendidas) { this.unidadesVendidas = unidadesVendidas; }
+
     public void updateUnidades()
     {
         unidades -= 1;
+        unidadesVendidas += 1;
     }
 }

@@ -38,7 +38,7 @@ public class Aplicacion {
     {
         System.out.println("");
         System.out.println("----MENU-POINT-OF-SALE------------");
-        System.out.println("1. Crear nuevo cliente");
+        System.out.println("1. Registar a un cliente nuevo");
         System.out.println("2. Consultar lista de clientes");
         System.out.println("3. Registrar los productos a comprar de un cliente");
         System.out.println("4. Salir del sistema point of sale");
@@ -57,7 +57,7 @@ public class Aplicacion {
         System.out.println("6. Mostrar todos los lotes vencidos");
         System.out.println("7. Eliminar todos los lotes vencidos");
         System.out.println("8. Mostrar informacion de los lotes de un producto por su codigo");
-        System.out.println("9. Mostrar el desempeño financiero de los lotes");
+        System.out.println("9. Mostrar el desempeño financiero de un producto");
         System.out.println("10. Cargar llegada de nuevos lotes desde un csv");
         System.out.println("11. Salir del sistema de inventario");
         System.out.println("");
@@ -90,26 +90,6 @@ public class Aplicacion {
                     ejecutarAplicacionInventario();
                 else if (opcion_seleccionada == 3)
                 {
-                    /*boolean test = inventario.chequearFechaVencimiento("11/8/2018");
-                    if (!test)
-                    {
-                        System.out.println("El lote esta vencido");
-                    }
-                    else
-                    {
-                        System.out.println("El lote NO esta vencido");
-                    }
-                    /*String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
-                    System.out.println(now);
-                    if(now.equals("10-11-2021"))
-                    {
-                        System.out.println("Fecha correcta");
-                    }*/
-                    //updateDataClientes();
-                    //updateDataLotes();
-                    //csvTest("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv");
-                    //updateCSV("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv",
-                    //        "ferrai", 1, 1);
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
@@ -179,7 +159,9 @@ public class Aplicacion {
                 }
                 else if (opcion_seleccionada == 8)
                     ejecutarMostrarLotesProducto();
-                else if (opcion_seleccionada == 9) {
+                else if (opcion_seleccionada == 9)
+                    ejecutarConsultarPerformanceProducto();
+                else if (opcion_seleccionada == 11) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
@@ -320,6 +302,13 @@ public class Aplicacion {
     public void ejecutarEliminarLotesVencidos()
     {
         inventario.eliminarLotesVencidos();
+    }
+
+    public void ejecutarConsultarPerformanceProducto()
+    {
+        int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
+        List<String> informeFinance = inventario.consultarPerformanceProducto(codigoProducto);
+        inventario.printInformePerformanceProducto(informeFinance);
     }
 
     public void ejecutarRegistrarCompras()
@@ -484,25 +473,6 @@ public class Aplicacion {
             codigosProductos = Integer.toString(producto.getCodigo());
         }
         return codigosProductos;
-    }
-
-    public void updateCSV(String fileToUpdate, String replace,
-                                 int row, int col) throws IOException, CsvException {
-
-        File inputFile = new File(fileToUpdate);
-
-// Read existing file
-        CSVReader reader = new CSVReader(new FileReader(inputFile));
-        List<String[]> csvBody = reader.readAll();
-// get CSV row column  and replace with by using row and column
-        csvBody.get(row)[col] = replace;
-        reader.close();
-
-// Write to CSV file which is open
-        CSVWriter writer = new CSVWriter(new FileWriter(inputFile));
-        writer.writeAll(csvBody);
-        writer.flush();
-        writer.close();
     }
 
     public void ejecutarEliminarLoteEspecifico() throws IOException

@@ -139,9 +139,36 @@ public class Inventario {
         }
     }
 
-    public void consultarPerformanceLotes()
+    public List<String> consultarPerformanceProducto(int codigoProducto)
     {
-        //Lo que me piden es el desempeño de los productos, por ende, debemos buscar
-        // todos los lotes del mismo producto y revisar su desempeño de manera conjunta
+        List<String> performanceData = new ArrayList<>();
+        double precioLote = 0, precioVenta = 0, unidadesVendidas = 0,
+        ganancias = 0, retornoInversion = 0;
+        List<Lote> lotesProducto = getLoteByCodigoProducto(codigoProducto);
+        for (Lote lote : lotesProducto)
+        {
+            precioLote += lote.getPrecioPagado();
+            precioVenta += lote.getVentaPublico();
+            unidadesVendidas += lote.getUnidadesVendidas();
+        }
+        ganancias = (precioVenta*unidadesVendidas)-precioLote;
+        //la formula del ROI = (netProfit/costOfInvestment)*100
+        retornoInversion = ganancias/precioLote;
+        performanceData = Arrays.asList(String.valueOf(ganancias), String.valueOf(retornoInversion));
+        return performanceData;
+    }
+
+    public void printInformePerformanceProducto(List<String> datos)
+    {
+        //FeedBack de ideas
+        //decir si ya se alcanzó el punto de
+        //equilibrio o decir cuanto falta para llegar a este
+        //además dar ideas de descuentos o remates teniendo
+        //en cuenta cuanto los días que faltan para que se
+        //venza un producto
+
+        System.out.println("");
+        System.out.println("---INFORMACION-FINANCIERA----");
+        System.out.println("");
     }
 }
