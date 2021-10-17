@@ -45,6 +45,7 @@ public class LoaderInventario {
             Lote lote = new Lote(Integer.parseInt(partesl[0]), partesl[1], partesl[2],
                     Integer.parseInt(partesl[3]), Double.parseDouble(partesl[4]), Double.parseDouble(partesl[5]),
                     Integer.parseInt(partesl[6]));
+                    lote.setUnidadesVendidas(Integer.parseInt(partesl[7]));
             lotes.add(lote);
             lineal = brl.readLine();
 

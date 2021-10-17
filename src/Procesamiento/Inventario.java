@@ -155,7 +155,7 @@ public class Inventario {
         }
         ganancias = (precioVenta*unidadesVendidas)-precioLote;
         //la formula del ROI = (netProfit/costOfInvestment)*100
-        retornoInversion = ganancias/precioLote;
+        retornoInversion = Math.round((ganancias/precioLote)*100);
         if (ganancias >= 0)
         {
             puntoEquilibrio = "Punto de equilibrio alcanzado";
@@ -194,10 +194,9 @@ public class Inventario {
                                                    String retornoInversion, String puntoEquilibrio)
     {
         System.out.println("");
-        System.out.println("---INFORMACION-DETALLADA-DE-CADA-LOTE----");
         System.out.println("LOTE-"+idLote+"-----------------------");
         System.out.println("Ganancias : "+ganancias);
-        System.out.println("Retorno de inversión: "+retornoInversion);
+        System.out.println("Retorno de inversión: "+retornoInversion+"%");
         System.out.println("Punto de equilibrio: "+puntoEquilibrio);
         System.out.println("");
     }
@@ -215,7 +214,7 @@ public class Inventario {
             unidadesVendidas = lote.getUnidadesVendidas();
             ganancias = (precioVenta*unidadesVendidas)-precioLote;
             //la formula del ROI = (netProfit/costOfInvestment)*100
-            retornoInversion = ganancias/precioLote;
+            retornoInversion = Math.round((ganancias/precioLote)*100);
             if (ganancias >= 0)
             {
                 puntoEquilibrio = "Punto de equilibrio alcanzado";
@@ -229,4 +228,14 @@ public class Inventario {
                     puntoEquilibrio);
         }
     }
+    //Cambiar impresio - CHECKED
+    //Arreglar porcentajes del ROI - CHECKED
+    //
+    // Crear childs producto y lote - con el fin de tener dos nuevas
+    //
+    // ProductoUnidad
+    // ProductoPeso
+    // LoteUnidad
+    // LotePeso
+    //
 }

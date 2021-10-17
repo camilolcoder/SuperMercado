@@ -69,7 +69,7 @@ public class Aplicacion {
     {
         System.out.println("1. agregar producto de cliente");
         System.out.println("2. finalizar compra y mostrar total a pagar por el cliente");
-        System.out.println("3. Salir Aplicacion");
+        //System.out.println("3. Salir Aplicacion");
     }
 
     public void ejecutarAplicacion() throws IOException {
@@ -318,6 +318,8 @@ public class Aplicacion {
     public void ejecutarConsultarPerformanceIndProducto()
     {
         int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
+        System.out.println("");
+        System.out.println("---INFORMACION-DETALLADA-DE-CADA-LOTE----");
         inventario.InformeAllLotesProducto(codigoProducto);
     }
 
@@ -357,12 +359,13 @@ public class Aplicacion {
                     }
                     updateLotesAfterCompra(productosCliente);
                     updateDataLotes();
+                    continuar = false;
 
                 }
-                else if (opcion_seleccionada == 3) {
+                /*else if (opcion_seleccionada == 3) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
-                }
+                }*/
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Por favor seleccione uno de los " +
                         "numeros en el menu");
