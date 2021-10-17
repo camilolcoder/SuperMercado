@@ -206,6 +206,63 @@ public class Aplicacion {
                 ventaPublico, unidades);
     }
 
+    public String opcionesTipo()
+    {
+        String tipo = "";
+        System.out.println("1. Gondola");
+        System.out.println("2. Congelado");
+        System.out.println("3. Refrigerado");
+        System.out.println("4. Fresco");
+        System.out.println("");
+        try {
+            int opcion = Integer.parseInt(input("Escriba el tipo de producto"));
+            if (opcion == 1)
+            {
+                tipo = "gondola";
+            }
+            else if (opcion == 2)
+            {
+                tipo = "congelado";
+            }
+            else if (opcion == 3)
+            {
+                tipo = "refrigerado";
+            }
+            else if (opcion == 4)
+            {
+                tipo = "fresco";
+            }
+        }catch (NumberFormatException e) {
+            System.out.println("Por favor seleccione uno de los " +
+                    "numeros en el menu");
+        }
+
+        return tipo;
+    }
+
+    public boolean tipoEmpaquetado()
+    {
+        boolean confirmar = true;
+        System.out.println("1. Sí es empaquetado");
+        System.out.println("2. No es empaquetado");
+        try {
+            int opcion = Integer.parseInt(input("Escriba el tipo de producto"));
+            if (opcion == 1)
+            {
+                confirmar = true;
+            }
+            else if (opcion == 2)
+            {
+                confirmar = false;
+            }
+        }catch (NumberFormatException e) {
+            System.out.println("Por favor seleccione uno de los " +
+                    "numeros en el menu");
+        }
+
+        return confirmar;
+    }
+
     public void ejecutarCrearProducto()
     {
         String nombre = input("Escriba el nombre del producto");
@@ -214,8 +271,9 @@ public class Aplicacion {
         String unidadMedida = input("Escriba la unidad de medida del producto");
         double peso = Double.parseDouble(input("Escriba el peso del producto"));
         String categoria = input("Escriba la categoria del producto");
-        String tipo = input("Escriba el tipo de producto");
-        boolean empaquetado = Boolean.parseBoolean(input("Escriba si es empaquetado"));
+        String tipo = opcionesTipo();
+        boolean empaquetado = tipoEmpaquetado();
+        //boolean empaquetado = Boolean.parseBoolean(input("Escriba si es empaquetado"));
         //String codigo = input("Escriba el codigo del producto");
         inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
                 peso, categoria, tipo, empaquetado);
