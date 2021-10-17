@@ -49,19 +49,21 @@ public class Aplicacion {
     {
         System.out.println("");
         System.out.println("----MENU-INVENTARIO------------");
-        System.out.println("1. Crear producto");
-        System.out.println("2. Obtener todos los productos");
-        System.out.println("3. Crear lote");
-        System.out.println("4. Obtener todos los lotes");
-        System.out.println("5. Eliminar un lote especifico");
-        System.out.println("6. Mostrar todos los lotes vencidos");
-        System.out.println("7. Eliminar todos los lotes vencidos");
-        System.out.println("8. Mostrar informacion de los lotes de un producto por su codigo");
-        System.out.println("9. Mostrar el desempeño financiero general de un producto");
-        System.out.println("10. Mostrar el desempeño financiero individual de cada lote de un producto");
-        System.out.println("11. Mostrar los n productos más vendidos");
-        System.out.println("12. Cargar llegada de nuevos lotes desde un csv");
-        System.out.println("13. Salir del sistema de inventario");
+        System.out.println("1. Crear categoria");
+        System.out.println("2. Ver todas las categorias");
+        System.out.println("3. Crear producto");
+        System.out.println("4. Obtener todos los productos");
+        System.out.println("5. Crear lote");
+        System.out.println("6. Obtener todos los lotes");
+        System.out.println("7. Eliminar un lote especifico");
+        System.out.println("8. Mostrar todos los lotes vencidos");
+        System.out.println("9. Eliminar todos los lotes vencidos");
+        System.out.println("10. Mostrar informacion de los lotes de un producto por su codigo");
+        System.out.println("11. Mostrar el desempeño financiero general de un producto");
+        System.out.println("12. Mostrar el desempeño financiero individual de cada lote de un producto");
+        System.out.println("13. Mostrar los n productos más vendidos");
+        System.out.println("14. Cargar llegada de nuevos lotes desde un csv");
+        System.out.println("15. Salir del sistema de inventario");
         System.out.println("");
     }
 
@@ -140,32 +142,36 @@ public class Aplicacion {
                 printMenuInventario();
                 int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
                 if (opcion_seleccionada == 1)
-                    ejecutarCrearProducto();
+                    ejecutarCrearCategoria();
                 else if (opcion_seleccionada == 2)
-                    ejecutarObtenerDatosProductos();
+                    ejecutarObtenerCategorias();
                 else if (opcion_seleccionada == 3)
-                    ejecutarCrearLote();
+                    ejecutarCrearProducto();
                 else if (opcion_seleccionada == 4)
-                    ejecutarObtenerDatosLotes();
+                    ejecutarObtenerDatosProductos();
                 else if (opcion_seleccionada == 5)
+                    ejecutarCrearLote();
+                else if (opcion_seleccionada == 6)
+                    ejecutarObtenerDatosLotes();
+                else if (opcion_seleccionada == 7)
                 {
                     ejecutarEliminarLoteEspecifico();
                     updateDataLotes();
                 }
-                else if (opcion_seleccionada == 6)
+                else if (opcion_seleccionada == 8)
                     ejecutarMostrarLotesVencidos();
-                else if (opcion_seleccionada == 7)
+                else if (opcion_seleccionada == 9)
                 {
                     ejecutarEliminarLotesVencidos();
                     updateDataLotes();
                 }
-                else if (opcion_seleccionada == 8)
-                    ejecutarMostrarLotesProducto();
-                else if (opcion_seleccionada == 9)
-                    ejecutarConsultarPerformanceGeneralProducto();
                 else if (opcion_seleccionada == 10)
+                    ejecutarMostrarLotesProducto();
+                else if (opcion_seleccionada == 11)
+                    ejecutarConsultarPerformanceGeneralProducto();
+                else if (opcion_seleccionada == 12)
                     ejecutarConsultarPerformanceIndProducto();
-                else if (opcion_seleccionada == 13) {
+                else if (opcion_seleccionada == 15) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
                 }
@@ -204,6 +210,13 @@ public class Aplicacion {
                 ventaPublico, unidades);
         dataBaseLotes(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
                 ventaPublico, unidades);
+    }
+
+    public void ejecutarCrearCategoria()
+    {
+        String categoria = input("Ingrese el nombre de la categoria que desea crear");
+        inventario.createCategoria(categoria);
+        dataBaseCategorias(categoria);
     }
 
     public String opcionesTipo()
@@ -314,6 +327,25 @@ public class Aplicacion {
     public void ejecutarObtenerDatosProductos()
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv";
+        try(Scanner scanner = new Scanner(new File(filepath)))
+        {
+            scanner.useDelimiter(",");
+            while (scanner.hasNext())
+            {
+                System.out.print(scanner.next() + "|");
+            }
+            scanner.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error leyendo el archivo de la base de datos");
+            e.printStackTrace();
+        }
+    }
+
+    public void ejecutarObtenerCategorias()
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
         try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
@@ -529,6 +561,23 @@ public class Aplicacion {
         String codigosProductos = codigosProductos(productos);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(codigosProductos).append(",").append(codigoCliente).append(",").append(idFactura).append(",").append(idFactura).append("\n");
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dataBaseCategorias(String categoria)
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv" ;
+        String simpleFile = "clientes.csv";
+        //File csvFile = new File(simpleFile);
+
+
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
+        stringBuilder.append(categoria).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {

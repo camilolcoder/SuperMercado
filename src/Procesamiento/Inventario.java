@@ -16,9 +16,10 @@ public class Inventario {
     private List<Lote> lotes;
     private List<String> categorias;
 
-    public Inventario(List<Producto> productos, List<Lote> lotes) {
+    public Inventario(List<Producto> productos, List<Lote> lotes, List<String>categorias) {
         this.productos = productos;
         this.lotes = lotes;
+        this.categorias = categorias;
     }
 
     public List<Producto> getProductos() {
@@ -45,6 +46,11 @@ public class Inventario {
         Lote lote = new Lote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
                 ventaPublico, unidades);
         lotes.add(lote);
+    }
+
+    public void createCategoria(String categoria)
+    {
+        categorias.add(categoria);
     }
 
     public boolean chequearFechaVencimiento(String fechaVencimiento)

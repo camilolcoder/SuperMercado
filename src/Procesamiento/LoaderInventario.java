@@ -52,8 +52,23 @@ public class LoaderInventario {
 
         }
         brl.close();
+        //----------------------------------------------------------------------------------------------
+        String filepathCategorias = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
 
-        Inventario inventario = new Inventario(productos, lotes);
+        List<String> categorias = new ArrayList<>();
+        BufferedReader brl2 = new BufferedReader(new FileReader(filepathLotes));
+        String lineal2 = brl2.readLine();
+        lineal2 = brl2.readLine();
+        while (lineal2 != null)
+        {
+            String[] partesl = lineal2.split(",");
+            String categoria = partesl[0];
+            categorias.add(categoria);
+            lineal2 = brl2.readLine();
+
+        }
+        brl2.close();
+        Inventario inventario = new Inventario(productos, lotes, categorias);
         return inventario;
     }
 

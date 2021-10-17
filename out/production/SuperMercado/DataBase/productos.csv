@@ -6,3 +6,4 @@ frutloops,12500.0,12.0,g,344.0,no,congelados,3,gondola,true
 pizza congelada,12500.0,45.0,kg,1.2,si,congelados,4,congelados,true
 cebolla,200.0,12.0,g,12.0,si,vegetales,5,fresco,false
 galletas oreos,12500.0,120.0,g,270.0,,galleticas,6,gondola,true
+Sprite,1200.0,200.0,ml,600.0,,gaseosas,7,refrigerado,true
