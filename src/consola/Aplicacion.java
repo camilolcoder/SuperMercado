@@ -207,9 +207,9 @@ public class Aplicacion {
         double ventaPublico = Double.parseDouble(input("Ingrese el precio para vender al publico del lote"));
         int unidades = Integer.parseInt(input("Ingrese la cantidad de unidades que tiene el lote"));
         inventario.createLote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades);
+                ventaPublico, unidades, 0);
         dataBaseLotes(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades);
+                ventaPublico, unidades, 0);
     }
 
     public void ejecutarCrearCategoria()
@@ -427,6 +427,11 @@ public class Aplicacion {
                 if (opcion_seleccionada == 1) {
                     int codigo = Integer.parseInt(input("Ingrese el codigo del producto"));
                     Producto productoCliente = pointOfSale.getProducto(codigo, inventario.getProductos());
+                    if (!productoCliente.isEmpaquetado())
+                    {
+                        double peso = Double.parseDouble(input("Ingrese el peso que marcó el producto en la vascula"));
+                        productoCliente.setPeso(peso);
+                    }
                     productosCliente.add(productoCliente);
                 }
                 else if (opcion_seleccionada == 2)
@@ -480,7 +485,7 @@ public class Aplicacion {
         return null;
     }
 
-    public void dataBaseAddHeader(String a, String b,String c, String d,
+    public void dataBaseAddHeaderClientes(String a, String b,String c, String d,
                                   String es, String f, String g, String adress)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
@@ -491,6 +496,26 @@ public class Aplicacion {
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
         stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append("\n");
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dataBaseAddHeaderLotes(String a, String b,String c, String d,
+                                          String es, String f, String g, String h,
+                                       String adress)
+    {
+        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
+        String simpleFile = "clientes.csv";
+        //File csvFile = new File(simpleFile);
+
+
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
+        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append(",").append(h).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
 
@@ -538,7 +563,7 @@ public class Aplicacion {
 
     public void dataBaseLotes(int id, String fechaEntrada, String fechaVencimiento,
                                   int codigoProducto, double precioPagado, double ventaPublico,
-                                  int unidades)
+                                  int unidades, int unidadesVendidas)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv" ;
         String simpleFile = "clientes.csv";
@@ -547,7 +572,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(id).append(",").append(fechaEntrada).append(",").append(fechaVencimiento).append(",").append(codigoProducto).append(",").append(precioPagado).append(",").append(ventaPublico).append(",").append(unidades).append("\n");
+        stringBuilder.append(id).append(",").append(fechaEntrada).append(",").append(fechaVencimiento).append(",").append(codigoProducto).append(",").append(precioPagado).append(",").append(ventaPublico).append(",").append(unidades).append(",").append(unidadesVendidas).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
@@ -647,7 +672,7 @@ public class Aplicacion {
         dataBaseClientesReset();
         List<Cliente> clientes = pointOfSale.getClientes();
 
-        dataBaseAddHeader("Nombre", "Edad", "Sexo", "Estado Civil",
+        dataBaseAddHeaderClientes("Nombre", "Edad", "Sexo", "Estado Civil",
                 "Id", "Situacion Laboral", "puntos", "clientes.csv");
         for (Cliente cliente : clientes)
         {
@@ -662,13 +687,13 @@ public class Aplicacion {
         dataBaseLotesReset();
         List<Lote> lotes = inventario.getLotes();
 
-        dataBaseAddHeader("Id", "Fecha Entrada", "Fecha Vencimiento", "Codigo Producto",
-                "Precio Pagado", "Venta Publico", "Unidades", "lotes.csv");
+        dataBaseAddHeaderLotes("Id", "Fecha Entrada", "Fecha Vencimiento", "Codigo Producto",
+                "Precio Pagado", "Venta Publico", "Unidades","Unidades Vendidas", "lotes.csv");
         for (Lote lote : lotes)
         {
             dataBaseLotes(lote.getId(), lote.getFechaEntrada(), lote.getFechaVencimiento(),
                     lote.getCodigoProducto(), lote.getPrecioPagado(), lote.getVentaPublico(),
-                    lote.getUnidades());
+                    lote.getUnidades(), lote.getUnidadesVendidas());
         }
     }
 

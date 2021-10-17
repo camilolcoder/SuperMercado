@@ -43,7 +43,14 @@ public class Factura {
         int total = 0;
         for(Producto producto: productos)
         {
-            total += producto.getPrecio();
+            if(!producto.isEmpaquetado())
+            {
+                total += producto.getPeso()*producto.getPrecioPorUnidad();
+            }
+            else
+            {
+                total += producto.getPrecio();
+            }
         }
         return total;
     }
@@ -56,7 +63,14 @@ public class Factura {
         System.out.println("Codigo cliente : "+codigoCliente);
         for (Producto producto : productos)
         {
-            System.out.println(producto.getNombre()+" : "+producto.getPrecio());
+            if (!producto.isEmpaquetado())
+            {
+                System.out.println(producto.getNombre()+" : "+producto.getPrecioPorUnidad()*producto.getPeso());
+            }
+            else{
+                System.out.println(producto.getNombre()+" : "+producto.getPrecio());
+            }
+
         }
         System.out.println("TOTAL A PAGAR : "+totalPagar);
         System.out.println("Puntos acumulados : "+puntosAcumualdos);

@@ -1,9 +1,9 @@
-Nombre,precio,precioPorUnidad,unidadMedida,peso,fresco,categoria,codigo,tipo,empaquetado
-0,0,0,0,0,0,0,0
-arroz,3200.0,12.0,g,123.0,no,alimentos de nutricion,1,gondola,true
-empanadas congeladas,1500.0,12.0,43,344.0,si,fritos,2,congelado,true
-frutloops,12500.0,12.0,g,344.0,no,congelados,3,gondola,true
-pizza congelada,12500.0,45.0,kg,1.2,si,congelados,4,congelados,true
-cebolla,200.0,12.0,g,12.0,si,vegetales,5,fresco,false
-galletas oreos,12500.0,120.0,g,270.0,,galleticas,6,gondola,true
-Sprite,1200.0,200.0,ml,600.0,,gaseosas,7,refrigerado,true
+Nombre,precio,precioPorUnidad,unidadMedida,peso,categoria,codigo,tipo,empaquetado
+0,0,0,0,0,0,0,0,0
+arroz,3200.0,12.0,g,123.0,alimentos de nutricion,1,gondola,true
+empanadas congeladas,1500.0,12.0,43,344.0,fritos,2,congelado,true
+frutloops,12500.0,12.0,g,344.0,congelados,3,gondola,true
+pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true
+cebolla,200.0,2500,kg,12.0,vegetales,5,fresco,false
+galletas oreos,12500.0,120.0,g,270.0,galleticas,6,gondola,true
+Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true

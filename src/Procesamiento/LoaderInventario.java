@@ -25,9 +25,9 @@ public class LoaderInventario {
         {
             String[] partes = linea.split(",");
             Producto producto = new Producto(partes[0], Double.parseDouble(partes[1]), Double.parseDouble(partes[2]),
-                    partes[3], Double.parseDouble(partes[4]), partes[5], partes[6],
-                    Boolean.parseBoolean(partes[7]));
-            producto.setCodigo(Integer.parseInt(partes[7]));
+                    partes[3], Double.parseDouble(partes[4]), partes[5], partes[7],
+                    Boolean.parseBoolean(partes[8]));
+            producto.setCodigo(Integer.parseInt(partes[6]));
             productos.add(producto);
             linea = br.readLine();
 
@@ -45,8 +45,8 @@ public class LoaderInventario {
             String[] partesl = lineal.split(",");
             Lote lote = new Lote(Integer.parseInt(partesl[0]), partesl[1], partesl[2],
                     Integer.parseInt(partesl[3]), Double.parseDouble(partesl[4]), Double.parseDouble(partesl[5]),
-                    Integer.parseInt(partesl[6]));
-                    lote.setUnidadesVendidas(Integer.parseInt(partesl[7]));
+                    Integer.parseInt(partesl[6]), Integer.parseInt(partesl[7]));
+                    //lote.setUnidadesVendidas(Integer.parseInt(partesl[7]));
             lotes.add(lote);
             lineal = brl.readLine();
 

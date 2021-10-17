@@ -41,10 +41,10 @@ public class Inventario {
 
     public void createLote(int id, String fechaEntrada, String fechaVencimiento,
                            int codigoProducto, double precioPagado, double ventaPublico,
-                           int unidades)
+                           int unidades, int unidadesVendidas)
     {
         Lote lote = new Lote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades);
+                ventaPublico, unidades, unidadesVendidas);
         lotes.add(lote);
     }
 
@@ -234,14 +234,18 @@ public class Inventario {
                     puntoEquilibrio);
         }
     }
-    //Cambiar impresio - CHECKED
-    //Arreglar porcentajes del ROI - CHECKED
-    //
-    // Crear childs producto y lote - con el fin de tener dos nuevas
-    //
-    // ProductoUnidad
-    // ProductoPeso
-    // LoteUnidad
-    // LotePeso
-    //
+    public boolean chequearExistenciaCategoria(String categoria)
+    {
+        boolean confirmacion = false;
+        for (String test : categorias)
+        {
+            if (test.equals(categoria))
+            {
+                confirmacion = true;
+            }
+        }
+        return confirmacion;
+    }
+    //Falta obligar al usuario a escoger una categoria pre-existente a la
+    //hora de crear un producto
 }

@@ -13,7 +13,7 @@ public class Lote {
     private int peso;
 
     public Lote(int id, String fechaEntrada, String fechaVencimiento, int codigoProducto,
-                double precioPagado, double ventaPublico, int unidades) {
+                double precioPagado, double ventaPublico, int unidades, int unidadesVendidas) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.fechaVencimiento = fechaVencimiento;
@@ -21,6 +21,7 @@ public class Lote {
         this.precioPagado = precioPagado;
         this.ventaPublico = ventaPublico;
         this.unidades = unidades;
+        this.unidadesVendidas = getUnidadesVendidas();
     }
 
     public int getId() {
