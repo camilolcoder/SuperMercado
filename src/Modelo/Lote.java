@@ -21,7 +21,7 @@ public class Lote {
         this.precioPagado = precioPagado;
         this.ventaPublico = ventaPublico;
         this.unidades = unidades;
-        this.unidadesVendidas = getUnidadesVendidas();
+        this.unidadesVendidas = unidadesVendidas;
     }
 
     public int getId() {
