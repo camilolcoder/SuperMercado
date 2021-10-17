@@ -7,20 +7,23 @@ public class Producto {
     private double precioPorUnidad;
     private String unidadMedida;
     private double peso;
-    private String fresco;
     private String categoria;
     private int codigo;
+    private String tipo; // 1. Gondola, 2. Congelado, 3. Refrigerado, 4. Fresco
+    private boolean empaquetado; // true = empaquetado ; false = NO empaquetado
 
     public Producto(String nombre, double precio, double precioPorUnidad,
-                    String unidadMedida, double peso, String fresco, String categoria
+                    String unidadMedida, double peso,String categoria,
+                    String tipo, boolean empaquetado
                     ) {
         this.nombre = nombre;
         this.precio = precio;
         this.precioPorUnidad = precioPorUnidad;
         this.unidadMedida = unidadMedida;
         this.peso = peso;
-        this.fresco = fresco;
         this.categoria = categoria;
+        this.tipo = tipo;
+        this.empaquetado = empaquetado;
         //this.codigo = codigo;
     }
 
@@ -64,14 +67,6 @@ public class Producto {
         this.peso = peso;
     }
 
-    public String isFresco() {
-        return fresco;
-    }
-
-    public void setFresco(String fresco) {
-        this.fresco = fresco;
-    }
-
     public String getCategoria() {
         return categoria;
     }
@@ -86,5 +81,21 @@ public class Producto {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public boolean isEmpaquetado() {
+        return empaquetado;
+    }
+
+    public void setEmpaquetado(boolean empaquetado) {
+        this.empaquetado = empaquetado;
     }
 }

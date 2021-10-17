@@ -25,7 +25,8 @@ public class LoaderInventario {
         {
             String[] partes = linea.split(",");
             Producto producto = new Producto(partes[0], Double.parseDouble(partes[1]), Double.parseDouble(partes[2]),
-                    partes[3], Double.parseDouble(partes[4]), partes[5], partes[6]);
+                    partes[3], Double.parseDouble(partes[4]), partes[5], partes[6],
+                    Boolean.parseBoolean(partes[7]));
             producto.setCodigo(Integer.parseInt(partes[7]));
             productos.add(producto);
             linea = br.readLine();

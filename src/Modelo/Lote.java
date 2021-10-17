@@ -10,6 +10,7 @@ public class Lote {
     private double ventaPublico;
     private int unidades;
     private int unidadesVendidas;
+    private int peso;
 
     public Lote(int id, String fechaEntrada, String fechaVencimiento, int codigoProducto,
                 double precioPagado, double ventaPublico, int unidades) {

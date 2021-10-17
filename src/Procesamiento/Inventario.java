@@ -30,11 +30,11 @@ public class Inventario {
     }
 
     public void createProduct(String nombre, double precio, double precioPorUnidad,
-                              String unidadMedida, double peso, String fresco,
-                              String categoria)
+                              String unidadMedida, double peso,
+                              String categoria, String tipo, boolean empaquetado)
     {
         Producto producto = new Producto(nombre, precio, precioPorUnidad, unidadMedida,
-                peso, fresco, categoria);
+                peso, categoria, tipo, empaquetado);
         productos.add(producto);
     }
 

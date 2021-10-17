@@ -213,12 +213,13 @@ public class Aplicacion {
         double precioPorUnidad = Double.parseDouble(input("Escriba el precio por unidad del producto"));
         String unidadMedida = input("Escriba la unidad de medida del producto");
         double peso = Double.parseDouble(input("Escriba el peso del producto"));
-        String fresco = input("Escriba si el producto es o no es fresco");
         String categoria = input("Escriba la categoria del producto");
+        String tipo = input("Escriba el tipo de producto");
+        boolean empaquetado = Boolean.parseBoolean(input("Escriba si es empaquetado"));
         //String codigo = input("Escriba el codigo del producto");
         inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
-                peso, fresco, categoria);
-        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, fresco, categoria, codigo);
+                peso, categoria, tipo, empaquetado);
+        dataBaseProductos(nombre, precio, precioPorUnidad, unidadMedida, peso, categoria, codigo, tipo, empaquetado);
         codigo += 1;
     }
 
@@ -427,8 +428,8 @@ public class Aplicacion {
     }
 
     public void dataBaseProductos(String nombre, double precio, double precioPorUnidad,
-                                  String unidadPorMedida, double peso, String fresco,
-                                  String categoria, int codigo)
+                                  String unidadPorMedida, double peso,
+                                  String categoria, int codigo, String tipo, boolean empaquetado)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv" ;
         String simpleFile = "clientes.csv";
@@ -437,7 +438,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(nombre).append(",").append(precio).append(",").append(precioPorUnidad).append(",").append(unidadPorMedida).append(",").append(peso).append(",").append(fresco).append(",").append(categoria).append(",").append(codigo).append("\n");
+        stringBuilder.append(nombre).append(",").append(precio).append(",").append(precioPorUnidad).append(",").append(unidadPorMedida).append(",").append(peso).append(",").append(",").append(categoria).append(",").append(codigo).append(",").append(tipo).append(",").append(empaquetado).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
