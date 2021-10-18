@@ -3,6 +3,9 @@ package Procesamiento;
 import Modelo.Lote;
 import Modelo.Producto;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -84,6 +87,19 @@ public class Inventario {
         return chequeo;
     }
 
+    public Producto getProductoByCodigo(int codigoProducto)
+    {
+        Producto productoCodigo = null;
+        for (Producto producto : productos)
+        {
+            if (producto.getCodigo() == codigoProducto)
+            {
+                return producto;
+            }
+        }
+        return productoCodigo;
+    }
+
     public List<Lote> getLoteByCodigoProducto(int codigoProducto)
     {
         List<Lote> lotesProducto = new ArrayList<>();
@@ -160,17 +176,32 @@ public class Inventario {
     public void consultarPerformanceLoteProducto(int codigoProducto)
     {
         //List<String> performanceData = new ArrayList<>();
-        double precioLote = 0, precioVenta = 0, unidadesVendidas = 0,
+        double precioLote = 0, precioVenta = 0, unidadesVendidas = 0, pesoComprado = 0,
         ganancias = 0, retornoInversion = 0;
         String puntoEquilibrio;
         List<Lote> lotesProducto = getLoteByCodigoProducto(codigoProducto);
+        boolean prueba = getProductoByCodigo(codigoProducto).isEmpaquetado();
         for (Lote lote : lotesProducto)
         {
             precioLote += lote.getPrecioPagado();
-            precioVenta += lote.getVentaPublico();
-            unidadesVendidas += lote.getUnidadesVendidas();
+            precioVenta = lote.getVentaPublico();
+            if (!prueba)
+            {
+                pesoComprado += lote.getPesoComprado();
+            }
+            else
+            {
+                unidadesVendidas += lote.getUnidadesVendidas();
+            }
         }
-        ganancias = (precioVenta*unidadesVendidas)-precioLote;
+        if (!prueba)
+        {
+            ganancias = (precioVenta*pesoComprado)-precioLote;
+        }
+        else
+        {
+            ganancias = (precioVenta*unidadesVendidas)-precioLote;
+        }
         //la formula del ROI = (netProfit/costOfInvestment)*100
         retornoInversion = Math.round((ganancias/precioLote)*100);
         if (ganancias >= 0)
@@ -220,16 +251,25 @@ public class Inventario {
 
     public void InformeAllLotesProducto(int codigoProducto)
     {
-        double precioLote = 0, precioVenta = 0, unidadesVendidas = 0,
+        double precioLote = 0, precioVenta = 0, unidadesVendidas = 0, pesoComprado = 0,
                 ganancias = 0, retornoInversion = 0;
         String puntoEquilibrio;
         List<Lote> lotesProducto = getLoteByCodigoProducto(codigoProducto);
+        boolean prueba = getProductoByCodigo(codigoProducto).isEmpaquetado();
         for (Lote lote : lotesProducto)
         {
             precioLote = lote.getPrecioPagado();
             precioVenta = lote.getVentaPublico();
-            unidadesVendidas = lote.getUnidadesVendidas();
-            ganancias = (precioVenta*unidadesVendidas)-precioLote;
+            if (!prueba)
+            {
+                pesoComprado = lote.getPesoComprado();
+                ganancias = (precioVenta*pesoComprado)-precioLote;
+            }
+            else
+            {
+                unidadesVendidas = lote.getUnidadesVendidas();
+                ganancias = (precioVenta*unidadesVendidas)-precioLote;
+            }
             //la formula del ROI = (netProfit/costOfInvestment)*100
             retornoInversion = Math.round((ganancias/precioLote)*100);
             if (ganancias >= 0)
@@ -257,9 +297,29 @@ public class Inventario {
         }
         return confirmacion;
     }
-    //Falta obligar al usuario a escoger una categoria pre-existente a la
-    //hora de crear un producto
-    //---------------------------
-    //Falta actualziar los lotes para calcular las ganancias de
-    //tanto productos empaquetados como no empaquetados
+
+    public void cargarNuevosLotesCsv(String filepath) throws IOException {
+
+        //System.out.println("test");
+        BufferedReader brl7 = new BufferedReader(new FileReader(filepath));
+        String lineal = brl7.readLine();
+        //lineal = brl.readLine();
+        //System.out.println("test");
+        while (lineal != null)
+        {
+            //System.out.println("test");
+            String[] partesl = lineal.split(",");
+            Lote lote = new Lote(Integer.parseInt(partesl[0]), partesl[1], partesl[2],
+                    Integer.parseInt(partesl[3]), Double.parseDouble(partesl[4]), Double.parseDouble(partesl[5]),
+                    Integer.parseInt(partesl[6]), Integer.parseInt(partesl[7]), Double.parseDouble(partesl[8]),
+                    Double.parseDouble(partesl[9]));
+            //lote.setUnidadesVendidas(Integer.parseInt(partesl[7]));
+            //System.out.println("test");
+            lotes.add(lote);
+            lineal = brl7.readLine();
+        }
+        brl7.close();
+        //System.out.println("test");
+    }
+
 }

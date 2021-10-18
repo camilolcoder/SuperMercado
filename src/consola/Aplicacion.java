@@ -171,6 +171,8 @@ public class Aplicacion {
                     ejecutarConsultarPerformanceGeneralProducto();
                 else if (opcion_seleccionada == 12)
                     ejecutarConsultarPerformanceIndProducto();
+                else if (opcion_seleccionada == 14)
+                    ejecutarCargarNuevosLotesCsv();
                 else if (opcion_seleccionada == 15) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -556,7 +558,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(nombre).append(",").append(precio).append(",").append(precioPorUnidad).append(",").append(unidadPorMedida).append(",").append(peso).append(",").append(",").append(categoria).append(",").append(codigo).append(",").append(tipo).append(",").append(empaquetado).append("\n");
+        stringBuilder.append(nombre).append(",").append(precio).append(",").append(precioPorUnidad).append(",").append(unidadPorMedida).append(",").append(peso).append(",").append(categoria).append(",").append(codigo).append(",").append(tipo).append(",").append(empaquetado).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
@@ -717,6 +719,12 @@ public class Aplicacion {
         }
     }
 
+    public void ejecutarCargarNuevosLotesCsv() throws IOException {
+        String direccion = input("Ingrese la direccion del csv con los nuevos lotes");
+        inventario.cargarNuevosLotesCsv(direccion);
+        updateDataLotes();
+    }
+
     public void ejecutarCargarPointOfSales() throws IOException {
         pointOfSale = LoaderPointOfSale.cargarArchivos();
     }
@@ -729,4 +737,6 @@ public class Aplicacion {
         Aplicacion aplicacion = new Aplicacion();
         aplicacion.ejecutarAplicacion();
     }
+
+    //"C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv"
 }

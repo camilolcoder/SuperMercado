@@ -57,18 +57,18 @@ public class LoaderInventario {
         String filepathCategorias = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
 
         List<String> categorias = new ArrayList<>();
-        BufferedReader brl2 = new BufferedReader(new FileReader(filepathCategorias));
-        String lineal2 = brl2.readLine();
-        lineal2 = brl2.readLine();
+        BufferedReader brl21 = new BufferedReader(new FileReader(filepathCategorias));
+        String lineal2 = brl21.readLine();
+        lineal2 = brl21.readLine();
         while (lineal2 != null)
         {
             String[] partesl = lineal2.split(",");
             String categoria = partesl[0];
             categorias.add(categoria);
-            lineal2 = brl2.readLine();
+            lineal2 = brl21.readLine();
 
         }
-        brl2.close();
+        brl21.close();
         Inventario inventario = new Inventario(productos, lotes, categorias);
         return inventario;
     }
