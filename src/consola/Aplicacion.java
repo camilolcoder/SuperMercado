@@ -208,9 +208,9 @@ public class Aplicacion {
         int unidades = Integer.parseInt(input("Ingrese la cantidad de unidades que tiene el lote"));
         double peso = Double.parseDouble(input("Ingrese el peso del lote"));
         inventario.createLote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades, 0,peso);
+                ventaPublico, unidades, 0,peso, 0);
         dataBaseLotes(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades, 0, peso);
+                ventaPublico, unidades, 0, peso, 0);
     }
 
     public void ejecutarCrearCategoria()
@@ -509,7 +509,7 @@ public class Aplicacion {
 
     public void dataBaseAddHeaderLotes(String a, String b,String c, String d,
                                           String es, String f, String g, String h, String i,
-                                       String adress)
+                                       String j, String adress)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
         String simpleFile = "clientes.csv";
@@ -518,7 +518,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append(",").append(h).append(",").append(i).append("\n");
+        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append(",").append(h).append(",").append(i).append(",").append(j).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
 
@@ -566,7 +566,7 @@ public class Aplicacion {
 
     public void dataBaseLotes(int id, String fechaEntrada, String fechaVencimiento,
                                   int codigoProducto, double precioPagado, double ventaPublico,
-                                  int unidades, int unidadesVendidas, double peso)
+                                  int unidades, int unidadesVendidas, double peso, double pesoComprado)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv" ;
         String simpleFile = "clientes.csv";
@@ -575,7 +575,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(id).append(",").append(fechaEntrada).append(",").append(fechaVencimiento).append(",").append(codigoProducto).append(",").append(precioPagado).append(",").append(ventaPublico).append(",").append(unidades).append(",").append(unidadesVendidas).append(",").append(peso).append("\n");
+        stringBuilder.append(id).append(",").append(fechaEntrada).append(",").append(fechaVencimiento).append(",").append(codigoProducto).append(",").append(precioPagado).append(",").append(ventaPublico).append(",").append(unidades).append(",").append(unidadesVendidas).append(",").append(peso).append(",").append(pesoComprado).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
@@ -691,12 +691,12 @@ public class Aplicacion {
         List<Lote> lotes = inventario.getLotes();
 
         dataBaseAddHeaderLotes("Id", "Fecha Entrada", "Fecha Vencimiento", "Codigo Producto",
-                "Precio Pagado", "Venta Publico", "Unidades","Unidades Vendidas", "Peso", "lotes.csv");
+                "Precio Pagado", "Venta Publico", "Unidades","Unidades Vendidas", "Peso","Peso Comprado", "lotes.csv");
         for (Lote lote : lotes)
         {
             dataBaseLotes(lote.getId(), lote.getFechaEntrada(), lote.getFechaVencimiento(),
                     lote.getCodigoProducto(), lote.getPrecioPagado(), lote.getVentaPublico(),
-                    lote.getUnidades(), lote.getUnidadesVendidas(), lote.getPeso());
+                    lote.getUnidades(), lote.getUnidadesVendidas(), lote.getPeso(), lote.getPesoComprado());
         }
     }
 

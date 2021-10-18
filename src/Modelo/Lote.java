@@ -11,10 +11,11 @@ public class Lote {
     private int unidades;
     private int unidadesVendidas;
     private double peso;
+    private double pesoComprado;
 
     public Lote(int id, String fechaEntrada, String fechaVencimiento, int codigoProducto,
                 double precioPagado, double ventaPublico, int unidades, int unidadesVendidas,
-                double peso) {
+                double peso, double pesoComprado) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.fechaVencimiento = fechaVencimiento;
@@ -24,6 +25,7 @@ public class Lote {
         this.unidades = unidades;
         this.unidadesVendidas = unidadesVendidas;
         this.peso = peso;
+        this.pesoComprado = pesoComprado;
 
     }
 
@@ -95,6 +97,14 @@ public class Lote {
         this.peso = peso;
     }
 
+    public double getPesoComprado() {
+        return pesoComprado;
+    }
+
+    public void setPesoComprado(double pesoComprado) {
+        this.pesoComprado = pesoComprado;
+    }
+
     public void updateUnidades()
     {
         unidades -= 1;
@@ -104,5 +114,6 @@ public class Lote {
     public void updateNoEmpaquetado(double pesoResta)
     {
         peso -= pesoResta;
+        pesoComprado += pesoResta;
     }
 }

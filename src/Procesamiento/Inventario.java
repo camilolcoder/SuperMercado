@@ -41,10 +41,10 @@ public class Inventario {
 
     public void createLote(int id, String fechaEntrada, String fechaVencimiento,
                            int codigoProducto, double precioPagado, double ventaPublico,
-                           int unidades, int unidadesVendidas, double peso)
+                           int unidades, int unidadesVendidas, double peso, double pesoComprado)
     {
         Lote lote = new Lote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades, unidadesVendidas, peso);
+                ventaPublico, unidades, unidadesVendidas, peso, pesoComprado);
         lotes.add(lote);
     }
 
