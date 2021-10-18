@@ -7,3 +7,5 @@ pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true
 cebolla,200.0,2500,kg,12.0,vegetales,5,fresco,false
 galletas oreos,12500.0,120.0,g,270.0,galleticas,6,gondola,true
 Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true
+Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true
+Tomate,500,800,g,600,frutas,8,fresco,false

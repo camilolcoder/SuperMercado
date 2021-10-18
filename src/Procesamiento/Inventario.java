@@ -41,10 +41,10 @@ public class Inventario {
 
     public void createLote(int id, String fechaEntrada, String fechaVencimiento,
                            int codigoProducto, double precioPagado, double ventaPublico,
-                           int unidades, int unidadesVendidas)
+                           int unidades, int unidadesVendidas, double peso)
     {
         Lote lote = new Lote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades, unidadesVendidas);
+                ventaPublico, unidades, unidadesVendidas, peso);
         lotes.add(lote);
     }
 
@@ -133,7 +133,18 @@ public class Inventario {
                 return;
             }
         }
+    }
 
+    public void updateLoteNoEmpaquetadoCompra(int codigoProducto, double peso)
+    {
+        for (Lote lote : lotes)
+        {
+            if (lote.getCodigoProducto() == codigoProducto)
+            {
+                lote.updateNoEmpaquetado(peso);
+                return;
+            }
+        }
     }
 
     public void printInformacionLotes(List<Lote> lotesToPrint)
@@ -248,4 +259,7 @@ public class Inventario {
     }
     //Falta obligar al usuario a escoger una categoria pre-existente a la
     //hora de crear un producto
+    //---------------------------
+    //Falta actualziar los lotes para calcular las ganancias de
+    //tanto productos empaquetados como no empaquetados
 }

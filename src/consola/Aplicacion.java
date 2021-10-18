@@ -206,10 +206,11 @@ public class Aplicacion {
         double precioPagado = Double.parseDouble(input("Ingrese el precio pagado por el lote"));
         double ventaPublico = Double.parseDouble(input("Ingrese el precio para vender al publico del lote"));
         int unidades = Integer.parseInt(input("Ingrese la cantidad de unidades que tiene el lote"));
+        double peso = Double.parseDouble(input("Ingrese el peso del lote"));
         inventario.createLote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades, 0);
+                ventaPublico, unidades, 0,peso);
         dataBaseLotes(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
-                ventaPublico, unidades, 0);
+                ventaPublico, unidades, 0, peso);
     }
 
     public void ejecutarCrearCategoria()
@@ -417,6 +418,7 @@ public class Aplicacion {
     public void ejecutarRegistrarCompras()
     {
         List<Producto> productosCliente = new ArrayList<>();
+        List<Double> pesosNoEmpaquetado = new ArrayList<>();
         List<Cliente> clientesRegistrados = pointOfSale.getClientes();
         boolean continuar = true;
         while(continuar)
@@ -431,6 +433,7 @@ public class Aplicacion {
                     {
                         double peso = Double.parseDouble(input("Ingrese el peso que marcó el producto en la vascula"));
                         productoCliente.setPeso(peso);
+                        pesosNoEmpaquetado.add(peso);
                     }
                     productosCliente.add(productoCliente);
                 }
@@ -453,7 +456,7 @@ public class Aplicacion {
                     {
                         factura.printInformacionFactura(total, 0);
                     }
-                    updateLotesAfterCompra(productosCliente);
+                    updateLotesAfterCompra(productosCliente, pesosNoEmpaquetado);
                     updateDataLotes();
                     continuar = false;
 
@@ -505,7 +508,7 @@ public class Aplicacion {
     }
 
     public void dataBaseAddHeaderLotes(String a, String b,String c, String d,
-                                          String es, String f, String g, String h,
+                                          String es, String f, String g, String h, String i,
                                        String adress)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
@@ -515,7 +518,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append(",").append(h).append("\n");
+        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append(",").append(h).append(",").append(i).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
 
@@ -563,7 +566,7 @@ public class Aplicacion {
 
     public void dataBaseLotes(int id, String fechaEntrada, String fechaVencimiento,
                                   int codigoProducto, double precioPagado, double ventaPublico,
-                                  int unidades, int unidadesVendidas)
+                                  int unidades, int unidadesVendidas, double peso)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv" ;
         String simpleFile = "clientes.csv";
@@ -572,7 +575,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(id).append(",").append(fechaEntrada).append(",").append(fechaVencimiento).append(",").append(codigoProducto).append(",").append(precioPagado).append(",").append(ventaPublico).append(",").append(unidades).append(",").append(unidadesVendidas).append("\n");
+        stringBuilder.append(id).append(",").append(fechaEntrada).append(",").append(fechaVencimiento).append(",").append(codigoProducto).append(",").append(precioPagado).append(",").append(ventaPublico).append(",").append(unidades).append(",").append(unidadesVendidas).append(",").append(peso).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
@@ -688,20 +691,29 @@ public class Aplicacion {
         List<Lote> lotes = inventario.getLotes();
 
         dataBaseAddHeaderLotes("Id", "Fecha Entrada", "Fecha Vencimiento", "Codigo Producto",
-                "Precio Pagado", "Venta Publico", "Unidades","Unidades Vendidas", "lotes.csv");
+                "Precio Pagado", "Venta Publico", "Unidades","Unidades Vendidas", "Peso", "lotes.csv");
         for (Lote lote : lotes)
         {
             dataBaseLotes(lote.getId(), lote.getFechaEntrada(), lote.getFechaVencimiento(),
                     lote.getCodigoProducto(), lote.getPrecioPagado(), lote.getVentaPublico(),
-                    lote.getUnidades(), lote.getUnidadesVendidas());
+                    lote.getUnidades(), lote.getUnidadesVendidas(), lote.getPeso());
         }
     }
 
-    public void updateLotesAfterCompra(List<Producto> productos)
+    public void updateLotesAfterCompra(List<Producto> productos, List<Double> pesos)
     {
+        int counter = 0;
         for (Producto producto : productos)
         {
-            inventario.updateLoteCompra(producto.getCodigo());
+            if (!producto.isEmpaquetado())
+            {
+                double peso = pesos.get(counter);
+                inventario.updateLoteNoEmpaquetadoCompra(producto.getCodigo(), peso);
+                counter += 1;
+            }else
+            {
+                inventario.updateLoteCompra(producto.getCodigo());
+            }
         }
     }
 

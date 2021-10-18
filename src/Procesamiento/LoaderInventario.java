@@ -45,7 +45,7 @@ public class LoaderInventario {
             String[] partesl = lineal.split(",");
             Lote lote = new Lote(Integer.parseInt(partesl[0]), partesl[1], partesl[2],
                     Integer.parseInt(partesl[3]), Double.parseDouble(partesl[4]), Double.parseDouble(partesl[5]),
-                    Integer.parseInt(partesl[6]), Integer.parseInt(partesl[7]));
+                    Integer.parseInt(partesl[6]), Integer.parseInt(partesl[7]), Double.parseDouble(partesl[8]));
                     //lote.setUnidadesVendidas(Integer.parseInt(partesl[7]));
             lotes.add(lote);
             lineal = brl.readLine();
@@ -56,7 +56,7 @@ public class LoaderInventario {
         String filepathCategorias = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
 
         List<String> categorias = new ArrayList<>();
-        BufferedReader brl2 = new BufferedReader(new FileReader(filepathLotes));
+        BufferedReader brl2 = new BufferedReader(new FileReader(filepathCategorias));
         String lineal2 = brl2.readLine();
         lineal2 = brl2.readLine();
         while (lineal2 != null)
