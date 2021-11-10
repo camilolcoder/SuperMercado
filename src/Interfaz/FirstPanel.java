@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class firstPanel extends JPanel implements ActionListener {
+public class FirstPanel extends JPanel implements ActionListener {
 
     private InterfazPrincipal principal;
 
@@ -14,7 +14,7 @@ public class firstPanel extends JPanel implements ActionListener {
     private JButton pointOfSale;
     private JButton inventario;
 
-    public firstPanel(InterfazPrincipal Pprincipal)
+    public FirstPanel(InterfazPrincipal Pprincipal)
     {
         principal = Pprincipal;
         setSize(100, 300);
@@ -47,3 +47,4 @@ public class firstPanel extends JPanel implements ActionListener {
         }
     }
 }
+

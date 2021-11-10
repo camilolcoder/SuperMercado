@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class InterfazPos extends JFrame {
 
-    private panelOpcionesPos panelPrincipalPos;
+    private PanelOpcionesPos panelPrincipalPos;
 
     public InterfazPos()
     {
@@ -15,7 +15,7 @@ public class InterfazPos extends JFrame {
         getContentPane().setBackground(new Color(178, 177, 185));
         //setLayout( new BorderLayout() );
 
-        panelPrincipalPos = new panelOpcionesPos(this);
+        panelPrincipalPos = new PanelOpcionesPos(this);
         add(panelPrincipalPos, BorderLayout.CENTER);
 
         setLocationRelativeTo(null);

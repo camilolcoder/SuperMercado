@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class InterfazPrincipal extends JFrame {
 
-    private firstPanel panelPrincipal;
+    private FirstPanel panelPrincipal;
 
     public InterfazPrincipal()
     {
@@ -15,7 +15,7 @@ public class InterfazPrincipal extends JFrame {
         getContentPane().setBackground(new Color(178, 177, 185));
         //setLayout( new BorderLayout() );
 
-        panelPrincipal = new firstPanel(this);
+        panelPrincipal = new FirstPanel(this);
         //panelPrincipal.setBounds(500, 500, 500, 500);
         //panelPrincipal.setSize(300, 300);
         //panelPrincipal.setOpaque(false);

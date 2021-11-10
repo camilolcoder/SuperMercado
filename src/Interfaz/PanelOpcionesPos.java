@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class panelOpcionesPos extends JPanel implements ActionListener {
+public class PanelOpcionesPos extends JPanel implements ActionListener {
 
     private InterfazPos principalPos;
 
@@ -17,7 +17,7 @@ public class panelOpcionesPos extends JPanel implements ActionListener {
     private JButton canjearCompras;
     private JButton salir;
 
-    public panelOpcionesPos(InterfazPos PprincipalPos)
+    public PanelOpcionesPos(InterfazPos PprincipalPos)
     {
         principalPos = PprincipalPos;
         setLayout(new GridLayout(3, 1));
