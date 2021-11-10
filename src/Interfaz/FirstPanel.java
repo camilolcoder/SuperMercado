@@ -10,6 +10,7 @@ public class FirstPanel extends JPanel implements ActionListener {
     private InterfazPrincipal principal;
 
     public final static String POS = "POS";
+    public final static String INVENTARIO = "INVENTARIO";
 
     private JButton pointOfSale;
     private JButton inventario;
@@ -23,10 +24,12 @@ public class FirstPanel extends JPanel implements ActionListener {
         //pointOfSale.setBounds(500, 500, 400, 400);
         pointOfSale.setActionCommand(POS);
         pointOfSale.addActionListener(this);
+        //pointOfSale.setBounds(100, 100, 250, 250);
         add(pointOfSale);
 
         inventario = new JButton("Inventario");
-        pointOfSale.setBounds(100, 100, 250, 250);
+        inventario.setActionCommand(INVENTARIO);
+        inventario.addActionListener(this);
         add(inventario);
 
     }
@@ -39,9 +42,16 @@ public class FirstPanel extends JPanel implements ActionListener {
         if (comando.equals("POS"))
         {
             //JFrame jframe2 = new JFrame();
-            InterfazPos jframe2 = new InterfazPos();
-            jframe2.show();
+            InterfazPos interfazPos = new InterfazPos();
+            interfazPos.show();
             //jframe2.show();
+
+            principal.dispose();
+        }
+        else if (comando.equals("INVENTARIO"))
+        {
+            InterfazInventario interfazInventario = new InterfazInventario();
+            interfazInventario.show();
 
             principal.dispose();
         }

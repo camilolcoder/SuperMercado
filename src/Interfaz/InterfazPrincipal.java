@@ -21,12 +21,13 @@ public class InterfazPrincipal extends JFrame {
         //panelPrincipal.setOpaque(false);
         //panelPrincipal.setBackground(Color.BLUE);
         add(panelPrincipal, BorderLayout.CENTER);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     public static void main(String[] args)
     {
         InterfazPrincipal ventana = new InterfazPrincipal();
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
     }
 }
