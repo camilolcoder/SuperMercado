@@ -7,7 +7,9 @@ public class InterfazPrincipalTest extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JPanel panel1;
     private JButton button1;
+    private JButton button2;
 
     public InterfazPrincipalTest() {
         setSize(300, 300);
@@ -58,5 +60,9 @@ public class InterfazPrincipalTest extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
