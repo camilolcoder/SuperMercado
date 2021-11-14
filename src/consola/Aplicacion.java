@@ -146,7 +146,8 @@ public class Aplicacion {
                 else if (opcion_seleccionada == 2)
                     ejecutarObtenerCategorias();
                 else if (opcion_seleccionada == 3)
-                    ejecutarCrearProducto();
+                    //ejecutarCrearProducto();
+                    ejecutarObtenerCategorias();
                 else if (opcion_seleccionada == 4)
                     ejecutarObtenerDatosProductos();
                 else if (opcion_seleccionada == 5)
@@ -279,16 +280,18 @@ public class Aplicacion {
         return confirmar;
     }
 
-    public void ejecutarCrearProducto()
+    public void ejecutarCrearProducto(String nombre, double precio, double precioPorUnidad,
+                                      String unidadMedida, double peso, String categoria, String tipo,
+                                      boolean empaquetado)
     {
-        String nombre = input("Escriba el nombre del producto");
-        double precio = Double.parseDouble(input("Escriba el precio del producto"));
-        double precioPorUnidad = Double.parseDouble(input("Escriba el precio por unidad del producto"));
-        String unidadMedida = input("Escriba la unidad de medida del producto");
-        double peso = Double.parseDouble(input("Escriba el peso del producto"));
-        String categoria = input("Escriba la categoria del producto");
-        String tipo = opcionesTipo();
-        boolean empaquetado = tipoEmpaquetado();
+        //String nombre = input("Escriba el nombre del producto");
+        //double precio = Double.parseDouble(input("Escriba el precio del producto"));
+        //double precioPorUnidad = Double.parseDouble(input("Escriba el precio por unidad del producto"));
+        //String unidadMedida = input("Escriba la unidad de medida del producto");
+        //double peso = Double.parseDouble(input("Escriba el peso del producto"));
+        //String categoria = input("Escriba la categoria del producto");
+        //String tipo = opcionesTipo();
+        //boolean empaquetado = tipoEmpaquetado();
         //boolean empaquetado = Boolean.parseBoolean(input("Escriba si es empaquetado"));
         //String codigo = input("Escriba el codigo del producto");
         inventario.createProduct(nombre, precio, precioPorUnidad, unidadMedida,
@@ -733,10 +736,10 @@ public class Aplicacion {
         inventario = LoaderInventario.cargarArchivos();
     }
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         Aplicacion aplicacion = new Aplicacion();
         aplicacion.ejecutarAplicacion();
-    }
+    }*/
 
     //"C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\testing.csv"
 }

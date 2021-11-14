@@ -1,14 +1,17 @@
 package Interfaz.Inventario;
 
+import Interfaz.InterfazPrincipal;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class CrearProducto extends JPanel implements ActionListener {
 
     public final static String CREARCLI = "CREARCLI";
-
+    private InterfazPrincipal principal;
     private int commandClose = 0;
 
     private JLabel nombreProductoText;
@@ -26,8 +29,8 @@ public class CrearProducto extends JPanel implements ActionListener {
     private JLabel tipoEmpaquetadoTexto;
     private JComboBox tipoEmpaquetado;
 
-    public CrearProducto()
-    {
+    public CrearProducto() throws IOException {
+        principal = new InterfazPrincipal();
         String unidadesMedida[] = {"mg", "g", "Kg", "T"};
         String categoriasLista[] = {"frutas", "verduras", "aseo personal"};
         //TODO la lista de categorias para el combo box debe provenir de las previamente creadas
@@ -87,16 +90,22 @@ public class CrearProducto extends JPanel implements ActionListener {
         if (comando.equals("CREARCLI"))
         {
             //(String) tamanoTablero.getItemAt(tamanoTablero.getSelectedIndex());
+            String nombre = nombreProducto.getText();
             System.out.println(nombreProducto.getText());
+            //double precio = Double.parseDouble(precioProducto.getText());
             System.out.println(precioProducto.getText());
+            //double unidadPrecio = Double.parseDouble((String) unidadMedida.getItemAt(unidadMedida.getSelectedIndex()));
             String precioUnidadCombo =  (String) unidadMedida.getItemAt(unidadMedida.getSelectedIndex());
             System.out.println(precioUnidadCombo);
+            //double precioProducto = Double.parseDouble(pesoProducto.getText());
             System.out.println(pesoProducto.getText());
             String categoriaSeleccionada = (String) categorias.getItemAt(categorias.getSelectedIndex());
             System.out.println(categoriaSeleccionada);
             String tipoEmpaquetadoSeleccionado = (String) tipoEmpaquetado.getItemAt(tipoEmpaquetado.getSelectedIndex());
             System.out.println(tipoEmpaquetadoSeleccionado);
             commandClose = 1;
+            principal.ejecutarCrearProducto(nombre, 1299, 2304, "g", 25, "colectivos",
+                    "empaquetado", true);
         }
     }
     public int closeDialog()

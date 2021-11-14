@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class PanelOpcionesInventario extends JPanel implements ActionListener {
 
@@ -63,7 +64,12 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("CREARPRO"))
         {
-            CrearProducto producto = new CrearProducto();
+            CrearProducto producto = null;
+            try {
+                producto = new CrearProducto();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             JDialog dialog = new JDialog();
             dialog.setVisible(true);
             dialog.setSize(300, 300);
