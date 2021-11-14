@@ -1,4 +1,7 @@
-package Interfaz;
+package Interfaz.Inventario;
+
+import Interfaz.InterfazPos;
+import Interfaz.Inventario.InterfazInventario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +12,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
 
     private InterfazInventario principalInventario;
 
+    public final static String CREARPRO = "CREARPRO";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -27,6 +31,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         add(crearCategoria);
 
         crearProducto = new JButton("Crear producto");
+        crearProducto.setActionCommand("CREARPRO");
+        crearProducto.addActionListener(this);
         add(crearProducto);
 
         crearLote = new JButton("Crear Lote");
@@ -54,6 +60,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             InterfazPos principalPos = new InterfazPos();
             principalPos.show();
             principalInventario.dispose();
+        }
+        else if (comando.equals("CREARPRO"))
+        {
+            CrearProducto producto = new CrearProducto();
+            JDialog dialog = new JDialog();
+            dialog.setVisible(true);
+            dialog.setSize(300, 300);
+            dialog.setLocationRelativeTo(this);
+            dialog.add(producto);
+
         }
     }
 }

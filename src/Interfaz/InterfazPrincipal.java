@@ -24,6 +24,11 @@ public class InterfazPrincipal extends JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
+        //Posible solucion al problema de no poder regresar a la
+        //interfaz pricipal seria crear un Interfaz con
+        //constructor, de este modo si podriamos volver a esta
+        //Y ponemos que esta interfaz solo tenga un boton
+        //que seria como iniciar programa y yap
     }
 
     public static void main(String[] args)

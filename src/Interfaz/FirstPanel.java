@@ -1,5 +1,7 @@
 package Interfaz;
 
+import Interfaz.Inventario.InterfazInventario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

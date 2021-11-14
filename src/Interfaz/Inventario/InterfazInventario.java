@@ -1,4 +1,4 @@
-package Interfaz;
+package Interfaz.Inventario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ public class InterfazInventario extends JFrame {
 
     public InterfazInventario()
     {
-        setTitle("LightsOut");
+        setTitle("Inventario");
         setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(178, 177, 185));
