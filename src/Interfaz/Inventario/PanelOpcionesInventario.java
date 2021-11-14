@@ -69,6 +69,13 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             dialog.setSize(300, 300);
             dialog.setLocationRelativeTo(this);
             dialog.add(producto);
+            int commandNum = producto.closeDialog();
+            System.out.println(commandNum);
+            if (commandNum == 1)
+            {
+                dialog.dispose();
+                System.out.println(commandNum);
+            }
 
         }
     }

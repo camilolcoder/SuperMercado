@@ -9,6 +9,8 @@ public class CrearProducto extends JPanel implements ActionListener {
 
     public final static String CREARCLI = "CREARCLI";
 
+    private int commandClose = 0;
+
     private JLabel nombreProductoText;
     private JTextField nombreProducto;
     private JLabel crearProductoTexto;
@@ -84,7 +86,22 @@ public class CrearProducto extends JPanel implements ActionListener {
         String comando = e.getActionCommand();
         if (comando.equals("CREARCLI"))
         {
+            //(String) tamanoTablero.getItemAt(tamanoTablero.getSelectedIndex());
             System.out.println(nombreProducto.getText());
+            System.out.println(precioProducto.getText());
+            String precioUnidadCombo =  (String) unidadMedida.getItemAt(unidadMedida.getSelectedIndex());
+            System.out.println(precioUnidadCombo);
+            System.out.println(pesoProducto.getText());
+            String categoriaSeleccionada = (String) categorias.getItemAt(categorias.getSelectedIndex());
+            System.out.println(categoriaSeleccionada);
+            String tipoEmpaquetadoSeleccionado = (String) tipoEmpaquetado.getItemAt(tipoEmpaquetado.getSelectedIndex());
+            System.out.println(tipoEmpaquetadoSeleccionado);
+            commandClose = 1;
         }
+    }
+    public int closeDialog()
+    {
+        return commandClose;
+        //TODO Close dialog when press create client
     }
 }
