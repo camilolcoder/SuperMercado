@@ -30,9 +30,10 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     private JButton mostrarLotesVencidos;
     private JButton menuPrincipal;
 
-    public PanelOpcionesInventario(InterfazInventario PprincipalInventario)
+    public PanelOpcionesInventario(InterfazInventario PprincipalInventario, InterfazPrincipal Pprincipal)
     {
         principalInventario = PprincipalInventario;
+        principal = Pprincipal;
 
         setLayout(new GridLayout(4, 2));
         crearCategoria = new JButton("Crear categoria");

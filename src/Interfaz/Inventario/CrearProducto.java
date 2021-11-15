@@ -46,6 +46,9 @@ public class CrearProducto extends JDialog implements ActionListener {
 
     public CrearProducto(InterfazPrincipal Pprincipal) throws IOException {
         principal = Pprincipal;
+        setVisible(true);
+        setSize(300, 300);
+        setLocationRelativeTo(null);
         String unidadesMedida[] = {"mg", "g", "Kg", "T"};
         //String categoriasLista[] = {"frutas", "verduras", "aseo personal"};
         String categoriasLista[] = principal.obtenerCategorias();

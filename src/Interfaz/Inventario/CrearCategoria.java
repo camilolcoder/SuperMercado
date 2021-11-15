@@ -20,6 +20,9 @@ public class CrearCategoria extends JDialog implements ActionListener {
 
     public CrearCategoria(InterfazPrincipal Pprincipal) throws IOException {
         principal = Pprincipal; //new InterfazPrincipal();
+        setVisible(true);
+        setSize(300, 100);
+        setLocationRelativeTo(null);
 
         setLayout(new GridLayout(2,2));
         nombreCategoriaText = new JLabel("Nueva categoria");

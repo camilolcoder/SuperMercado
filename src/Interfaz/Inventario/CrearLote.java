@@ -35,7 +35,6 @@ public class CrearLote extends JDialog implements ActionListener {
 
     public CrearLote(InterfazPrincipal Pprincipal) throws IOException {
         principal = Pprincipal;
-        setSize(300, 300);
         setVisible(true);
         setSize(300, 300);
         setLocationRelativeTo(null);

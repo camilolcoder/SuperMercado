@@ -52,7 +52,7 @@ public class FirstPanel extends JPanel implements ActionListener {
         }
         else if (comando.equals("INVENTARIO"))
         {
-            InterfazInventario interfazInventario = new InterfazInventario();
+            InterfazInventario interfazInventario = new InterfazInventario(principal);
             interfazInventario.show();
 
             principal.dispose();
