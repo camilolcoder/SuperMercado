@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class CrearCategoria extends JPanel implements ActionListener {
+public class CrearCategoria extends JDialog implements ActionListener {
 
     public final static String CREARCAT = "CREARCAT";
     private InterfazPrincipal principal;
@@ -18,8 +18,8 @@ public class CrearCategoria extends JPanel implements ActionListener {
     private JLabel crearCategoriaText;
     private JButton createCategoria;
 
-    public CrearCategoria() throws IOException {
-        principal = new InterfazPrincipal();
+    public CrearCategoria(InterfazPrincipal Pprincipal) throws IOException {
+        principal = Pprincipal; //new InterfazPrincipal();
 
         setLayout(new GridLayout(2,2));
         nombreCategoriaText = new JLabel("Nueva categoria");

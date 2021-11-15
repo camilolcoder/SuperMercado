@@ -70,30 +70,30 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         {
             CrearCategoria categoria = null;
             try {
-                categoria = new CrearCategoria();
+                categoria = new CrearCategoria(principal);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            JDialog dialog = new JDialog();
+            /*JDialog dialog = new JDialog();
             dialog.setVisible(true);
             dialog.setSize(300, 100);
             dialog.setLocationRelativeTo(this);
-            dialog.add(categoria);
+            dialog.add(categoria);*/
 
         }
         else if (comando.equals("CREARPRO"))//CREAR PRODUCTO
         {
             CrearProducto producto = null;
             try {
-                producto = new CrearProducto();
+                producto = new CrearProducto(principal);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            JDialog dialog = new JDialog();
+            /*JDialog dialog = new JDialog();
             dialog.setVisible(true);
             dialog.setSize(300, 300);
             dialog.setLocationRelativeTo(this);
-            dialog.add(producto);
+            dialog.add(producto);*/
             /*int commandNum = producto.closeDialog();
             System.out.println(commandNum);
             if (commandNum == 1)

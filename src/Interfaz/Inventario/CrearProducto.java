@@ -19,7 +19,7 @@ import java.util.List;
 //        -podemos crear un boton aparte para asociar imagenes a los
 //         a los productos
 
-public class CrearProducto extends JPanel implements ActionListener {
+public class CrearProducto extends JDialog implements ActionListener {
 
     public final static String CREARCLI = "CREARCLI";
     private InterfazPrincipal principal;
@@ -44,8 +44,8 @@ public class CrearProducto extends JPanel implements ActionListener {
     private JLabel crearProductoTexto;
     private JButton crearProducto;
 
-    public CrearProducto() throws IOException {
-        principal = new InterfazPrincipal();
+    public CrearProducto(InterfazPrincipal Pprincipal) throws IOException {
+        principal = Pprincipal;
         String unidadesMedida[] = {"mg", "g", "Kg", "T"};
         //String categoriasLista[] = {"frutas", "verduras", "aseo personal"};
         String categoriasLista[] = principal.obtenerCategorias();
