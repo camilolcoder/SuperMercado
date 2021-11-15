@@ -22,6 +22,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     public final static String CREARCAT = "CREARCAT";
     public final static String CREATLOT = "CREARLOT";
     public final static String ELIMLOTESP = "ELIMLOTESP";
+    public final static String MOSTRARLOTS = "MOSTRARLOTS";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -58,6 +59,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         add(elimLoteEsp);
 
         mostrarLotesVencidos = new JButton("Mostrar lotes vencidos");
+        mostrarLotesVencidos.setActionCommand("MOSTRARLOTS");
+        mostrarLotesVencidos.addActionListener(this);
         add(mostrarLotesVencidos);
 
         menuPrincipal = new JButton("Volver al menu principal");
@@ -102,9 +105,14 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("ELIMLOTESP"))
         {
-            EliminarLoteEsp eliminarLoteEsp= null;
+            EliminarLoteEsp eliminarLoteEsp = null;
             eliminarLoteEsp = new EliminarLoteEsp(principal);
 
+        }
+        else if (comando.equals("MOSTRARLOTS"))
+        {
+            MostrarLotesVencidos mostrarLotesVencidos = null;
+            mostrarLotesVencidos = new MostrarLotesVencidos(principal);
         }
         else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
         {
