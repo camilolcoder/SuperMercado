@@ -139,13 +139,14 @@ public class CrearProducto extends JDialog implements ActionListener {
             //commandClose = 1;
             principal.ejecutarCrearProducto(nombre, precio, precioUnidad, uniMedida, peso,
                     categoriaSeleccionada, tipoEmpaquetadoSeleccionado, empaquetadoSeleccionado);
+            dispose();
         }
     }
-    public int closeDialog()
+    /*public int closeDialog()
     {
         return commandClose;
-        //TODO Close dialog when press create client
-    }
+        //DONE Close dialog when press create client
+    }*/
 
     public boolean tipoEmpaquetadoBool(String seleccion)
     {

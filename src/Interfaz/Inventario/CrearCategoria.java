@@ -54,6 +54,7 @@ public class CrearCategoria extends JDialog implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            dispose();
         }
     }
 }
