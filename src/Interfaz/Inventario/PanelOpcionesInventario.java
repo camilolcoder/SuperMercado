@@ -21,6 +21,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     public final static String CREARPRO = "CREARPRO";
     public final static String CREARCAT = "CREARCAT";
     public final static String CREATLOT = "CREARLOT";
+    public final static String ELIMLOTESP = "ELIMLOTESP";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -52,6 +53,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         add(crearLote);
 
         elimLoteEsp = new JButton("Eliminar lote especifico");
+        elimLoteEsp.setActionCommand("ELIMLOTESP");
+        elimLoteEsp.addActionListener(this);
         add(elimLoteEsp);
 
         mostrarLotesVencidos = new JButton("Mostrar lotes vencidos");
@@ -75,11 +78,6 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            /*JDialog dialog = new JDialog();
-            dialog.setVisible(true);
-            dialog.setSize(300, 100);
-            dialog.setLocationRelativeTo(this);
-            dialog.add(categoria);*/
 
         }
         else if (comando.equals("CREARPRO"))//CREAR PRODUCTO
@@ -90,18 +88,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            /*JDialog dialog = new JDialog();
-            dialog.setVisible(true);
-            dialog.setSize(300, 300);
-            dialog.setLocationRelativeTo(this);
-            dialog.add(producto);*/
-            /*int commandNum = producto.closeDialog();
-            System.out.println(commandNum);
-            if (commandNum == 1)
-            {
-                dialog.dispose();
-                System.out.println(commandNum);
-            }*/
+
         }
         else if (comando.equals("CREARLOT"))//CREAR LOTE
         {
@@ -111,11 +98,12 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            /*JDialog dialog = new JDialog();
-            dialog.setVisible(true);
-            dialog.setSize(300, 300);
-            dialog.setLocationRelativeTo(this);
-            dialog.add(lote);*/
+
+        }
+        else if (comando.equals("ELIMLOTESP"))
+        {
+            EliminarLoteEsp eliminarLoteEsp= null;
+            eliminarLoteEsp = new EliminarLoteEsp(principal);
 
         }
         else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
