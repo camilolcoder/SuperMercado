@@ -16,11 +16,11 @@ public class CrearProducto extends JPanel implements ActionListener {
 
     private JLabel nombreProductoText;
     private JTextField nombreProducto;
-    private JLabel crearProductoTexto;
-    private JButton crearProducto;
     private JLabel precioTexto;
     private JTextField precioProducto;
-    private JLabel precioPorUnidad;
+    private JLabel precioPorUnidadText;
+    private JTextField precioPorUnidad;
+    private JLabel unidadMedidaText;
     private JComboBox unidadMedida;
     private JLabel pesoTexto;
     private JTextField pesoProducto;
@@ -28,15 +28,20 @@ public class CrearProducto extends JPanel implements ActionListener {
     private JComboBox categorias;
     private JLabel tipoEmpaquetadoTexto;
     private JComboBox tipoEmpaquetado;
+    private JLabel boolEmpaquetadoText;
+    private JComboBox boolEmpaquetado;
+    private JLabel crearProductoTexto;
+    private JButton crearProducto;
 
     public CrearProducto() throws IOException {
         principal = new InterfazPrincipal();
         String unidadesMedida[] = {"mg", "g", "Kg", "T"};
         String categoriasLista[] = {"frutas", "verduras", "aseo personal"};
         //TODO la lista de categorias para el combo box debe provenir de las previamente creadas
-        String tipos[] = {"Empaquetado", "Congelado", "Refrigerado", "Fresco"};
+        String tipos[] = {"Gondola", "Congelado", "Refrigerado", "Fresco"};
+        String bools[] = {"Si", "No"};
 
-        setLayout(new GridLayout(7, 2));
+        setLayout(new GridLayout(9, 2));
         nombreProductoText = new JLabel("Nombre producto");
         add(nombreProductoText);
 
@@ -49,8 +54,14 @@ public class CrearProducto extends JPanel implements ActionListener {
         precioProducto = new JTextField();
         add(precioProducto);
 
-        precioPorUnidad = new JLabel("Precio por unidad");
+        precioPorUnidadText = new JLabel("Precio por unidad");
+        add(precioPorUnidadText);
+
+        precioPorUnidad = new JTextField();
         add(precioPorUnidad);
+
+        unidadMedidaText = new JLabel("Unidad de medida");
+        add(unidadMedidaText);
 
         unidadMedida = new JComboBox(unidadesMedida);
         add(unidadMedida);
@@ -67,11 +78,17 @@ public class CrearProducto extends JPanel implements ActionListener {
         categorias = new JComboBox(categoriasLista);
         add(categorias);
 
-        tipoEmpaquetadoTexto = new JLabel("Tipo de empaquetado");
+        tipoEmpaquetadoTexto = new JLabel("Clase de empaquetado");
         add(tipoEmpaquetadoTexto);
 
         tipoEmpaquetado = new JComboBox(tipos);
         add(tipoEmpaquetado);
+
+        boolEmpaquetadoText = new JLabel("Esta empaquetado");
+        add(boolEmpaquetadoText);
+
+        boolEmpaquetado = new JComboBox(bools);
+        add(boolEmpaquetado);
 
         //----------------------------------
         crearProductoTexto = new JLabel();
@@ -89,28 +106,43 @@ public class CrearProducto extends JPanel implements ActionListener {
         String comando = e.getActionCommand();
         if (comando.equals("CREARCLI"))
         {
-            //(String) tamanoTablero.getItemAt(tamanoTablero.getSelectedIndex());
-            String nombre = nombreProducto.getText();
+            String nombre = nombreProducto.getText(); //NOMBRE
+            double precio = Double.parseDouble(precioProducto.getText());// PRECIO
+            double precioUnidad = Double.parseDouble(precioPorUnidad.getText());//PRECIO X UNIDAD
+            String uniMedida =  (String) unidadMedida.getItemAt(unidadMedida.getSelectedIndex()); //UNIDAD MEDIDA
+            double peso = Double.parseDouble(pesoProducto.getText()); //PESO
+            String categoriaSeleccionada = (String) categorias.getItemAt(categorias.getSelectedIndex()); // CATEGORIA
+            String tipoEmpaquetadoSeleccionado = (String) tipoEmpaquetado.getItemAt(tipoEmpaquetado.getSelectedIndex());//TIPO EMPAQUETADO
+            String seleccionBool = (String) boolEmpaquetado.getItemAt(boolEmpaquetado.getSelectedIndex());
+            boolean empaquetadoSeleccionado = tipoEmpaquetadoBool(seleccionBool);//BOOL DE EMPAQUETADO
             System.out.println(nombreProducto.getText());
-            //double precio = Double.parseDouble(precioProducto.getText());
             System.out.println(precioProducto.getText());
-            //double unidadPrecio = Double.parseDouble((String) unidadMedida.getItemAt(unidadMedida.getSelectedIndex()));
-            String precioUnidadCombo =  (String) unidadMedida.getItemAt(unidadMedida.getSelectedIndex());
-            System.out.println(precioUnidadCombo);
-            //double precioProducto = Double.parseDouble(pesoProducto.getText());
+            System.out.println(uniMedida);
             System.out.println(pesoProducto.getText());
-            String categoriaSeleccionada = (String) categorias.getItemAt(categorias.getSelectedIndex());
             System.out.println(categoriaSeleccionada);
-            String tipoEmpaquetadoSeleccionado = (String) tipoEmpaquetado.getItemAt(tipoEmpaquetado.getSelectedIndex());
             System.out.println(tipoEmpaquetadoSeleccionado);
             commandClose = 1;
-            principal.ejecutarCrearProducto(nombre, 1299, 2304, "g", 25, "colectivos",
-                    "empaquetado", true);
+            principal.ejecutarCrearProducto(nombre, precio, precioUnidad, uniMedida, peso,
+                    categoriaSeleccionada, tipoEmpaquetadoSeleccionado, empaquetadoSeleccionado);
         }
     }
     public int closeDialog()
     {
         return commandClose;
         //TODO Close dialog when press create client
+    }
+
+    public boolean tipoEmpaquetadoBool(String seleccion)
+    {
+        boolean confirmar = true;
+        if (seleccion.equals("Si"))
+        {
+            confirmar = true;
+        }
+        else if (seleccion.equals("No"))
+        {
+            confirmar = false;
+        }
+        return confirmar;
     }
 }
