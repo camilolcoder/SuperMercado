@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-//TODO cada vez que se preciona el boton que abre el JDialog se cierra la interfaz de invetario,
+//DONE cada vez que se preciona el boton que abre el JDialog se cierra la interfaz de invetario,
 // Eso es algo que puede llegar a ser molesto para el usuario
 
 public class PanelOpcionesInventario extends JPanel implements ActionListener {
@@ -23,6 +23,10 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     public final static String CREATLOT = "CREARLOT";
     public final static String ELIMLOTESP = "ELIMLOTESP";
     public final static String MOSTRARLOTS = "MOSTRARLOTS";
+    public final static String ELIMTODO = "ELIMTODO";
+    public final static String DESEMPGEN = "DESEMPGEN";
+    public final static String DESEMPIND = "DESEMPIND";
+    public final static String CARGARCSV = "CARGARCSV";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -30,6 +34,10 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     private JButton crearLote;
     private JButton elimLoteEsp;
     private JButton mostrarLotesVencidos;
+    private JButton eliminarTodosLosLotesVencidos;
+    private JButton desempenoFinancieroGeneral;
+    private JButton desempenoFinancieroInd;
+    private JButton cargarCSV;
     private JButton menuPrincipal;
 
     public PanelOpcionesInventario(InterfazInventario PprincipalInventario, InterfazPrincipal Pprincipal)
@@ -37,7 +45,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         principalInventario = PprincipalInventario;
         principal = Pprincipal;
 
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(5, 2));
         crearCategoria = new JButton("Crear categoria");
         crearCategoria.setActionCommand("CREARCAT");
         crearCategoria.addActionListener(this);
@@ -62,6 +70,26 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         mostrarLotesVencidos.setActionCommand("MOSTRARLOTS");
         mostrarLotesVencidos.addActionListener(this);
         add(mostrarLotesVencidos);
+
+        eliminarTodosLosLotesVencidos = new JButton("Eliminar lotes vencidos");
+        eliminarTodosLosLotesVencidos.setActionCommand("ELIMTODO");
+        eliminarTodosLosLotesVencidos.addActionListener(this);
+        add(eliminarTodosLosLotesVencidos);
+
+        desempenoFinancieroGeneral = new JButton("Desempeno financiero general");
+        desempenoFinancieroGeneral.setActionCommand("DESEMPGEN");
+        desempenoFinancieroGeneral.addActionListener(this);
+        add(desempenoFinancieroGeneral);
+
+        desempenoFinancieroInd = new JButton("Desempeno financiero individual");
+        desempenoFinancieroInd.setActionCommand("DESEMPIND");
+        desempenoFinancieroInd.addActionListener(this);
+        add(desempenoFinancieroInd);
+
+        cargarCSV = new JButton("Cargar Csv");
+        cargarCSV.setActionCommand("CARGARCSV");
+        cargarCSV.addActionListener(this);
+        add(cargarCSV);
 
         menuPrincipal = new JButton("Volver al menu principal");
         menuPrincipal.setActionCommand("MENUPRIN");
@@ -113,6 +141,22 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         {
             MostrarLotesVencidos mostrarLotesVencidos = null;
             mostrarLotesVencidos = new MostrarLotesVencidos(principal);
+        }
+        else if (comando.equals("ELIMTODO"))
+        {
+
+        }
+        else if (comando.equals("DESEMPGEN"))
+        {
+
+        }
+        else if (comando.equals("DESEMPIND"))
+        {
+
+        }
+        else if (comando.equals("CARGARCSV"))
+        {
+
         }
         else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
         {

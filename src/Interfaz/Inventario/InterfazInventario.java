@@ -14,7 +14,7 @@ public class InterfazInventario extends JFrame {
     {
         principal = Pprincipal;
         setTitle("Inventario");
-        setSize(600, 600);
+        setSize(600, 450);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(178, 177, 185));
         //setLayout( new BorderLayout() );
