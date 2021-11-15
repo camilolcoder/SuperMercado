@@ -45,8 +45,12 @@ public class EliminarLoteEsp extends JDialog implements ActionListener {
         String comando = e.getActionCommand();
         if (comando.equals("ELIMINARLOT"))
         {
+            int seguro = JOptionPane.showConfirmDialog(this,"Esta seguro de querer eliminar el lote?");
+            if (seguro == JOptionPane.YES_OPTION)
+            {
+                dispose();
+            }
 
-            dispose();
         }
     }
 }
