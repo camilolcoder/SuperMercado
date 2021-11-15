@@ -1,6 +1,7 @@
 package Interfaz.Inventario;
 
 import Interfaz.InterfazPos;
+import Interfaz.InterfazPrincipal;
 import Interfaz.Inventario.InterfazInventario;
 
 import javax.swing.*;
@@ -15,9 +16,11 @@ import java.io.IOException;
 public class PanelOpcionesInventario extends JPanel implements ActionListener {
 
     private InterfazInventario principalInventario;
+    private InterfazPrincipal principal;
 
     public final static String CREARPRO = "CREARPRO";
     public final static String CREARCAT = "CREARCAT";
+    public final static String CREATLOT = "CREARLOT";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -43,6 +46,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         add(crearProducto);
 
         crearLote = new JButton("Crear Lote");
+        crearLote.setActionCommand("CREARLOT");
+        crearLote.addActionListener(this);
         add(crearLote);
 
         elimLoteEsp = new JButton("Eliminar lote especifico");
@@ -96,6 +101,21 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
                 dialog.dispose();
                 System.out.println(commandNum);
             }*/
+        }
+        else if (comando.equals("CREARLOT"))//CREAR LOTE
+        {
+            CrearLote lote = null;
+            try {
+                lote = new CrearLote(principal);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            /*JDialog dialog = new JDialog();
+            dialog.setVisible(true);
+            dialog.setSize(300, 300);
+            dialog.setLocationRelativeTo(this);
+            dialog.add(lote);*/
+
         }
         else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
         {

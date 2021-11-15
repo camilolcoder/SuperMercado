@@ -35,8 +35,6 @@ public class InterfazPrincipal extends JFrame {
         //panelPrincipal.setBackground(Color.BLUE);
         add(panelPrincipal, BorderLayout.CENTER);
 
-        setLocationRelativeTo(null);
-        setVisible(true);
         //Posible solucion al problema de no poder regresar a la
         //interfaz pricipal seria crear un Interfaz con
         //constructor, de este modo si podriamos volver a esta
@@ -68,5 +66,7 @@ public class InterfazPrincipal extends JFrame {
 
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
     }
 }
