@@ -57,6 +57,10 @@ public class InterfazPrincipal extends JFrame {
         aplicacion.ejecutarCrearCategoria(categoria);
     }
 
+    public String[] obtenerCategorias() throws IOException {
+        return aplicacion.ejecutarObtenerCategorias();
+    }
+
     public void updateCodigo()
     {
         aplicacion.updateCodigo();

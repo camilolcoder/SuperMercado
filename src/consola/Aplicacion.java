@@ -299,15 +299,18 @@ public class Aplicacion {
         }
     }
 
-    public void ejecutarObtenerCategorias()
-    {
+    public String[] ejecutarObtenerCategorias() throws IOException {
+        //List<String> categorias = new ArrayList<>();
+        String[] categoriasFinal = {};
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
-        try(Scanner scanner = new Scanner(new File(filepath)))
+        /*try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
             while (scanner.hasNext())
             {
-                System.out.print(scanner.next() + "|");
+                //categorias.add(scanner.next());
+                System.out.print(scanner.next()+"");
+                //categoriasFinal = categorias.toArray(categoriasFinal);
             }
             scanner.close();
         }
@@ -315,7 +318,23 @@ public class Aplicacion {
         {
             System.out.println("Error leyendo el archivo de la base de datos");
             e.printStackTrace();
+        }*/
+        List<String> categorias = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(filepath));
+        String linea = br.readLine();
+        linea = br.readLine();
+        while (linea != null)
+        {
+            String[] partes = linea.split(",");
+            categorias.add(partes[0]);
+            linea = br.readLine();
+
         }
+        br.close();
+        categoriasFinal = categorias.toArray(categoriasFinal);
+        System.out.println(Arrays.toString(categoriasFinal));
+        //System.out.println(categorias.get(0));
+        return categoriasFinal;
     }
 
     public void ejecutarObtenerDatosLotes()

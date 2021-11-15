@@ -71,7 +71,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             }
             JDialog dialog = new JDialog();
             dialog.setVisible(true);
-            dialog.setSize(300, 300);
+            dialog.setSize(300, 180);
             dialog.setLocationRelativeTo(this);
             dialog.add(categoria);
 
@@ -86,7 +86,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             }
             JDialog dialog = new JDialog();
             dialog.setVisible(true);
-            dialog.setSize(300, 180);
+            dialog.setSize(300, 300);
             dialog.setLocationRelativeTo(this);
             dialog.add(producto);
             /*int commandNum = producto.closeDialog();
@@ -99,10 +99,10 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
         {
-            System.out.println("MENU PRINCIPAL");
+            /*System.out.println("MENU PRINCIPAL");
             InterfazPos principalPos = new InterfazPos();
             principalPos.show();
-            principalInventario.dispose();
+            principalInventario.dispose();*/
         }
     }
 }

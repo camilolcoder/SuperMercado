@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CrearProducto extends JPanel implements ActionListener {
 
@@ -36,8 +38,9 @@ public class CrearProducto extends JPanel implements ActionListener {
     public CrearProducto() throws IOException {
         principal = new InterfazPrincipal();
         String unidadesMedida[] = {"mg", "g", "Kg", "T"};
-        String categoriasLista[] = {"frutas", "verduras", "aseo personal"};
-        //TODO la lista de categorias para el combo box debe provenir de las previamente creadas
+        //String categoriasLista[] = {"frutas", "verduras", "aseo personal"};
+        String categoriasLista[] = principal.obtenerCategorias();
+        //DONE la lista de categorias para el combo box debe provenir de las previamente creadas
         String tipos[] = {"Gondola", "Congelado", "Refrigerado", "Fresco"};
         String bools[] = {"Si", "No"};
 

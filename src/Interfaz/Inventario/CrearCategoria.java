@@ -46,6 +46,11 @@ public class CrearCategoria extends JPanel implements ActionListener {
             String categoria = nombreCategoria.getText();
             System.out.println(categoria);
             principal.ejecutarCrearCategoria(categoria);
+            try {
+                principal.obtenerCategorias();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
