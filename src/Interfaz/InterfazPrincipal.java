@@ -52,6 +52,11 @@ public class InterfazPrincipal extends JFrame {
                 tipo, empaquetado);
     }
 
+    public void ejecutarCrearCategoria(String categoria)
+    {
+        aplicacion.ejecutarCrearCategoria(categoria);
+    }
+
     public void updateCodigo()
     {
         aplicacion.updateCodigo();

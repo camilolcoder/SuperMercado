@@ -143,7 +143,8 @@ public class Aplicacion {
                 printMenuInventario();
                 int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
                 if (opcion_seleccionada == 1)
-                    ejecutarCrearCategoria();
+                    ejecutarObtenerCategorias();
+                    //ejecutarCrearCategoria("nop");
                 else if (opcion_seleccionada == 2)
                     ejecutarObtenerCategorias();
                 else if (opcion_seleccionada == 3)
@@ -217,9 +218,9 @@ public class Aplicacion {
                 ventaPublico, unidades, 0, peso, 0);
     }
 
-    public void ejecutarCrearCategoria()
+    public void ejecutarCrearCategoria(String categoria)
     {
-        String categoria = input("Ingrese el nombre de la categoria que desea crear");
+        //String categoria = input("Ingrese el nombre de la categoria que desea crear");
         inventario.createCategoria(categoria);
         dataBaseCategorias(categoria);
     }

@@ -121,7 +121,7 @@ public class CrearProducto extends JPanel implements ActionListener {
             System.out.println(pesoProducto.getText());
             System.out.println(categoriaSeleccionada);
             System.out.println(tipoEmpaquetadoSeleccionado);
-            commandClose = 1;
+            //commandClose = 1;
             principal.ejecutarCrearProducto(nombre, precio, precioUnidad, uniMedida, peso,
                     categoriaSeleccionada, tipoEmpaquetadoSeleccionado, empaquetadoSeleccionado);
         }

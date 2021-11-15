@@ -9,11 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+//TODO cada vez que se preciona el boton que abre el JDialog se cierra la interfaz de invetario,
+// Eso es algo que puede llegar a ser molesto para el usuario
+
 public class PanelOpcionesInventario extends JPanel implements ActionListener {
 
     private InterfazInventario principalInventario;
 
     public final static String CREARPRO = "CREARPRO";
+    public final static String CREARCAT = "CREARCAT";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -29,6 +33,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
 
         setLayout(new GridLayout(4, 2));
         crearCategoria = new JButton("Crear categoria");
+        crearCategoria.setActionCommand("CREARCAT");
+        crearCategoria.addActionListener(this);
         add(crearCategoria);
 
         crearProducto = new JButton("Crear producto");
@@ -55,14 +61,22 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String comando = e.getActionCommand();
-        if (comando.equals("MENUPRIN"))
+        if (comando.equals("CREARCAT"))//CREAR CATEGORIA
         {
-            System.out.println("MENU PRINCIPAL");
-            InterfazPos principalPos = new InterfazPos();
-            principalPos.show();
-            principalInventario.dispose();
+            CrearCategoria categoria = null;
+            try {
+                categoria = new CrearCategoria();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            JDialog dialog = new JDialog();
+            dialog.setVisible(true);
+            dialog.setSize(300, 300);
+            dialog.setLocationRelativeTo(this);
+            dialog.add(categoria);
+
         }
-        else if (comando.equals("CREARPRO"))
+        else if (comando.equals("CREARPRO"))//CREAR PRODUCTO
         {
             CrearProducto producto = null;
             try {
@@ -72,17 +86,23 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             }
             JDialog dialog = new JDialog();
             dialog.setVisible(true);
-            dialog.setSize(300, 300);
+            dialog.setSize(300, 180);
             dialog.setLocationRelativeTo(this);
             dialog.add(producto);
-            int commandNum = producto.closeDialog();
+            /*int commandNum = producto.closeDialog();
             System.out.println(commandNum);
             if (commandNum == 1)
             {
                 dialog.dispose();
                 System.out.println(commandNum);
-            }
-
+            }*/
+        }
+        else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
+        {
+            System.out.println("MENU PRINCIPAL");
+            InterfazPos principalPos = new InterfazPos();
+            principalPos.show();
+            principalInventario.dispose();
         }
     }
 }
