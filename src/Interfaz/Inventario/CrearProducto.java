@@ -10,6 +10,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO Cuando se crea un producto se debe borrar lo del anterior o
+// cerrar el JDialog
+
+//TODO Cuando se crea un producto se debe poder agregar una imagen
+// a ese producto
+// -ideas: podemos permitir asociar una imagen a la hora de crearlo
+//        -podemos crear un boton aparte para asociar imagenes a los
+//         a los productos
+
 public class CrearProducto extends JPanel implements ActionListener {
 
     public final static String CREARCLI = "CREARCLI";

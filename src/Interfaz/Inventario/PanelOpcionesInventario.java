@@ -71,7 +71,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
             }
             JDialog dialog = new JDialog();
             dialog.setVisible(true);
-            dialog.setSize(300, 180);
+            dialog.setSize(300, 100);
             dialog.setLocationRelativeTo(this);
             dialog.add(categoria);
 
