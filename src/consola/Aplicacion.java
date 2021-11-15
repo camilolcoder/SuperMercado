@@ -153,7 +153,8 @@ public class Aplicacion {
                 else if (opcion_seleccionada == 4)
                     ejecutarObtenerDatosProductos();
                 else if (opcion_seleccionada == 5)
-                    ejecutarCrearLote();
+                    //ejecutarCrearLote();
+                    ejecutarObtenerDatosProductos();
                 else if (opcion_seleccionada == 6)
                     ejecutarObtenerDatosLotes();
                 else if (opcion_seleccionada == 7)
@@ -202,16 +203,18 @@ public class Aplicacion {
 
     }
 
-    public void ejecutarCrearLote()
+    public void ejecutarCrearLote(int id, String fechaEntrada, String fechaVencimiento, int codigoProducto,
+                                  double precioPagado, double ventaPublico, int unidades,
+                                  double peso)
     {
-        int id = Integer.parseInt(input("Ingrese la id del lote"));
-        String fechaEntrada = input("Ingrese la fehca de entrada del lote(MM/dd/yyyy)");
-        String fechaVencimiento = input("Ingrese la fecha de vencimiento del lote(MM/dd/yyyy)");
-        int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del que va a ser el lote"));
-        double precioPagado = Double.parseDouble(input("Ingrese el precio pagado por el lote"));
-        double ventaPublico = Double.parseDouble(input("Ingrese el precio para vender al publico del lote"));
-        int unidades = Integer.parseInt(input("Ingrese la cantidad de unidades que tiene el lote"));
-        double peso = Double.parseDouble(input("Ingrese el peso del lote"));
+        //int id = Integer.parseInt(input("Ingrese la id del lote"));
+        //String fechaEntrada = input("Ingrese la fehca de entrada del lote(MM/dd/yyyy)");
+        //String fechaVencimiento = input("Ingrese la fecha de vencimiento del lote(MM/dd/yyyy)");
+        //int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del que va a ser el lote"));
+        //double precioPagado = Double.parseDouble(input("Ingrese el precio pagado por el lote"));
+        //double ventaPublico = Double.parseDouble(input("Ingrese el precio para vender al publico del lote"));
+        //int unidades = Integer.parseInt(input("Ingrese la cantidad de unidades que tiene el lote"));
+        //double peso = Double.parseDouble(input("Ingrese el peso del lote"));
         inventario.createLote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
                 ventaPublico, unidades, 0,peso, 0);
         dataBaseLotes(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,

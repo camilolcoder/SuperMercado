@@ -59,7 +59,7 @@ public class CrearLote extends JDialog implements ActionListener {
         fechaVencimiento = new JTextField();
         add(fechaVencimiento);
 
-        idProductoText = new JLabel("Ingrese Id producto");
+        idProductoText = new JLabel("Ingrese Codigo producto");
         add(idProductoText);
 
         idProducto = new JTextField();
@@ -105,6 +105,18 @@ public class CrearLote extends JDialog implements ActionListener {
 
         if (comando.equals("CREARLOT"))
         {
+            int id = Integer.parseInt(idLote.getText());
+            String fechaEntradaIngresada = fechaEntrada.getText();
+            String fechaVencimientoIngresado = fechaVencimiento.getText();
+            int codigoProductoIngresado = Integer.parseInt(idProducto.getText());
+            double precioPagadoIngresado = Double.parseDouble(precioPagado.getText());
+            double precioVentaPublico = Double.parseDouble(precioAVender.getText());
+            int unidadesIngresado = Integer.parseInt(cantidadUnidades.getText());
+            double pesoIngresado = Double.parseDouble(pesoTotal.getText());
+
+            principal.ejecutarCrearLote(id, fechaEntradaIngresada, fechaVencimientoIngresado,
+                    codigoProductoIngresado, precioPagadoIngresado, precioVentaPublico, unidadesIngresado,
+                    pesoIngresado);
             dispose();
         }
     }

@@ -59,9 +59,12 @@ public class InterfazPrincipal extends JFrame {
         return aplicacion.ejecutarObtenerCategorias();
     }
 
-    public void updateCodigo()
+    public void ejecutarCrearLote(int id, String fechaEntrada, String fechaVencimiento, int codigoProducto,
+                                  double precioPagado, double ventaPublico, int unidades,
+                                  double peso)
     {
-        aplicacion.updateCodigo();
+        aplicacion.ejecutarCrearLote(id, fechaEntrada, fechaVencimiento, codigoProducto, precioPagado,
+                ventaPublico, unidades, peso);
     }
 
     public static void main(String[] args) throws IOException {
