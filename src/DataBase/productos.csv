@@ -12,3 +12,5 @@ Tomate,500,800,g,600,frutas,8,fresco,false
 aguacate,1200.0,200.0,kg,0.5,frutas,9,fresco,false
 caramelo cafe,1200.0,122.0,g,12.0,caramelos,10,gondola,true
 caramelo pimienta,1700.0,2000.0,g,270.0,caramelos,11,gondola,true
+proteina en barra,12300.0,250.0,g,125.0,verduras,12,Gondola,true
+brownies puros,22750.0,750.0,g,430.0,verduras,13,Gondola,true

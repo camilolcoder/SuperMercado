@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Modelo.Producto;
 import Procesamiento.LoaderInventario;
 import Procesamiento.LoaderPointOfSale;
 import Procesamiento.PointOfSale;
@@ -8,6 +9,7 @@ import consola.Aplicacion;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.List;
 
 public class InterfazPrincipal extends JFrame {
 
@@ -17,8 +19,9 @@ public class InterfazPrincipal extends JFrame {
 
     public InterfazPrincipal() throws IOException {
         aplicacion = new Aplicacion();
-        aplicacion.ejecutarCargarPointOfSales();
-        aplicacion.ejecutarCargarInventario();
+        aplicacion.ejecutarAplicacion();
+        //aplicacion.ejecutarCargarPointOfSales();
+        //aplicacion.ejecutarCargarInventario();
         setTitle("LightsOut");
         setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,16 +52,10 @@ public class InterfazPrincipal extends JFrame {
                 tipo, empaquetado);
     }
 
-
-    // Estas dos funciones permiten cargar los archivos de las
-    // bases de datos
-    /*public void ejecutarCargarPointOfSales() throws IOException {
-        pointOfSale = LoaderPointOfSale.cargarArchivos();
+    public void updateCodigo()
+    {
+        aplicacion.updateCodigo();
     }
-
-    public void ejecutarCargarInventario() throws IOException {
-        inventario = LoaderInventario.cargarArchivos();
-    }*/
 
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
