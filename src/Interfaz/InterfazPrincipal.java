@@ -150,8 +150,17 @@ public class InterfazPrincipal extends JFrame {
         return aplicacion.buscarClientePorId(idCliente);
     }
 
+    public void updateDataLotes() throws IOException {
+        aplicacion.updateDataLotes();
+    }
+
     public void updateDataClientes() throws IOException {
         aplicacion.updateDataClientes();
+    }
+
+    public void updateLotesAfterCompra(List<Producto> productos, List<Double> pesos)
+    {
+        aplicacion.updateLotesAfterCompra(productos, pesos);
     }
 
     public static void main(String[] args) throws IOException {

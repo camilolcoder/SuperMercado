@@ -125,11 +125,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             double total = factura.getTotalPagar();
 
             List<Producto> productosFactura = factura.getProductos();
-            try {
-                principal.updateDataClientes();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+
             JDialog dialogFactura = new JDialog();
             dialogFactura.setVisible(true);
             dialogFactura.setSize(350, 350);
@@ -151,7 +147,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 else
                 {
                     displayFactura.add(new JLabel(productoF.getNombre()+" : "+
-                            productoF.getPeso()));
+                            productoF.getPrecio()));
                 }
             }
             displayFactura.add(new JLabel("TOTAL A PAGAR : "+total));
@@ -159,6 +155,11 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 double puntosAcumulados = principal.calcularPuntosAcumulados(total);
                 int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
                 clientesRegistrados.get(clienteComprando).sumarPuntos(total);
+                try {
+                    principal.updateDataClientes();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 displayFactura.add(new JLabel("Puntos acumulados : " + puntosAcumulados));
             }
             else
@@ -167,7 +168,12 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             }
             JScrollPane displayInfo = new JScrollPane(displayFactura, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             dialogFactura.add(displayInfo);
-
+            principal.updateLotesAfterCompra(productosCliente, pesosNoEmpaquetado);
+            try {
+                principal.updateDataLotes();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             //System.out.println(total);
             dispose();
         }
