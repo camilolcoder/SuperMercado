@@ -173,9 +173,9 @@ public class Inventario {
         }
     }
 
-    public void consultarPerformanceLoteProducto(int codigoProducto)
+    public List<String> consultarPerformanceLoteProducto(int codigoProducto)
     {
-        //List<String> performanceData = new ArrayList<>();
+        List<String> performanceData = new ArrayList<>();
         double precioLote = 0, precioVenta = 0, unidadesVendidas = 0, pesoComprado = 0,
         ganancias = 0, retornoInversion = 0;
         String puntoEquilibrio;
@@ -212,10 +212,11 @@ public class Inventario {
         {
             puntoEquilibrio = "Punto de equilibrio no alcanzado";
         }
-        //performanceData = Arrays.asList(String.valueOf(ganancias),
-        //        String.valueOf(retornoInversion), puntoEquilibrio);
-        printInformePerformanceProducto(String.valueOf(ganancias),
-                        String.valueOf(retornoInversion), puntoEquilibrio);
+        performanceData = Arrays.asList(String.valueOf(ganancias),
+                String.valueOf(retornoInversion), puntoEquilibrio);
+        //printInformePerformanceProducto(String.valueOf(ganancias),
+        //                String.valueOf(retornoInversion), puntoEquilibrio);
+        return performanceData;
     }
 
     public void printInformePerformanceProducto(String ganancias, String retornoInversion,
