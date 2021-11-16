@@ -159,7 +159,7 @@ public class Aplicacion {
                     ejecutarObtenerDatosLotes();
                 else if (opcion_seleccionada == 7)
                 {
-                    ejecutarEliminarLoteEspecifico();
+                    ejecutarEliminarLoteEspecifico(10);
                     updateDataLotes();
                 }
                 else if (opcion_seleccionada == 8)
@@ -179,6 +179,7 @@ public class Aplicacion {
                     //ejecutarConsultarPerformanceIndProducto();
                 else if (opcion_seleccionada == 14)
                     ejecutarCargarNuevosLotesCsv();
+                    // POSIBLE ERROR no tenia updateDataLotes xddd
                 else if (opcion_seleccionada == 15) {
                     System.out.println("Saliendo apliacacion ....");
                     continuar = false;
@@ -604,9 +605,9 @@ public class Aplicacion {
         return codigosProductos;
     }
 
-    public void ejecutarEliminarLoteEspecifico() throws IOException
+    public void ejecutarEliminarLoteEspecifico(int id) throws IOException
     {
-        int id = Integer.parseInt(input("Ingrese la id del lote que desea eliminar"));
+        //int id = Integer.parseInt(input("Ingrese la id del lote que desea eliminar"));
         inventario.deleteLote(id);
     }
 

@@ -88,6 +88,11 @@ public class InterfazPrincipal extends JFrame {
         return aplicacion.ejecutarMostrarLotesVencidos();
     }
 
+    public void ejecutarEliminarLoteEspecifico(int id) throws IOException {
+        aplicacion.ejecutarEliminarLoteEspecifico(id);
+        aplicacion.updateDataLotes();
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);

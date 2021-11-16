@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class EliminarLoteEsp extends JDialog implements ActionListener {
 
@@ -48,6 +49,11 @@ public class EliminarLoteEsp extends JDialog implements ActionListener {
             int seguro = JOptionPane.showConfirmDialog(this,"Esta seguro de querer eliminar el lote?");
             if (seguro == JOptionPane.YES_OPTION)
             {
+                try {
+                    principal.ejecutarEliminarLoteEspecifico(Integer.parseInt(idLote.getText()));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 dispose();
             }
 
