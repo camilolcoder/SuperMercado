@@ -8,6 +8,7 @@ import Procesamiento.PointOfSale;
 import consola.Aplicacion;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.IOException;
 import java.util.List;
@@ -26,10 +27,12 @@ public class InterfazPrincipal extends JFrame {
         setTitle("LightsOut");
         setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        getContentPane().setBackground(new Color(178, 177, 185));
+        //getContentPane().setBackground(new Color(0, 0, 0));//178, 177, 185));
         //setLayout( new BorderLayout() );
 
         panelPrincipal = new FirstPanel(this);
+        Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        panelPrincipal.setBorder(padding);
         //panelPrincipal.setBounds(500, 500, 500, 500);
         //panelPrincipal.setSize(300, 300);
         //panelPrincipal.setOpaque(false);
