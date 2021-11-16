@@ -67,6 +67,11 @@ public class InterfazPrincipal extends JFrame {
                 ventaPublico, unidades, peso);
     }
 
+    public void ejecutarEliminarLotesVencidos() throws IOException {
+        aplicacion.ejecutarEliminarLotesVencidos();
+        aplicacion.updateDataLotes();
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);

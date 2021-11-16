@@ -144,15 +144,25 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("ELIMTODO"))
         {
-
+            int seguro = JOptionPane.showConfirmDialog(this,"Esta seguro de querer eliminar todos los lote?");
+            if (seguro == JOptionPane.YES_OPTION)
+            {
+                try {
+                    principal.ejecutarEliminarLotesVencidos();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
         else if (comando.equals("DESEMPGEN"))
         {
-
+            DesempenoProducto desempenoProductoGen = null;
+            desempenoProductoGen = new DesempenoProducto(principal, 1);
         }
         else if (comando.equals("DESEMPIND"))
         {
-
+            DesempenoProducto desempenoProductoInd = null;
+            desempenoProductoInd = new DesempenoProducto(principal, 2);
         }
         else if (comando.equals("CARGARCSV"))
         {
