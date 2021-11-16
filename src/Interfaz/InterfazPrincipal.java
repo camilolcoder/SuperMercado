@@ -93,6 +93,10 @@ public class InterfazPrincipal extends JFrame {
         aplicacion.updateDataLotes();
     }
 
+    public void ejecutarCargarNuevosLotesCsv(String direccion) throws IOException {
+        aplicacion.ejecutarCargarNuevosLotesCsv(direccion);
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);

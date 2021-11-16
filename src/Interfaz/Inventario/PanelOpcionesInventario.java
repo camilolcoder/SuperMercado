@@ -165,7 +165,12 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("CARGARCSV"))
         {
-
+            String direccion = JOptionPane.showInputDialog(this, "Ingrese la direccion del csv con nuevos lotes");
+            try {
+                principal.ejecutarCargarNuevosLotesCsv(direccion);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
         else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
         {

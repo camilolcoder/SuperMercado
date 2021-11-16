@@ -178,7 +178,7 @@ public class Aplicacion {
                     ejecutarMostrarLotesProducto();
                     //ejecutarConsultarPerformanceIndProducto();
                 else if (opcion_seleccionada == 14)
-                    ejecutarCargarNuevosLotesCsv();
+                    ejecutarCargarNuevosLotesCsv("run");
                     // POSIBLE ERROR no tenia updateDataLotes xddd
                 else if (opcion_seleccionada == 15) {
                     System.out.println("Saliendo apliacacion ....");
@@ -698,8 +698,8 @@ public class Aplicacion {
         }
     }
 
-    public void ejecutarCargarNuevosLotesCsv() throws IOException {
-        String direccion = input("Ingrese la direccion del csv con los nuevos lotes");
+    public void ejecutarCargarNuevosLotesCsv(String direccion) throws IOException {
+        //String direccion = input("Ingrese la direccion del csv con los nuevos lotes");
         inventario.cargarNuevosLotesCsv(direccion);
         updateDataLotes();
     }
