@@ -1,5 +1,7 @@
 package Interfaz;
 
+import Modelo.Cliente;
+import Modelo.Factura;
 import Modelo.Lote;
 import Modelo.Producto;
 import Procesamiento.LoaderInventario;
@@ -106,6 +108,36 @@ public class InterfazPrincipal extends JFrame {
                                      int id, String situacionLaboral)
     {
         aplicacion.ejecutarCrearCliente(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
+    }
+
+    public void ejecutarRegistarCompras()
+    {
+        aplicacion.ejecutarRegistrarCompras();
+    }
+
+    public List<Cliente> getClientes()
+    {
+        return aplicacion.getClientes();
+    }
+
+    public Producto getProducto(int codigo, List<Producto> productos)
+    {
+        return aplicacion.getProducto(codigo, productos);
+    }
+
+    public List<Producto> getProductos()
+    {
+        return aplicacion.getProductos();
+    }
+
+    public boolean chequerId(int idCliente)
+    {
+        return aplicacion.chequearId(idCliente);
+    }
+
+    public Factura ejecutarCrearFactura(List<Producto> productos, int idCliente)
+    {
+        return aplicacion.ejecutarCrearFactura(productos, idCliente);
     }
 
     public static void main(String[] args) throws IOException {

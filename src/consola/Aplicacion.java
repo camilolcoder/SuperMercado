@@ -397,6 +397,26 @@ public class Aplicacion {
         return inventario.InformeAllLotesProducto(codigoProducto);
     }
 
+    public List<Cliente> getClientes()
+    {
+        return pointOfSale.getClientes();
+    }
+
+    public Producto getProducto(int codigo, List<Producto> productos)
+    {
+        return pointOfSale.getProducto(codigo, productos);
+    }
+
+    public List<Producto> getProductos()
+    {
+        return inventario.getProductos();
+    }
+
+    public boolean chequearId(int idCliente)
+    {
+        return pointOfSale.chequearId(idCliente);
+    }
+
     public void ejecutarRegistrarCompras()
     {
         List<Producto> productosCliente = new ArrayList<>();
