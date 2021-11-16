@@ -1,4 +1,4 @@
-package Interfaz.Inventario;
+package Interfaz.Inventario.Dialogs;
 
 import Interfaz.InterfazPrincipal;
 

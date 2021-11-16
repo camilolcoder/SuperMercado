@@ -1,8 +1,7 @@
 package Interfaz.Inventario;
 
-import Interfaz.InterfazPos;
 import Interfaz.InterfazPrincipal;
-import Interfaz.Inventario.InterfazInventario;
+import Interfaz.Inventario.Dialogs.*;
 
 import javax.swing.*;
 import java.awt.*;

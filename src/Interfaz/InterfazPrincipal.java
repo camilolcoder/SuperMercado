@@ -77,6 +77,11 @@ public class InterfazPrincipal extends JFrame {
         return aplicacion.ejecutarConsultarPerformanceGeneralProducto(codigoProducto);
     }
 
+    public List<List<String>> ejecutarConsultarPerformanceInd(int codigoProducto)
+    {
+        return aplicacion.ejecutarConsultarPerformanceIndProducto(codigoProducto);
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);

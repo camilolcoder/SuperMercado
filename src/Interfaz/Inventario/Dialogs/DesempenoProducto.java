@@ -1,4 +1,4 @@
-package Interfaz.Inventario;
+package Interfaz.Inventario.Dialogs;
 
 import Interfaz.InterfazPrincipal;
 
@@ -83,6 +83,26 @@ public class DesempenoProducto extends JDialog implements ActionListener {
             }
             else if(tipoDesempeno == 2)
             {
+                JDialog dialog = new JDialog();
+                dialog.setTitle("Informacion Performance");
+                dialog.setVisible(true);
+                dialog.setSize(350, 350);
+                dialog.setLocationRelativeTo(this);
+                JPanel displayPerformance = new JPanel();
+                displayPerformance.setVisible(true);
+                GridLayout gl = new GridLayout(50, 1);
+                displayPerformance.setLayout(gl);
+                List<List<String>> performanceDataInd = principal.ejecutarConsultarPerformanceInd(Integer.parseInt(codigoProducto.getText()));
+                for (List<String> performances : performanceDataInd)
+                {
+                    displayPerformance.add(new JLabel("LOTE ID : "+performances.get(0)));
+                    displayPerformance.add(new JLabel("Ganancias : "+performances.get(1)));
+                    displayPerformance.add(new JLabel("Retorno de inversion : "+performances.get(2)+" %"));
+                    displayPerformance.add(new JLabel("Punto de equilibrio : "+performances.get(3)));
+                    displayPerformance.add(new JLabel(" "));
+                }
+                JScrollPane displayPerformanceLotes = new JScrollPane(displayPerformance, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                dialog.add(displayPerformanceLotes);
                 dispose();
             }
         }

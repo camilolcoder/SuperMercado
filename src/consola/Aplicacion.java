@@ -175,7 +175,8 @@ public class Aplicacion {
                     ejecutarMostrarLotesProducto();
                     //ejecutarConsultarPerformanceGeneralProducto();
                 else if (opcion_seleccionada == 12)
-                    ejecutarConsultarPerformanceIndProducto();
+                    ejecutarMostrarLotesProducto();
+                    //ejecutarConsultarPerformanceIndProducto();
                 else if (opcion_seleccionada == 14)
                     ejecutarCargarNuevosLotesCsv();
                 else if (opcion_seleccionada == 15) {
@@ -385,12 +386,12 @@ public class Aplicacion {
         //inventario.printInformePerformanceProducto(informeFinance.get(0).get(0));
     }
 
-    public void ejecutarConsultarPerformanceIndProducto()
+    public List<List<String>> ejecutarConsultarPerformanceIndProducto(int codigoProducto)
     {
-        int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
-        System.out.println("");
-        System.out.println("---INFORMACION-DETALLADA-DE-CADA-LOTE----");
-        inventario.InformeAllLotesProducto(codigoProducto);
+        //int codigoProducto = Integer.parseInt(input("Ingrese el codigo del producto del cual desea obtener los lotes"));
+        //System.out.println("");
+        //System.out.println("---INFORMACION-DETALLADA-DE-CADA-LOTE----");
+        return inventario.InformeAllLotesProducto(codigoProducto);
     }
 
     public void ejecutarRegistrarCompras()

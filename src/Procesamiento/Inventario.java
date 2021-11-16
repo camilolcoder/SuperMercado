@@ -250,8 +250,10 @@ public class Inventario {
         System.out.println("");
     }
 
-    public void InformeAllLotesProducto(int codigoProducto)
+    public List<List<String>> InformeAllLotesProducto(int codigoProducto)
     {
+        List<List<String>> performanceDataGeneral = new ArrayList<>();
+        List<String> performanceDataInd = new ArrayList<>();
         double precioLote = 0, precioVenta = 0, unidadesVendidas = 0, pesoComprado = 0,
                 ganancias = 0, retornoInversion = 0;
         String puntoEquilibrio;
@@ -281,10 +283,15 @@ public class Inventario {
             {
                 puntoEquilibrio = "Punto de equilibrio no alcanzado";
             }
-            printInformePerformanceVariosLotes(String.valueOf(lote.getId()),
-                    String.valueOf(ganancias),String.valueOf(retornoInversion),
+            performanceDataInd = Arrays.asList(String.valueOf(lote.getId()),
+                    String.valueOf(ganancias), String.valueOf(retornoInversion),
                     puntoEquilibrio);
+            performanceDataGeneral.add(performanceDataInd);
+            //printInformePerformanceVariosLotes(String.valueOf(lote.getId()),
+            //        String.valueOf(ganancias),String.valueOf(retornoInversion),
+            //        puntoEquilibrio);
         }
+        return performanceDataGeneral;
     }
     public boolean chequearExistenciaCategoria(String categoria)
     {
