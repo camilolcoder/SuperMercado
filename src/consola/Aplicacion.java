@@ -417,6 +417,16 @@ public class Aplicacion {
         return pointOfSale.chequearId(idCliente);
     }
 
+    public double calcularPuntosAcumulados(double total)
+    {
+        return pointOfSale.calcularPuntosAcumulados(total);
+    }
+
+    public int buscarClientePorId(int idCliente)
+    {
+        return pointOfSale.buscarClientePorId(idCliente);
+    }
+
     public void ejecutarRegistrarCompras()
     {
         List<Producto> productosCliente = new ArrayList<>();

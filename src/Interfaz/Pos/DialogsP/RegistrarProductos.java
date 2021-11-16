@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +123,52 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));
             Factura factura = principal.ejecutarCrearFactura(productosCliente, Integer.parseInt(idCliente.getText()));
             double total = factura.getTotalPagar();
-            System.out.println(total);
+
+            List<Producto> productosFactura = factura.getProductos();
+            try {
+                principal.updateDataClientes();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            JDialog dialogFactura = new JDialog();
+            dialogFactura.setVisible(true);
+            dialogFactura.setSize(350, 350);
+            dialogFactura.setLocationRelativeTo(this);
+            JPanel displayFactura = new JPanel();
+            displayFactura.setVisible(true);
+            GridLayout df = new GridLayout(productosFactura.size()+8, 1);
+            displayFactura.setLayout(df);
+            displayFactura.add(new JLabel("FACTURA"));
+            displayFactura.add(new JLabel("Id factura"));
+            displayFactura.add(new JLabel("Codigo cliente : "+idCliente.getText()));
+            for (Producto productoF : productosFactura)
+            {
+                if (!productoF.isEmpaquetado())
+                {
+                    displayFactura.add(new JLabel(productoF.getNombre()+" : "+
+                            productoF.getPrecioPorUnidad()*productoF.getPeso()));
+                }
+                else
+                {
+                    displayFactura.add(new JLabel(productoF.getNombre()+" : "+
+                            productoF.getPeso()));
+                }
+            }
+            displayFactura.add(new JLabel("TOTAL A PAGAR : "+total));
+            if (confirmacion) {
+                double puntosAcumulados = principal.calcularPuntosAcumulados(total);
+                int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
+                clientesRegistrados.get(clienteComprando).sumarPuntos(total);
+                displayFactura.add(new JLabel("Puntos acumulados : " + puntosAcumulados));
+            }
+            else
+            {
+                displayFactura.add(new JLabel("Puntos acumulados : " + 0));
+            }
+            JScrollPane displayInfo = new JScrollPane(displayFactura, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+            dialogFactura.add(displayInfo);
+
+            //System.out.println(total);
             dispose();
         }
     }

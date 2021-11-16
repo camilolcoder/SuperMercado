@@ -140,6 +140,20 @@ public class InterfazPrincipal extends JFrame {
         return aplicacion.ejecutarCrearFactura(productos, idCliente);
     }
 
+    public double calcularPuntosAcumulados(double total)
+    {
+        return aplicacion.calcularPuntosAcumulados(total);
+    }
+
+    public int buscarClientePorId(int idCliente)
+    {
+        return aplicacion.buscarClientePorId(idCliente);
+    }
+
+    public void updateDataClientes() throws IOException {
+        aplicacion.updateDataClientes();
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);
