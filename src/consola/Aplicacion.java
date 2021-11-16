@@ -110,7 +110,7 @@ public class Aplicacion {
 
     public void ejecutarAplicacionPointOfSale()
     {
-        boolean continuar = true;
+        /*boolean continuar = true;
         while(continuar) {
             try {
                 printMenuPointOfSale();
@@ -132,7 +132,7 @@ public class Aplicacion {
                 System.out.println("Por favor seleccione uno de los " +
                         "numeros en el menu");
             }
-        }
+        }*/
     }
 
     public void ejecutarAplicacionInventario()
@@ -192,14 +192,15 @@ public class Aplicacion {
         }
     }
 
-    public void ejecutarCrearCliente()
+    public void ejecutarCrearCliente(String nombre, int edad, String sexo, String estadoCivil,
+                                     int id, String situacionLaboral)
     {
-        String nombre = input("Ingrese el nombre del cliente");
-        int edad = Integer.parseInt(input("Ingrese la edad del cliente"));
-        String sexo = input("Ingrese el sexo del cliente");
-        String estadoCivil = input("Ingrese el estado civl del cliente");
-        int id = Integer.parseInt(input("Ingrese la id del cliente"));
-        String situacionLaboral = input("Ingrese la situacion laboral del cliente");
+        //String nombre = input("Ingrese el nombre del cliente");
+        //int edad = Integer.parseInt(input("Ingrese la edad del cliente"));
+        //String sexo = input("Ingrese el sexo del cliente");
+        //String estadoCivil = input("Ingrese el estado civl del cliente");
+        //int id = Integer.parseInt(input("Ingrese la id del cliente"));
+        //String situacionLaboral = input("Ingrese la situacion laboral del cliente");
         //int puntos = Integer.parseInt(input("Ingrese la cantidad de puntos del cliente"));
         pointOfSale.createClient(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
         dataBaseClientes(nombre, edad, sexo, estadoCivil, id, situacionLaboral, 0);

@@ -89,6 +89,15 @@ public class CrearCliente extends JDialog implements ActionListener {
 
         if (comando.equals("CREARCLI"))
         {
+            String nombreIn = nombre.getText();
+            int edadIn = Integer.parseInt(edad.getText());
+            String sexoIn = (String) sexo.getItemAt(sexo.getSelectedIndex());
+            String estadoCivilIn = estadoCivil.getText();
+            int idIn = Integer.parseInt(iD.getText());
+            String situacionLaboralIn = (String) situacionLaboral.getItemAt(situacionLaboral.getSelectedIndex());
+
+            principal.ejecutarCrearCliente(nombreIn, edadIn, sexoIn, estadoCivilIn, idIn, situacionLaboralIn);
+
             dispose();
         }
     }

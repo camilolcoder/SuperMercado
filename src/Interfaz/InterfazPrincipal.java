@@ -102,6 +102,12 @@ public class InterfazPrincipal extends JFrame {
         aplicacion.ejecutarCargarNuevosLotesCsv(direccion);
     }
 
+    public void ejecutarCrearCliente(String nombre, int edad, String sexo, String estadoCivil,
+                                     int id, String situacionLaboral)
+    {
+        aplicacion.ejecutarCrearCliente(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);
