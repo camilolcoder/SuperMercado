@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Modelo.Lote;
 import Modelo.Producto;
 import Procesamiento.LoaderInventario;
 import Procesamiento.LoaderPointOfSale;
@@ -80,6 +81,11 @@ public class InterfazPrincipal extends JFrame {
     public List<List<String>> ejecutarConsultarPerformanceInd(int codigoProducto)
     {
         return aplicacion.ejecutarConsultarPerformanceIndProducto(codigoProducto);
+    }
+
+    public List<Lote> ejecutarMostrarLotesVencidos()
+    {
+        return aplicacion.ejecutarMostrarLotesVencidos();
     }
 
     public static void main(String[] args) throws IOException {

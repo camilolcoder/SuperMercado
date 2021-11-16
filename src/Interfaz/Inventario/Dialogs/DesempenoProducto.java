@@ -83,6 +83,7 @@ public class DesempenoProducto extends JDialog implements ActionListener {
             }
             else if(tipoDesempeno == 2)
             {
+                List<List<String>> performanceDataInd = principal.ejecutarConsultarPerformanceInd(Integer.parseInt(codigoProducto.getText()));
                 JDialog dialog = new JDialog();
                 dialog.setTitle("Informacion Performance");
                 dialog.setVisible(true);
@@ -90,9 +91,8 @@ public class DesempenoProducto extends JDialog implements ActionListener {
                 dialog.setLocationRelativeTo(this);
                 JPanel displayPerformance = new JPanel();
                 displayPerformance.setVisible(true);
-                GridLayout gl = new GridLayout(50, 1);
+                GridLayout gl = new GridLayout(performanceDataInd.size()*6, 1);
                 displayPerformance.setLayout(gl);
-                List<List<String>> performanceDataInd = principal.ejecutarConsultarPerformanceInd(Integer.parseInt(codigoProducto.getText()));
                 for (List<String> performances : performanceDataInd)
                 {
                     displayPerformance.add(new JLabel("LOTE ID : "+performances.get(0)));

@@ -361,10 +361,11 @@ public class Aplicacion {
         }
     }
 
-    public void ejecutarMostrarLotesVencidos()
+    public List<Lote> ejecutarMostrarLotesVencidos()
     {
         List<Lote> lotesVencidos = inventario.mostrarLotesVencidos();
-        inventario.printInformacionLotes(lotesVencidos);
+        //inventario.printInformacionLotes(lotesVencidos);
+        return lotesVencidos;
     }
 
     public void ejecutarMostrarLotesProducto()
