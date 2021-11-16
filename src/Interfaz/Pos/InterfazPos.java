@@ -1,6 +1,7 @@
-package Interfaz;
+package Interfaz.Pos;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class InterfazPos extends JFrame {
@@ -16,6 +17,8 @@ public class InterfazPos extends JFrame {
         //setLayout( new BorderLayout() );
 
         panelPrincipalPos = new PanelOpcionesPos(this);
+        Border padding = BorderFactory.createEmptyBorder(30, 30, 30, 30);
+        panelPrincipalPos.setBorder(padding);
         add(panelPrincipalPos, BorderLayout.CENTER);
 
         setLocationRelativeTo(null);

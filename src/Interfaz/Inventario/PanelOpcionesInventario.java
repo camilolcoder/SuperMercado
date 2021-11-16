@@ -56,6 +56,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         crearCategoria.setFont(new Font("Comic Sans", Font.BOLD, 15));
         crearCategoria.setForeground(Color.WHITE);
         crearCategoria.setActionCommand("CREARCAT");
+        crearCategoria.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        crearCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                crearCategoria.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                crearCategoria.setBackground(new Color(115, 115, 115));
+            }
+        });
         crearCategoria.addActionListener(this);
         add(crearCategoria);
 
@@ -64,6 +74,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         crearProducto.setFont(new Font("Comic Sans", Font.BOLD, 15));
         crearProducto.setForeground(Color.WHITE);
         crearProducto.setActionCommand("CREARPRO");
+        crearProducto.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        crearProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                crearProducto.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                crearProducto.setBackground(new Color(115, 115, 115));
+            }
+        });
         crearProducto.addActionListener(this);
         add(crearProducto);
 
@@ -72,6 +92,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         crearLote.setFont(new Font("Comic Sans", Font.BOLD, 15));
         crearLote.setForeground(Color.WHITE);
         crearLote.setActionCommand("CREARLOT");
+        crearLote.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        crearLote.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                crearLote.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                crearLote.setBackground(new Color(115, 115, 115));
+            }
+        });
         crearLote.addActionListener(this);
         add(crearLote);
 
@@ -80,6 +110,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         elimLoteEsp.setFont(new Font("Comic Sans", Font.BOLD, 15));
         elimLoteEsp.setForeground(Color.WHITE);
         elimLoteEsp.setActionCommand("ELIMLOTESP");
+        elimLoteEsp.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        elimLoteEsp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                elimLoteEsp.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                elimLoteEsp.setBackground(new Color(115, 115, 115));
+            }
+        });
         elimLoteEsp.addActionListener(this);
         add(elimLoteEsp);
 
@@ -88,6 +128,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         mostrarLotesVencidos.setFont(new Font("Comic Sans", Font.BOLD, 15));
         mostrarLotesVencidos.setForeground(Color.WHITE);
         mostrarLotesVencidos.setActionCommand("MOSTRARLOTS");
+        mostrarLotesVencidos.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        mostrarLotesVencidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mostrarLotesVencidos.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mostrarLotesVencidos.setBackground(new Color(115, 115, 115));
+            }
+        });
         mostrarLotesVencidos.addActionListener(this);
         add(mostrarLotesVencidos);
 
@@ -96,6 +146,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         eliminarTodosLosLotesVencidos.setFont(new Font("Comic Sans", Font.BOLD, 15));
         eliminarTodosLosLotesVencidos.setForeground(Color.WHITE);
         eliminarTodosLosLotesVencidos.setActionCommand("ELIMTODO");
+        eliminarTodosLosLotesVencidos.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        eliminarTodosLosLotesVencidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                eliminarTodosLosLotesVencidos.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                eliminarTodosLosLotesVencidos.setBackground(new Color(115, 115, 115));
+            }
+        });
         eliminarTodosLosLotesVencidos.addActionListener(this);
         add(eliminarTodosLosLotesVencidos);
 
@@ -104,6 +164,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         desempenoFinancieroGeneral.setFont(new Font("Comic Sans", Font.BOLD, 15));
         desempenoFinancieroGeneral.setForeground(Color.WHITE);
         desempenoFinancieroGeneral.setActionCommand("DESEMPGEN");
+        desempenoFinancieroGeneral.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        desempenoFinancieroGeneral.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                desempenoFinancieroGeneral.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                desempenoFinancieroGeneral.setBackground(new Color(115, 115, 115));
+            }
+        });
         desempenoFinancieroGeneral.addActionListener(this);
         add(desempenoFinancieroGeneral);
 
@@ -112,6 +182,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         desempenoFinancieroInd.setFont(new Font("Comic Sans", Font.BOLD, 15));
         desempenoFinancieroInd.setForeground(Color.WHITE);
         desempenoFinancieroInd.setActionCommand("DESEMPIND");
+        desempenoFinancieroInd.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        desempenoFinancieroInd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                desempenoFinancieroInd.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                desempenoFinancieroInd.setBackground(new Color(115, 115, 115));
+            }
+        });
         desempenoFinancieroInd.addActionListener(this);
         add(desempenoFinancieroInd);
 
@@ -120,6 +200,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         cargarCSV.setFont(new Font("Comic Sans", Font.BOLD, 15));
         cargarCSV.setForeground(Color.WHITE);
         cargarCSV.setActionCommand("CARGARCSV");
+        cargarCSV.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        cargarCSV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cargarCSV.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cargarCSV.setBackground(new Color(115, 115, 115));
+            }
+        });
         cargarCSV.addActionListener(this);
         add(cargarCSV);
 
@@ -128,6 +218,16 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         menuPrincipal.setFont(new Font("Comic Sans", Font.BOLD, 15));
         menuPrincipal.setForeground(Color.WHITE);
         menuPrincipal.setActionCommand("MENUPRIN");
+        menuPrincipal.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        menuPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuPrincipal.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                menuPrincipal.setBackground(new Color(115, 115, 115));
+            }
+        });
         menuPrincipal.addActionListener(this);
         add(menuPrincipal);
     }

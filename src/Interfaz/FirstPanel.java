@@ -1,14 +1,12 @@
 package Interfaz;
 
-import Interfaz.Diseno.RoundBtn;
 import Interfaz.Inventario.InterfazInventario;
+import Interfaz.Pos.InterfazPos;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.RoundRectangle2D;
 
 public class FirstPanel extends JPanel implements ActionListener {
 
@@ -43,6 +41,16 @@ public class FirstPanel extends JPanel implements ActionListener {
         pointOfSale.setIcon(posIcon);
         pointOfSale.setFont(new Font("Comic Sans", Font.BOLD, 25));
         pointOfSale.setForeground(Color.WHITE);
+        pointOfSale.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        pointOfSale.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pointOfSale.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pointOfSale.setBackground(new Color(115, 115, 115));
+            }
+        });
         pointOfSale.setActionCommand(POS);
         pointOfSale.addActionListener(this);
         //pointOfSale.setBounds(100, 100, 250, 250);
@@ -54,6 +62,16 @@ public class FirstPanel extends JPanel implements ActionListener {
         inventario.setIcon(inventarioIcon);
         inventario.setFont(new Font("Comic Sans", Font.BOLD, 25));
         inventario.setForeground(Color.WHITE);
+        inventario.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        inventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                inventario.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                inventario.setBackground(new Color(115, 115, 115));
+            }
+        });
         inventario.addActionListener(this);
         add(inventario);
 
