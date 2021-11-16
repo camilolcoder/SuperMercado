@@ -14,10 +14,15 @@ import java.util.List;
 
 public class RegistrarProductos  extends JDialog implements ActionListener {
 
+    public static  final String PESO = "PESO";
     public static final String AGREGAR = "AGREGAR";
     public static final String FIN = "FIN";
 
     private InterfazPrincipal principal;
+
+    private List<Producto> productosCliente;// = new ArrayList<>();
+    private List<Double> pesosNoEmpaquetado;// = new ArrayList<>();
+    private List<Cliente> clientesRegistrados;// = principal.getClientes();
 
     private JLabel codigoProductoText;
     private JTextField codigoProducto;
@@ -31,6 +36,11 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     public RegistrarProductos(InterfazPrincipal Pprincipal)
     {
         principal = Pprincipal;
+
+        productosCliente = new ArrayList<>();
+        pesosNoEmpaquetado = new ArrayList<>();
+        clientesRegistrados = principal.getClientes();
+
         setVisible(true);
         setSize(300, 300);
         setLocationRelativeTo(null);
@@ -69,12 +79,10 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-        java.util.List<Producto> productosCliente = new ArrayList<>();
-        java.util.List<Double> pesosNoEmpaquetado = new ArrayList<>();
-        List<Cliente> clientesRegistrados = principal.getClientes();
         if (comando.equals("AGREGAR"))
         {
             Producto productoCliente = principal.getProducto(Integer.parseInt(codigoProducto.getText()), principal.getProductos());
+            System.out.println(productoCliente.getPrecio());
             if (!productoCliente.isEmpaquetado())
             {
                 JDialog dialog = new JDialog();
@@ -84,14 +92,28 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 dialog.setLocationRelativeTo(this);
                 JPanel displayInput = new JPanel();
                 displayInput.setVisible(true);
-                GridLayout gl = new GridLayout(1, 2);
+                GridLayout gl = new GridLayout(2, 2);
                 displayInput.setLayout(gl);
                 displayInput.add(new JLabel("Ingresar peso producto"));
                 JTextField pesoProducto = new JTextField();
                 displayInput.add(pesoProducto);
+                displayInput.add(new JLabel("Presionar para"));
+                JButton agregarPeso = new JButton("Agregar peso");
+                agregarPeso.setActionCommand("PESO");
+                agregarPeso.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String comandoEspecial = e.getActionCommand();
+                        if (comandoEspecial.equals("PESO"))
+                        {
+                            productoCliente.setPeso(Double.parseDouble(pesoProducto.getText()));
+                            pesosNoEmpaquetado.add(Double.parseDouble(pesoProducto.getText()));
+                            dialog.dispose();
+                        }
+                    }
+                });
+                displayInput.add(agregarPeso);
                 dialog.add(displayInput);
-                productoCliente.setPeso(Double.parseDouble(pesoProducto.getText()));
-                pesosNoEmpaquetado.add(Double.parseDouble(pesoProducto.getText()));
             }
             productosCliente.add(productoCliente);
         }
