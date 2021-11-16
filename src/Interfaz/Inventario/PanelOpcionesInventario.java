@@ -43,54 +43,90 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     {
         principalInventario = PprincipalInventario;
         principal = Pprincipal;
+        //setSize(400, 400);
+        setBackground(new Color(217, 217, 217));
 
-        setLayout(new GridLayout(5, 2));
+        GridLayout gl = new GridLayout(5, 2);
+        setLayout(gl);//new GridLayout(5, 2));
+        gl.setHgap(15);
+        gl.setVgap(15);
+
         crearCategoria = new JButton("Crear categoria");
+        crearCategoria.setBackground(new Color(115, 115, 115));
+        crearCategoria.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        crearCategoria.setForeground(Color.WHITE);
         crearCategoria.setActionCommand("CREARCAT");
         crearCategoria.addActionListener(this);
         add(crearCategoria);
 
         crearProducto = new JButton("Crear producto");
+        crearProducto.setBackground(new Color(115, 115, 115));
+        crearProducto.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        crearProducto.setForeground(Color.WHITE);
         crearProducto.setActionCommand("CREARPRO");
         crearProducto.addActionListener(this);
         add(crearProducto);
 
         crearLote = new JButton("Crear Lote");
+        crearLote.setBackground(new Color(115, 115, 115));
+        crearLote.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        crearLote.setForeground(Color.WHITE);
         crearLote.setActionCommand("CREARLOT");
         crearLote.addActionListener(this);
         add(crearLote);
 
         elimLoteEsp = new JButton("Eliminar lote especifico");
+        elimLoteEsp.setBackground(new Color(115, 115, 115));
+        elimLoteEsp.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        elimLoteEsp.setForeground(Color.WHITE);
         elimLoteEsp.setActionCommand("ELIMLOTESP");
         elimLoteEsp.addActionListener(this);
         add(elimLoteEsp);
 
         mostrarLotesVencidos = new JButton("Mostrar lotes vencidos");
+        mostrarLotesVencidos.setBackground(new Color(115, 115, 115));
+        mostrarLotesVencidos.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        mostrarLotesVencidos.setForeground(Color.WHITE);
         mostrarLotesVencidos.setActionCommand("MOSTRARLOTS");
         mostrarLotesVencidos.addActionListener(this);
         add(mostrarLotesVencidos);
 
         eliminarTodosLosLotesVencidos = new JButton("Eliminar lotes vencidos");
+        eliminarTodosLosLotesVencidos.setBackground(new Color(115, 115, 115));
+        eliminarTodosLosLotesVencidos.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        eliminarTodosLosLotesVencidos.setForeground(Color.WHITE);
         eliminarTodosLosLotesVencidos.setActionCommand("ELIMTODO");
         eliminarTodosLosLotesVencidos.addActionListener(this);
         add(eliminarTodosLosLotesVencidos);
 
         desempenoFinancieroGeneral = new JButton("Desempeno financiero general");
+        desempenoFinancieroGeneral.setBackground(new Color(115, 115, 115));
+        desempenoFinancieroGeneral.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        desempenoFinancieroGeneral.setForeground(Color.WHITE);
         desempenoFinancieroGeneral.setActionCommand("DESEMPGEN");
         desempenoFinancieroGeneral.addActionListener(this);
         add(desempenoFinancieroGeneral);
 
         desempenoFinancieroInd = new JButton("Desempeno financiero individual");
+        desempenoFinancieroInd.setBackground(new Color(115, 115, 115));
+        desempenoFinancieroInd.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        desempenoFinancieroInd.setForeground(Color.WHITE);
         desempenoFinancieroInd.setActionCommand("DESEMPIND");
         desempenoFinancieroInd.addActionListener(this);
         add(desempenoFinancieroInd);
 
         cargarCSV = new JButton("Cargar Csv");
+        cargarCSV.setBackground(new Color(115, 115, 115));
+        cargarCSV.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        cargarCSV.setForeground(Color.WHITE);
         cargarCSV.setActionCommand("CARGARCSV");
         cargarCSV.addActionListener(this);
         add(cargarCSV);
 
         menuPrincipal = new JButton("Volver al menu principal");
+        menuPrincipal.setBackground(new Color(115, 115, 115));
+        menuPrincipal.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        menuPrincipal.setForeground(Color.WHITE);
         menuPrincipal.setActionCommand("MENUPRIN");
         menuPrincipal.addActionListener(this);
         add(menuPrincipal);

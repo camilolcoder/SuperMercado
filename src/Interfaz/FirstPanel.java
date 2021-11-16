@@ -24,18 +24,18 @@ public class FirstPanel extends JPanel implements ActionListener {
     {
         principal = Pprincipal;
         setSize(100, 300);
-        setBackground(Color.BLACK);
+        setBackground(new Color(217, 217, 217));
 
         GridLayout gl = new GridLayout(2, 1);
         gl.setHgap(10);
-        gl.setVgap(10);
+        gl.setVgap(30);
 
         setLayout(gl);//new GridLayout(2, 1));
         ImageIcon inventarioIcon = new ImageIcon("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\Interfaz\\Diseno\\2test.jpg");
         ImageIcon posIcon = new ImageIcon("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\Interfaz\\Diseno\\posIcon.jpg");
         pointOfSale = new JButton("Point of Sale");
         //pointOfSale.setBounds(500, 500, 400, 400);
-        pointOfSale.setBackground(Color.LIGHT_GRAY);
+        pointOfSale.setBackground(new Color(115, 115, 115));
         //pointOfSale.setBorder(new RoundBtn(30));
         //int offset = pointOfSale.getInsets().left;
         //pointOfSale.setIcon(resizeIcon(inventarioIcon, pointOfSale.getWidth()-offset,
@@ -49,7 +49,7 @@ public class FirstPanel extends JPanel implements ActionListener {
         add(pointOfSale);
 
         inventario = new JButton("Inventario");
-        inventario.setBackground(Color.LIGHT_GRAY);
+        inventario.setBackground(new Color(115, 115, 115));
         inventario.setActionCommand(INVENTARIO);
         inventario.setIcon(inventarioIcon);
         inventario.setFont(new Font("Comic Sans", Font.BOLD, 25));

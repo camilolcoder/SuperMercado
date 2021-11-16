@@ -31,7 +31,7 @@ public class InterfazPrincipal extends JFrame {
         //setLayout( new BorderLayout() );
 
         panelPrincipal = new FirstPanel(this);
-        Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        Border padding = BorderFactory.createEmptyBorder(30, 30, 30, 30);
         panelPrincipal.setBorder(padding);
         //panelPrincipal.setBounds(500, 500, 500, 500);
         //panelPrincipal.setSize(300, 300);

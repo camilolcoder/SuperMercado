@@ -3,6 +3,7 @@ package Interfaz.Inventario;
 import Interfaz.InterfazPrincipal;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class InterfazInventario extends JFrame {
@@ -14,13 +15,15 @@ public class InterfazInventario extends JFrame {
     {
         principal = Pprincipal;
         setTitle("Inventario");
-        setSize(600, 450);
+        setSize(650, 450);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(178, 177, 185));
         //setLayout( new BorderLayout() );
 
         panelPrincipalInventario = new PanelOpcionesInventario(this, principal);
-        add(panelPrincipalInventario, BorderLayout.CENTER);
+        Border padding = BorderFactory.createEmptyBorder(30, 30, 30, 30);
+        panelPrincipalInventario.setBorder(padding);
+        add(panelPrincipalInventario);
 
         setLocationRelativeTo(null);
         setVisible(true);
