@@ -6,6 +6,7 @@ import Modelo.Factura;
 import Modelo.Producto;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,36 +43,90 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         pesosNoEmpaquetado = new ArrayList<>();
         clientesRegistrados = principal.getClientes();
 
+        setBackground(new Color(217, 217, 217));
+        Border padding = BorderFactory.createEmptyBorder(0, 30, 0, 0);
         setVisible(true);
-        setSize(300, 300);
+        setSize(350, 250);
+        setTitle("Canjear compras");
         setLocationRelativeTo(null);
 
-        setLayout(new GridLayout(4, 2));
-        codigoProductoText = new JLabel("Codigo Producto");
+        //setLayout(new GridLayout(4, 2));
+        GridLayout gl = new GridLayout(4, 2);
+        setLayout(gl);//new GridLayout(5, 2));
+        gl.setHgap(1);
+        gl.setVgap(5);
+        codigoProductoText = new JLabel("Codigo Producto", SwingConstants.CENTER);
+        codigoProductoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        codigoProductoText.setOpaque(true);
+        codigoProductoText.setBackground(new Color(115, 115, 115));
+        codigoProductoText.setForeground(Color.WHITE);
+        //codigoProductoText.setBorder(padding);
         add(codigoProductoText);
 
+        Color coolGray = new Color(115, 115, 115);
+
         codigoProducto = new JTextField();
+        codigoProducto.setBorder(BorderFactory.createLineBorder(coolGray, 3));
         add(codigoProducto);
 
-        agregarText = new JLabel("Agregar");
+        agregarText = new JLabel("Agregar Producto", SwingConstants.CENTER);
+        agregarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        agregarText.setOpaque(true);
+        agregarText.setBackground(new Color(115, 115, 115));
+        agregarText.setForeground(Color.WHITE);
         add(agregarText);
 
         agregar = new JButton("Agregar");
         agregar.setActionCommand("AGREGAR");
+        agregar.setBackground(new Color(115, 115, 115));
+        agregar.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        agregar.setForeground(Color.WHITE);
+        agregar.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                agregar.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                agregar.setBackground(new Color(115, 115, 115));
+            }
+        });
         agregar.addActionListener(this);
         add(agregar);
 
-        idClienteText = new JLabel("Id Cliente");
+        idClienteText = new JLabel("Id Cliente", SwingConstants.CENTER);
+        idClienteText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        idClienteText.setOpaque(true);
+        idClienteText.setBackground(new Color(115, 115, 115));
+        idClienteText.setForeground(Color.WHITE);
         add(idClienteText);
 
         idCliente = new JTextField();
+        idCliente.setBorder(BorderFactory.createLineBorder(coolGray, 3));
         add(idCliente);
 
-        finalizarCompraText = new JLabel("Presione para ");
+        finalizarCompraText = new JLabel("Presione para ", SwingConstants.CENTER);
+        finalizarCompraText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        finalizarCompraText.setOpaque(true);
+        finalizarCompraText.setBackground(new Color(115, 115, 115));
+        finalizarCompraText.setForeground(Color.WHITE);
         add(finalizarCompraText);
 
         finalizarCompra = new JButton("<html>Finalizar compra<br />y mostrar total</html>");
         finalizarCompra.setActionCommand("FIN");
+        finalizarCompra.setBackground(new Color(115, 115, 115));
+        finalizarCompra.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        finalizarCompra.setForeground(Color.WHITE);
+        finalizarCompra.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        finalizarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                finalizarCompra.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                finalizarCompra.setBackground(new Color(115, 115, 115));
+            }
+        });
         finalizarCompra.addActionListener(this);
         add(finalizarCompra);
 

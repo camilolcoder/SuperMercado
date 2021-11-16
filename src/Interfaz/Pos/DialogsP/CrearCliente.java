@@ -32,6 +32,8 @@ public class CrearCliente extends JDialog implements ActionListener {
         principal = Pprincipal;
         setVisible(true);
         setSize(300, 300);
+        setBackground(new Color(217, 217, 217));
+        setTitle("Crear cliente");
         setLocationRelativeTo(null);
 
         String sexoOps[] = {"Masculino", "Femenino", "Otro"};
