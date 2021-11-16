@@ -4,6 +4,7 @@ import Interfaz.InterfazPrincipal;
 import Modelo.Cliente;
 import Modelo.Factura;
 import Modelo.Producto;
+import org.jfree.chart.JFreeChart;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -32,6 +33,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     private JButton agregar;
     private JLabel idClienteText;
     private JTextField idCliente;
+    //private JFreeChart
     private JLabel finalizarCompraText;
     private JButton finalizarCompra;
 

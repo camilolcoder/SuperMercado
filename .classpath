@@ -3,5 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/juank/Downloads/opencsv-5.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/juank/Downloads/jfreechart-1.0.19 (2)/jfreechart-1.0.19/lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/juank/Downloads/jfreechart-1.0.19 (2)/jfreechart-1.0.19/lib/jcommon-1.0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

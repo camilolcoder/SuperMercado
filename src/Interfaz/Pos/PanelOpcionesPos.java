@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class PanelOpcionesPos extends JPanel implements ActionListener {
 
@@ -109,7 +110,16 @@ public class PanelOpcionesPos extends JPanel implements ActionListener {
         }
         else if (comando.equals("SALIR"))
         {
-            System.out.println("WORKING 3!");
+            try {
+                InterfazPrincipal Iprincipal = new InterfazPrincipal();
+                Iprincipal.show();
+                Iprincipal.setLocationRelativeTo(null);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            principalPos.dispose();
+
+            //System.out.println("WORKING 3!");
         }
     }
 }

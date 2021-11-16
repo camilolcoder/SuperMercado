@@ -310,10 +310,18 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("MENUPRIN"))//BOTON DE SALIR
         {
-            /*System.out.println("MENU PRINCIPAL");
-            InterfazPos principalPos = new InterfazPos();
-            principalPos.show();
-            principalInventario.dispose();*/
+            {
+                try {
+                    InterfazPrincipal Iprincipal = new InterfazPrincipal();
+                    Iprincipal.show();
+                    Iprincipal.setLocationRelativeTo(null);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                principalInventario.dispose();
+
+                //System.out.println("WORKING 3!");
+            }
         }
     }
 }
