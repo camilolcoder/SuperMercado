@@ -2,6 +2,7 @@ package Interfaz.Pos;
 
 import Interfaz.InterfazPrincipal;
 import Interfaz.Pos.DialogsP.CrearCliente;
+import Interfaz.Pos.DialogsP.RegistrarProductos;
 import Interfaz.Pos.InterfazPos;
 
 import javax.swing.*;
@@ -102,7 +103,9 @@ public class PanelOpcionesPos extends JPanel implements ActionListener {
         }
         else if (comando.equals("CANJEO"))
         {
-            System.out.println("WORKING 2!");
+            RegistrarProductos registrarProductos = null;
+            registrarProductos = new RegistrarProductos(principal);
+            //System.out.println("WORKING 2!");
         }
         else if (comando.equals("SALIR"))
         {
