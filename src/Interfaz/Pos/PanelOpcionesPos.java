@@ -1,5 +1,7 @@
 package Interfaz.Pos;
 
+import Interfaz.InterfazPrincipal;
+import Interfaz.Pos.DialogsP.CrearCliente;
 import Interfaz.Pos.InterfazPos;
 
 import javax.swing.*;
@@ -9,6 +11,7 @@ import java.awt.event.ActionListener;
 
 public class PanelOpcionesPos extends JPanel implements ActionListener {
 
+    private InterfazPrincipal principal;
     private InterfazPos principalPos;
 
     public final static String CREATECLIENT = "CREATECLIENT";
@@ -19,8 +22,9 @@ public class PanelOpcionesPos extends JPanel implements ActionListener {
     private JButton canjearCompras;
     private JButton salir;
 
-    public PanelOpcionesPos(InterfazPos PprincipalPos)
+    public PanelOpcionesPos(InterfazPos PprincipalPos, InterfazPrincipal Pprincipal)
     {
+        principal = Pprincipal;
         principalPos = PprincipalPos;
         setBackground(new Color(217, 217, 217));
 
@@ -92,7 +96,9 @@ public class PanelOpcionesPos extends JPanel implements ActionListener {
         String comando = e.getActionCommand();
         if (comando.equals("CREATECLIENT"))
         {
-            System.out.println("WORKING BRO");
+            CrearCliente cliente = null;
+            cliente = new CrearCliente(principal);
+            //System.out.println("WORKING BRO");
         }
         else if (comando.equals("CANJEO"))
         {

@@ -13,6 +13,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
+//TODO añandir boton para manual de usuario
+
 public class InterfazPrincipal extends JFrame {
 
     private Aplicacion aplicacion;

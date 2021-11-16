@@ -85,7 +85,7 @@ public class FirstPanel extends JPanel implements ActionListener {
         if (comando.equals("POS"))
         {
             //JFrame jframe2 = new JFrame();
-            InterfazPos interfazPos = new InterfazPos();
+            InterfazPos interfazPos = new InterfazPos(principal);
             interfazPos.show();
             //jframe2.show();
 

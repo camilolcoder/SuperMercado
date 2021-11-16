@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO Cuando se crea un producto se debe borrar lo del anterior o
+//DONE Cuando se crea un producto se debe borrar lo del anterior o
 // cerrar el JDialog
 
 //TODO Cuando se crea un producto se debe poder agregar una imagen
