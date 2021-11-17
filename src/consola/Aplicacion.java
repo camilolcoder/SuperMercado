@@ -203,7 +203,7 @@ public class Aplicacion {
         //String situacionLaboral = input("Ingrese la situacion laboral del cliente");
         //int puntos = Integer.parseInt(input("Ingrese la cantidad de puntos del cliente"));
         pointOfSale.createClient(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
-        dataBaseClientes(nombre, edad, sexo, estadoCivil, id, situacionLaboral, 0, "");
+        dataBaseClientes(nombre, edad, sexo, estadoCivil, id, situacionLaboral, 0, "0 Fechas_Compra:");
 
     }
 

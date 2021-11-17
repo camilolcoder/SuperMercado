@@ -16,7 +16,8 @@ public class LoaderPointOfSale {
 
     public static PointOfSale cargarArchivos() throws FileNotFoundException, IOException
     {
-        String filepathClientes = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        //String filepathClientes = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        String filepathClientes = "..\\SuperMercado\\src\\DataBase\\clientes.csv";
         ArrayList<Cliente> clientes = new ArrayList<>();
 
         BufferedReader br = new BufferedReader(new FileReader(filepathClientes));
@@ -35,7 +36,8 @@ public class LoaderPointOfSale {
         }
         br.close();
         //-------------------------------------------------------------------
-        String filepathFacturas = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\facturas.csv";
+        //String filepathFacturas = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\facturas.csv";
+        String filepathFacturas = "..\\SuperMercado\\src\\DataBase\\facturas.csv";
         ArrayList<Factura> facturas = new ArrayList<>();
 
         BufferedReader brf = new BufferedReader(new FileReader(filepathFacturas));

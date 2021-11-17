@@ -15,7 +15,8 @@ public class LoaderInventario {
 
     public static Inventario cargarArchivos() throws FileNotFoundException, IOException
     {
-        String filepathProductos = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv";
+        //String filepathProductos = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv";
+        String filepathProductos = "..\\SuperMercado\\src\\DataBase\\productos.csv";
 
         List<Producto> productos = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(filepathProductos));
@@ -34,8 +35,8 @@ public class LoaderInventario {
         }
         br.close();
         //----------------------------------------------------------------------------------------
-        String filepathLotes = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
-
+        //String filepathLotes = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
+        String filepathLotes = "..\\SuperMercado\\src\\DataBase\\lotes.csv";
         List<Lote> lotes = new ArrayList<>();
         BufferedReader brl = new BufferedReader(new FileReader(filepathLotes));
         String lineal = brl.readLine();
@@ -54,7 +55,9 @@ public class LoaderInventario {
         }
         brl.close();
         //----------------------------------------------------------------------------------------------
-        String filepathCategorias = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
+        //String filepathCategorias = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
+        String filepathCategorias = "..\\SuperMercado\\src\\DataBase\\categorias.csv";
+
 
         List<String> categorias = new ArrayList<>();
         BufferedReader brl21 = new BufferedReader(new FileReader(filepathCategorias));
