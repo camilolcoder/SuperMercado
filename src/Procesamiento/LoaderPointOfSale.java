@@ -28,6 +28,7 @@ public class LoaderPointOfSale {
             Cliente cliente = new Cliente(partes[0], Integer.parseInt(partes[1]), partes[2],
                     partes[3], Integer.parseInt(partes[4]), partes[5]);
             cliente.setPuntos(Integer.parseInt(partes[6]));
+            cliente.setHistorial(partes[7]);
             clientes.add(cliente);
             linea = br.readLine();
 

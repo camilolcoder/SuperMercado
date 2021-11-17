@@ -4,7 +4,13 @@ import Interfaz.InterfazPrincipal;
 import Modelo.Cliente;
 import Modelo.Factura;
 import Modelo.Producto;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -17,6 +23,7 @@ import java.util.List;
 
 public class RegistrarProductos  extends JDialog implements ActionListener {
 
+    public static final String INFO = "INFO";
     public static  final String PESO = "PESO";
     public static final String AGREGAR = "AGREGAR";
     public static final String FIN = "FIN";
@@ -33,7 +40,8 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     private JButton agregar;
     private JLabel idClienteText;
     private JTextField idCliente;
-    //private JFreeChart
+    private JLabel infoClienteText;
+    private JButton infoCliente;
     private JLabel finalizarCompraText;
     private JButton finalizarCompra;
 
@@ -48,12 +56,12 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         setBackground(new Color(217, 217, 217));
         Border padding = BorderFactory.createEmptyBorder(0, 30, 0, 0);
         setVisible(true);
-        setSize(350, 250);
+        setSize(350, 300);
         setTitle("Canjear compras");
         setLocationRelativeTo(null);
 
         //setLayout(new GridLayout(4, 2));
-        GridLayout gl = new GridLayout(4, 2);
+        GridLayout gl = new GridLayout(5, 2);
         setLayout(gl);//new GridLayout(5, 2));
         gl.setHgap(1);
         gl.setVgap(5);
@@ -106,6 +114,31 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         idCliente = new JTextField();
         idCliente.setBorder(BorderFactory.createLineBorder(coolGray, 3));
         add(idCliente);
+
+        infoClienteText = new JLabel("Informacion cliente", SwingConstants.CENTER);
+        infoClienteText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        infoClienteText.setOpaque(true);
+        infoClienteText.setBackground(new Color(115, 115, 115));
+        infoClienteText.setForeground(Color.WHITE);
+        add(infoClienteText);
+
+        infoCliente = new JButton("Obtener informacion");
+        infoCliente.setActionCommand("INFO");
+        infoCliente.setBackground(new Color(115, 115, 115));
+        infoCliente.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        infoCliente.setForeground(Color.WHITE);
+        infoCliente.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        infoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                infoCliente.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                infoCliente.setBackground(new Color(115, 115, 115));
+            }
+        });
+        infoCliente.addActionListener(this);
+        add(infoCliente);
 
         finalizarCompraText = new JLabel("Presione para ", SwingConstants.CENTER);
         finalizarCompraText.setFont(new Font("Comic Sans", Font.BOLD, 15));
@@ -233,6 +266,36 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             }
             //System.out.println(total);
             dispose();
+        }
+        else if (comando.equals("INFO"))
+        {
+            JDialog dialogInfo = new JDialog();
+            dialogInfo.setVisible(true);
+            dialogInfo.setSize(700, 400);
+            dialogInfo.setLocationRelativeTo(this);
+            JPanel displayFactura = new JPanel();
+            displayFactura.setVisible(true);
+            GridLayout df = new GridLayout(1, 1);
+            displayFactura.setLayout(df);
+
+            DefaultCategoryDataset data = new DefaultCategoryDataset();
+            data.setValue(122700, "Marks", "9/11/16");
+            data.setValue(122700, "Marks", "10/11/16");
+            data.setValue(58700, "Marks", "11/16/2021");
+
+            JFreeChart jchart = ChartFactory.createBarChart("Hitorial compras cliente "+idCliente.getText(),
+                    "Dinero gastado", "Fecha", data, PlotOrientation.VERTICAL,
+                    false, true, false);
+            CategoryPlot plot = jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.BLACK);
+
+            ChartPanel chartPanel = new ChartPanel(jchart);
+            dialogInfo.add(chartPanel);
+
+            //chartPanel.setVisible(true);
+            //chartPanel.setSize(400,400);
+            //chartPanel.setLocationRelativeTo(null);
+
         }
     }
 }

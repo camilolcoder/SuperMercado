@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente {
 
     private String nombre;
@@ -9,6 +12,7 @@ public class Cliente {
     private int id;
     private String situacionLaboral;
     private int puntos;
+    private List<List<String>> historial;
 
     public Cliente(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral) {
         this.nombre = nombre;
@@ -74,6 +78,41 @@ public class Cliente {
 
     public void setPuntos(int puntos) {
         this.puntos = puntos;
+    }
+
+    public void addHistory(double precio, String day)
+    {
+        List<String> historialDay = new ArrayList<>();
+        historialDay.add(String.valueOf(precio));
+        historialDay.add(day);
+        historial.add(historialDay);
+    }
+
+    public void setHistorial(String Phistorial)
+    {
+        List<List<String>> historialCompleto = new ArrayList<>();
+        String[] partes = Phistorial.split("-");
+        for (String parte : partes)
+        {
+            List<String> datosInd = new ArrayList<>();
+            String[] secciones = parte.split(" ");
+            datosInd.add(secciones[0]);
+            datosInd.add(secciones[1]);
+            historialCompleto.add(datosInd);
+        }
+        historial = historialCompleto;
+    }
+
+    public String getHistorial()
+    {
+        String historialTotal = "";
+        for (List<String> secciones : historial)
+        {
+            historialTotal += secciones.get(0);
+            historialTotal += secciones.get(1);
+            historialTotal += " - ";
+        }
+        return historialTotal;
     }
 
     public void sumarPuntos(double dineroGastado)

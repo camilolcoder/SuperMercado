@@ -203,7 +203,7 @@ public class Aplicacion {
         //String situacionLaboral = input("Ingrese la situacion laboral del cliente");
         //int puntos = Integer.parseInt(input("Ingrese la cantidad de puntos del cliente"));
         pointOfSale.createClient(nombre, edad, sexo, estadoCivil, id, situacionLaboral);
-        dataBaseClientes(nombre, edad, sexo, estadoCivil, id, situacionLaboral, 0);
+        dataBaseClientes(nombre, edad, sexo, estadoCivil, id, situacionLaboral, 0, "");
 
     }
 
@@ -461,6 +461,8 @@ public class Aplicacion {
                         factura.printInformacionFactura(total, puntosAcumulados);
                         int clienteComprando = pointOfSale.buscarClientePorId(idCliente);
                         clientesRegistrados.get(clienteComprando).sumarPuntos(total);
+                        String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                        clientesRegistrados.get(clienteComprando).addHistory(total, now);
                         updateDataClientes();
                         //System.out.println(clientesRegistrados.get(clienteComprando).getNombre());
                     }
@@ -501,7 +503,7 @@ public class Aplicacion {
     }
 
     public void dataBaseAddHeaderClientes(String a, String b,String c, String d,
-                                  String es, String f, String g, String adress)
+                                  String es, String f, String g, String h, String adress)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
         String simpleFile = "clientes.csv";
@@ -510,7 +512,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append("\n");
+        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append(",").append(h).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
 
@@ -539,7 +541,7 @@ public class Aplicacion {
         }
     }
 
-    public void dataBaseClientes(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral, int puntos)
+    public void dataBaseClientes(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral, int puntos, String historial)
     {
         String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
         String simpleFile = "clientes.csv";
@@ -548,7 +550,7 @@ public class Aplicacion {
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
-        stringBuilder.append(nombre).append(",").append(edad).append(",").append(sexo).append(",").append(estadoCivil).append(",").append(id).append(",").append(situacionLaboral).append(",").append(puntos).append("\n");
+        stringBuilder.append(nombre).append(",").append(edad).append(",").append(sexo).append(",").append(estadoCivil).append(",").append(id).append(",").append(situacionLaboral).append(",").append(puntos).append(",").append(historial).append("\n");
         try (FileWriter fileWriter = new FileWriter(filepath, true)) {
             fileWriter.write(stringBuilder.toString());
 
@@ -688,12 +690,12 @@ public class Aplicacion {
         List<Cliente> clientes = pointOfSale.getClientes();
 
         dataBaseAddHeaderClientes("Nombre", "Edad", "Sexo", "Estado Civil",
-                "Id", "Situacion Laboral", "puntos", "clientes.csv");
+                "Id", "Situacion Laboral", "puntos","hitorial", "clientes.csv");
         for (Cliente cliente : clientes)
         {
             dataBaseClientes(cliente.getNombre(), cliente.getEdad(),
                     cliente.getSexo(), cliente.getEstadoCivil(), cliente.getId(),
-                    cliente.getSituacionLaboral(), cliente.getPuntos());
+                    cliente.getSituacionLaboral(), cliente.getPuntos(), cliente.getHistorial());
         }
     }
 
