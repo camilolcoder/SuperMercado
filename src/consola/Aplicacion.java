@@ -270,7 +270,9 @@ public class Aplicacion {
 
     public void ejecutarObtenerDatosClientes()
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        String filepath = "..\\SuperMercado\\src\\DataBase\\clientes.csv";
+
         try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
@@ -289,7 +291,9 @@ public class Aplicacion {
 
     public void ejecutarObtenerDatosProductos()
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv";
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv";
+        String filepath = "..\\SuperMercado\\src\\DataBase\\productos.csv";
+
         try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
@@ -309,7 +313,9 @@ public class Aplicacion {
     public String[] ejecutarObtenerCategorias() throws IOException {
         //List<String> categorias = new ArrayList<>();
         String[] categoriasFinal = {};
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv";
+        String filepath = "..\\SuperMercado\\src\\DataBase\\categorias.csv";
+
         /*try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
@@ -346,7 +352,9 @@ public class Aplicacion {
 
     public void ejecutarObtenerDatosLotes()
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
+        String filepath = "..\\SuperMercado\\src\\DataBase\\lotes.csv";
+
         try(Scanner scanner = new Scanner(new File(filepath)))
         {
             scanner.useDelimiter(",");
@@ -505,7 +513,8 @@ public class Aplicacion {
     public void dataBaseAddHeaderClientes(String a, String b,String c, String d,
                                   String es, String f, String g, String h, String adress)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\"+adress;
         String simpleFile = "clientes.csv";
         //File csvFile = new File(simpleFile);
 
@@ -525,7 +534,9 @@ public class Aplicacion {
                                           String es, String f, String g, String h, String i,
                                        String j, String adress)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\"+adress;
+
         String simpleFile = "clientes.csv";
         //File csvFile = new File(simpleFile);
 
@@ -543,7 +554,8 @@ public class Aplicacion {
 
     public void dataBaseClientes(String nombre, int edad, String sexo, String estadoCivil, int id, String situacionLaboral, int puntos, String historial)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv" ;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\clientes.csv" ;
         String simpleFile = "clientes.csv";
         //File csvFile = new File(simpleFile);
 
@@ -563,7 +575,8 @@ public class Aplicacion {
                                   String unidadPorMedida, double peso,
                                   String categoria, int codigo, String tipo, boolean empaquetado)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv" ;
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\productos.csv" ;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\productos.csv" ;
         String simpleFile = "clientes.csv";
         //File csvFile = new File(simpleFile);
 
@@ -582,7 +595,8 @@ public class Aplicacion {
                                   int codigoProducto, double precioPagado, double ventaPublico,
                                   int unidades, int unidadesVendidas, double peso, double pesoComprado)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv" ;
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv" ;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\lotes.csv" ;
         String simpleFile = "clientes.csv";
         //File csvFile = new File(simpleFile);
 
@@ -599,7 +613,8 @@ public class Aplicacion {
 
     public void dataBaseFacturas(List<Producto> productos, int codigoCliente, int idFactura, double totalPagar)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\facturas.csv" ;
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\facturas.csv" ;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\facturas.csv" ;
         String codigosProductos = codigosProductos(productos);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(codigosProductos).append(",").append(codigoCliente).append(",").append(idFactura).append(",").append(idFactura).append("\n");
@@ -612,7 +627,8 @@ public class Aplicacion {
 
     public void dataBaseCategorias(String categoria)
     {
-        String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv" ;
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\categorias.csv" ;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\categorias.csv" ;
         String simpleFile = "clientes.csv";
         //File csvFile = new File(simpleFile);
 
@@ -646,7 +662,8 @@ public class Aplicacion {
 
     public void dataBaseClientesReset() throws IOException
     {
-        String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        //String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\clientes.csv";
+        String file = "..\\SuperMercado\\src\\DataBase\\clientes.csv";
         File inFile = new File(file);
         if (!inFile.delete())
         {
@@ -666,7 +683,8 @@ public class Aplicacion {
 
     public void dataBaseLotesReset() throws IOException
     {
-        String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
+        //String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
+        String file = "..\\SuperMercado\\src\\DataBase\\lotes.csv";
         File inFile = new File(file);
         if (!inFile.delete())
         {
