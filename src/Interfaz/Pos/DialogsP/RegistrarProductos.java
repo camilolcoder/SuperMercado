@@ -18,6 +18,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -245,6 +247,8 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 double puntosAcumulados = principal.calcularPuntosAcumulados(total);
                 int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
                 clientesRegistrados.get(clienteComprando).sumarPuntos(total);
+                String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                clientesRegistrados.get(clienteComprando).addHistory(total, now);
                 try {
                     principal.updateDataClientes();
                 } catch (IOException ex) {
@@ -280,24 +284,25 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
             int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
             List<List<String>> historialCliente = clientesRegistrados.get(clienteComprando).getHistorialTipoLista();
-            System.out.println(historialCliente.get(0).get(0)+" "+historialCliente.get(0).get(1));
-            System.out.println(historialCliente.get(1).get(0)+" "+historialCliente.get(0).get(1));
+            //System.out.println(historialCliente.get(0).get(0)+" "+historialCliente.get(0).get(1));
+            //System.out.println(historialCliente.get(1).get(0)+" "+historialCliente.get(0).get(1));
             //System.out.println(historialCliente.get(2).get(0)+" "+historialCliente.get(0).get(1));
             //System.out.println(historialCliente.get(3).get(0)+" "+historialCliente.get(0).get(1));
             DefaultCategoryDataset data = new DefaultCategoryDataset();
-
+            int counter = 0;
             for (List<String> secciones : historialCliente)
             {
                 System.out.println(secciones.get(0)+" "+secciones.get(1));
-                data.setValue(Double.parseDouble(secciones.get(0)), "Marks", secciones.get(1));
+                data.setValue(Double.parseDouble(secciones.get(0)), "Gastos", secciones.get(1)+"-"+String.valueOf(counter));
+                counter += 1;
             }
 
             /*data.setValue(122700, "Marks", "9/11/16");
             data.setValue(122700, "Marks", "10/11/16");
             data.setValue(58700, "Marks", "11/16/2021");*/
 
-            JFreeChart jchart = ChartFactory.createBarChart("Hitorial compras cliente "+idCliente.getText(),
-                    "Dinero gastado", "Fecha", data, PlotOrientation.VERTICAL,
+            JFreeChart jchart = ChartFactory.createBarChart("Historial compras cliente "+idCliente.getText(),
+                    "Fecha", "Dinero Gastado", data, PlotOrientation.VERTICAL,
                     false, true, false);
             CategoryPlot plot = jchart.getCategoryPlot();
             plot.setRangeGridlinePaint(Color.BLACK);

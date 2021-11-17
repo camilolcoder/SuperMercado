@@ -106,12 +106,18 @@ public class Cliente {
 
     public String getHistorial()
     {
+        int counter = 0;
         String historialTotal = "";
         for (List<String> secciones : historial)
         {
             historialTotal += secciones.get(0);
+            historialTotal += " ";
             historialTotal += secciones.get(1);
-            historialTotal += "-";
+            if (counter < historial.size()-1)
+            {
+                historialTotal += "-";
+            }
+            counter += 1;
         }
         return historialTotal;
     }
