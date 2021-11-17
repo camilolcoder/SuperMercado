@@ -278,10 +278,23 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             GridLayout df = new GridLayout(1, 1);
             displayFactura.setLayout(df);
 
+            int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
+            List<List<String>> historialCliente = clientesRegistrados.get(clienteComprando).getHistorialTipoLista();
+            System.out.println(historialCliente.get(0).get(0)+" "+historialCliente.get(0).get(1));
+            System.out.println(historialCliente.get(1).get(0)+" "+historialCliente.get(0).get(1));
+            //System.out.println(historialCliente.get(2).get(0)+" "+historialCliente.get(0).get(1));
+            //System.out.println(historialCliente.get(3).get(0)+" "+historialCliente.get(0).get(1));
             DefaultCategoryDataset data = new DefaultCategoryDataset();
-            data.setValue(122700, "Marks", "9/11/16");
+
+            for (List<String> secciones : historialCliente)
+            {
+                System.out.println(secciones.get(0)+" "+secciones.get(1));
+                data.setValue(Double.parseDouble(secciones.get(0)), "Marks", secciones.get(1));
+            }
+
+            /*data.setValue(122700, "Marks", "9/11/16");
             data.setValue(122700, "Marks", "10/11/16");
-            data.setValue(58700, "Marks", "11/16/2021");
+            data.setValue(58700, "Marks", "11/16/2021");*/
 
             JFreeChart jchart = ChartFactory.createBarChart("Hitorial compras cliente "+idCliente.getText(),
                     "Dinero gastado", "Fecha", data, PlotOrientation.VERTICAL,

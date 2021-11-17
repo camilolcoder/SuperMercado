@@ -98,6 +98,7 @@ public class Cliente {
             String[] secciones = parte.split(" ");
             datosInd.add(secciones[0]);
             datosInd.add(secciones[1]);
+            System.out.println("");
             historialCompleto.add(datosInd);
         }
         historial = historialCompleto;
@@ -110,9 +111,14 @@ public class Cliente {
         {
             historialTotal += secciones.get(0);
             historialTotal += secciones.get(1);
-            historialTotal += " - ";
+            historialTotal += "-";
         }
         return historialTotal;
+    }
+
+    public List<List<String>> getHistorialTipoLista()
+    {
+        return historial;
     }
 
     public void sumarPuntos(double dineroGastado)
