@@ -12,6 +12,9 @@ import consola.Aplicacion;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,6 +26,14 @@ public class InterfazPrincipal extends JFrame {
 
     private FirstPanel panelPrincipal;
 
+    private JMenuBar barraMenu;
+
+    private JMenu menuArchivo;
+
+    private JMenuItem menuAbrir;
+
+    private JMenuItem menuSalir;
+
     public InterfazPrincipal() throws IOException {
         aplicacion = new Aplicacion();
         aplicacion.ejecutarAplicacion();
@@ -31,6 +42,31 @@ public class InterfazPrincipal extends JFrame {
         setTitle("LightsOut");
         setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        barraMenu = new JMenuBar();
+        setJMenuBar(barraMenu);
+
+        menuArchivo = new JMenu("Archivo");
+        barraMenu.add(menuArchivo);
+
+        // Setting the accelerator:
+        menuAbrir = new JMenuItem("Abrir", KeyEvent.VK_A);
+        menuAbrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+        menuAbrir.setActionCommand(ListenerMenu.ABRIR_LIBROS);
+        menuAbrir.addActionListener(new ListenerMenu(this));
+        menuArchivo.add(menuAbrir);
+
+        menuSalir = new JMenuItem("Salir", KeyEvent.VK_Q);
+        menuSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+        menuSalir.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+        menuArchivo.add(menuSalir);
+
         //getContentPane().setBackground(new Color(0, 0, 0));//178, 177, 185));
         //setLayout( new BorderLayout() );
 
