@@ -145,6 +145,9 @@ public class CrearCliente extends JDialog implements ActionListener {
         add(crearCliente);
     }
 
+    //TODO agregarBoton void method para ahorrar codigo,
+    // relizar esto en todas las clases de interfaz
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
