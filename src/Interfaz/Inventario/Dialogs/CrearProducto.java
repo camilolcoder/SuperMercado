@@ -15,9 +15,7 @@ import java.util.List;
 
 //TODO Cuando se crea un producto se debe poder agregar una imagen
 // a ese producto
-// -ideas: podemos permitir asociar una imagen a la hora de crearlo
-//        -podemos crear un boton aparte para asociar imagenes a los
-//         a los productos
+// agregarlo mediante el ListenerMenu
 
 public class CrearProducto extends JDialog implements ActionListener {
 
