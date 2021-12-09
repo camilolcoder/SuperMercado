@@ -62,12 +62,12 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         setBackground(new Color(217, 217, 217));
         Border padding = BorderFactory.createEmptyBorder(0, 30, 0, 0);
         setVisible(true);
-        setSize(400, 350);
+        setSize(450, 350);
         setTitle("Canjear compras");
         setLocationRelativeTo(null);
 
         //setLayout(new GridLayout(4, 2));
-        GridLayout gl = new GridLayout(7, 2);
+        GridLayout gl = new GridLayout(6, 2);
         setLayout(gl);//new GridLayout(5, 2));
         gl.setHgap(1);
         gl.setVgap(5);
@@ -110,7 +110,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         mostrarImg.addActionListener(this);
         add(mostrarImg);
 
-        infoProductoText = new JLabel("Imagen Producto", SwingConstants.CENTER);
+        /*infoProductoText = new JLabel("Imagen Producto", SwingConstants.CENTER);
         infoProductoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
         infoProductoText.setOpaque(true);
         infoProductoText.setBackground(new Color(115, 115, 115));
@@ -120,7 +120,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         productoImg = new JLabel();
         productoImg.setBackground(new Color(115, 115, 115));
         //ImageIcon imgPro = new ImageIcon(direccion);
-        add(productoImg);
+        add(productoImg);*/
 
         agregarText = new JLabel("Agregar Producto", SwingConstants.CENTER);
         agregarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
@@ -312,6 +312,14 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             //System.out.println(total);
             dispose();
         }
+        else if (comando.equals("MOSTRARIMG"))
+        {
+            //ImageIcon img = new ImageIcon("..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg");
+            productoImg = new JLabel();
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon("..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg").getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
+            productoImg.setIcon(imageIcon);
+            JOptionPane.showMessageDialog(null, productoImg, "About", JOptionPane.PLAIN_MESSAGE, null);
+        }
         else if (comando.equals("INFO"))
         {
             JDialog dialogInfo = new JDialog();
@@ -325,10 +333,6 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
             int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
             List<List<String>> historialCliente = clientesRegistrados.get(clienteComprando).getHistorialTipoLista();
-            //System.out.println(historialCliente.get(0).get(0)+" "+historialCliente.get(0).get(1));
-            //System.out.println(historialCliente.get(1).get(0)+" "+historialCliente.get(0).get(1));
-            //System.out.println(historialCliente.get(2).get(0)+" "+historialCliente.get(0).get(1));
-            //System.out.println(historialCliente.get(3).get(0)+" "+historialCliente.get(0).get(1));
             DefaultCategoryDataset data = new DefaultCategoryDataset();
             int counter = 0;
             for (List<String> secciones : historialCliente)
@@ -338,9 +342,6 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 counter += 1;
             }
 
-            /*data.setValue(122700, "Marks", "9/11/16");
-            data.setValue(122700, "Marks", "10/11/16");
-            data.setValue(58700, "Marks", "11/16/2021");*/
 
             JFreeChart jchart = ChartFactory.createBarChart("Historial compras cliente "+idCliente.getText(),
                     "Fecha", "Dinero Gastado", data, PlotOrientation.VERTICAL,
@@ -350,11 +351,6 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
             ChartPanel chartPanel = new ChartPanel(jchart);
             dialogInfo.add(chartPanel);
-
-            //chartPanel.setVisible(true);
-            //chartPanel.setSize(400,400);
-            //chartPanel.setLocationRelativeTo(null);
-
         }
     }
 }
