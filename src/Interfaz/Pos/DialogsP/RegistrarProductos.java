@@ -315,8 +315,14 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         else if (comando.equals("MOSTRARIMG"))
         {
             //ImageIcon img = new ImageIcon("..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg");
+            Producto productInfo =  principal.getProducto(Integer.parseInt(codigoProducto.getText()), principal.getProductos());
+            String direccionImg = productInfo.getDireccionImg();
             productoImg = new JLabel();
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon("..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg").getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
+            //direccionTestImg = "..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg"
+            //3, 19
+            //TODO mostrar más informacion sobre los productos
+
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(direccionImg).getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
             productoImg.setIcon(imageIcon);
             JOptionPane.showMessageDialog(null, productoImg, "About", JOptionPane.PLAIN_MESSAGE, null);
         }
