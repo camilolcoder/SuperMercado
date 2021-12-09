@@ -199,6 +199,10 @@ public class InterfazPrincipal extends JFrame {
         aplicacion.updateLotesAfterCompra(productos, pesos);
     }
 
+    public void updateDataProductos() throws IOException {
+        aplicacion.updateDataProductos();
+    }
+
     public void asociarImagenProducto(String direccionImg)
     {
         aplicacion.asociarImagenProducto(direccionImg);

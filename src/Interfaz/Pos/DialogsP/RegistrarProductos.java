@@ -272,16 +272,16 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             displayFactura.add(new JLabel("Codigo cliente : "+idCliente.getText()));
             for (Producto productoF : productosFactura)
             {
+                double precio =  0;
                 if (!productoF.isEmpaquetado())
                 {
-                    displayFactura.add(new JLabel(productoF.getNombre()+" : "+
-                            productoF.getPrecioPorUnidad()*productoF.getPeso()));
+                    precio = productoF.getPrecioPorUnidad()*productoF.getPeso();
                 }
                 else
                 {
-                    displayFactura.add(new JLabel(productoF.getNombre()+" : "+
-                            productoF.getPrecio()));
+                    precio = productoF.getPrecio();
                 }
+                displayFactura.add(new JLabel(productoF.getNombre()+" : "+ precio));
             }
             displayFactura.add(new JLabel("TOTAL A PAGAR : "+total));
             if (confirmacion) {

@@ -342,13 +342,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("ADDIMG"))
         {
-           JDialog config = new JDialog();
-           config.setSize(400, 300);
-           config.setVisible(true);
-           config.setLocationRelativeTo(null);
-           config.setLayout(new GridLayout(3, 2));
-
-
+            AsociarImg asociarImg = null;
+            asociarImg = new AsociarImg(principal);
         }
         else if (comando.equals("VENTAS"))
         {

@@ -699,7 +699,7 @@ public class Aplicacion {
     public void dataBaseProductosReset() throws IOException
     {
         //String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
-        String file = "..\\SuperMercado\\src\\DataBase\\lotes.csv";
+        String file = "..\\SuperMercado\\src\\DataBase\\productos.csv";
         File inFile = new File(file);
         if (!inFile.delete())
         {
@@ -755,7 +755,7 @@ public class Aplicacion {
 
     public void updateDataProductos() throws IOException
     {
-        dataBaseLotesReset();
+        dataBaseProductosReset();
         List<Producto> productos = inventario.getProductos();
 
         dataBaseAddHeaderProductos("Nombre", "precio", "precioPorUnidad", "unidadMedida",

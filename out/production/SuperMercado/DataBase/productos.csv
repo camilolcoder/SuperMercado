@@ -1,14 +1,14 @@
 Nombre,precio,precioPorUnidad,unidadMedida,peso,categoria,codigo,tipo,empaquetado,direccionImg
-0,0,0,0,0,0,0,0,0,0
+0,0.0,0.0,0,0.0,0,0,0,false,0
 arroz,3200.0,12.0,g,123.0,alimentos de nutricion,1,gondola,true,c
 empanadas congeladas,1500.0,12.0,43,344.0,fritos,2,congelado,true,c
 frutloops,12500.0,12.0,g,344.0,congelados,3,gondola,true,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg
-pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true,c
-cebolla,200.0,2500,kg,12.0,vegetales,5,fresco,false,c
+pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true,caracoles
+cebolla,200.0,2500.0,kg,12.0,vegetales,5,fresco,false,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg
 galletas oreos,12500.0,120.0,g,270.0,galleticas,6,gondola,true,c
 Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true,c
 Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true,c
-Tomate,500,800,g,600,frutas,8,fresco,false,c
+Tomate,500.0,800.0,g,600.0,frutas,8,fresco,false,c
 aguacate,1200.0,200.0,kg,0.5,frutas,9,fresco,false,c
 caramelo cafe,1200.0,122.0,g,12.0,caramelos,10,gondola,true,c
 caramelo pimienta,1700.0,2000.0,g,270.0,caramelos,11,gondola,true,c
