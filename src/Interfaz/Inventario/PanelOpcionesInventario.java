@@ -28,6 +28,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     public final static String DESEMPIND = "DESEMPIND";
     public final static String CARGARCSV = "CARGARCSV";
     public final static String ADDIMG = "ADDIMG";
+    public final static String VENTAS = "VENTAS";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -203,7 +204,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         asociarImagenProducto.setBackground(new Color(115, 115, 115));
         asociarImagenProducto.setFont(new Font("Comic Sans", Font.BOLD, 15));
         asociarImagenProducto.setForeground(Color.WHITE);
-        asociarImagenProducto.setActionCommand("CARGARCSV");
+        asociarImagenProducto.setActionCommand("ADDIMG");
         asociarImagenProducto.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
         asociarImagenProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -221,7 +222,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         visualizarVentasProducto.setBackground(new Color(115, 115, 115));
         visualizarVentasProducto.setFont(new Font("Comic Sans", Font.BOLD, 15));
         visualizarVentasProducto.setForeground(Color.WHITE);
-        visualizarVentasProducto.setActionCommand("CARGARCSV");
+        visualizarVentasProducto.setActionCommand("VENTAS");
         visualizarVentasProducto.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
         visualizarVentasProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -338,6 +339,20 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         {
             DesempenoProducto desempenoProductoInd = null;
             desempenoProductoInd = new DesempenoProducto(principal, 2);
+        }
+        else if (comando.equals("ADDIMG"))
+        {
+           JDialog config = new JDialog();
+           config.setSize(400, 300);
+           config.setVisible(true);
+           config.setLocationRelativeTo(null);
+           config.setLayout(new GridLayout(3, 2));
+
+
+        }
+        else if (comando.equals("VENTAS"))
+        {
+
         }
         else if (comando.equals("CARGARCSV"))
         {

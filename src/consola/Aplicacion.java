@@ -530,16 +530,30 @@ public class Aplicacion {
         }
     }
 
+    public void dataBaseAddHeaderProductos(String a, String b,String c, String d,
+                                       String es, String f, String g, String h, String i,
+                                       String j, String adress)
+    {
+        //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
+        String filepath = "..\\SuperMercado\\src\\DataBase\\"+adress;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
+        stringBuilder.append(a).append(",").append(b).append(",").append(c).append(",").append(d).append(",").append(es).append(",").append(f).append(",").append(g).append(",").append(h).append(",").append(i).append(",").append(j).append("\n");
+        try (FileWriter fileWriter = new FileWriter(filepath, true)) {
+            fileWriter.write(stringBuilder.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void dataBaseAddHeaderLotes(String a, String b,String c, String d,
                                           String es, String f, String g, String h, String i,
                                        String j, String adress)
     {
         //String filepath = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\"+adress;
         String filepath = "..\\SuperMercado\\src\\DataBase\\"+adress;
-
-        String simpleFile = "clientes.csv";
-        //File csvFile = new File(simpleFile);
-
 
         StringBuilder stringBuilder = new StringBuilder();
         //stringBuilder.append("Name").append(",").append("Age").append(",").append("Sex").append("\n");
@@ -682,6 +696,27 @@ public class Aplicacion {
         }
     }
 
+    public void dataBaseProductosReset() throws IOException
+    {
+        //String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
+        String file = "..\\SuperMercado\\src\\DataBase\\lotes.csv";
+        File inFile = new File(file);
+        if (!inFile.delete())
+        {
+            System.out.println("Ah ocurrido un error actualizando la base de datos");
+            return;
+        }
+        try
+        {
+            File newFile = new File(file);
+            newFile.createNewFile();
+        } catch (IOException e)
+        {
+            System.out.println("Ah ocurrido un error");
+            e.printStackTrace();
+        }
+    }
+
     public void dataBaseLotesReset() throws IOException
     {
         //String file = "C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\DataBase\\lotes.csv";
@@ -715,6 +750,22 @@ public class Aplicacion {
             dataBaseClientes(cliente.getNombre(), cliente.getEdad(),
                     cliente.getSexo(), cliente.getEstadoCivil(), cliente.getId(),
                     cliente.getSituacionLaboral(), cliente.getPuntos(), cliente.getHistorial());
+        }
+    }
+
+    public void updateDataProductos() throws IOException
+    {
+        dataBaseLotesReset();
+        List<Producto> productos = inventario.getProductos();
+
+        dataBaseAddHeaderProductos("Nombre", "precio", "precioPorUnidad", "unidadMedida",
+                "peso", "categoria", "codigo","tipo", "empaquetado","direccionImg",
+                "productos.csv");
+        for (Producto producto : productos)
+        {
+            dataBaseProductos(producto.getNombre(), producto.getPrecio(), producto.getPrecioPorUnidad(),
+                    producto.getUnidadMedida(), producto.getPeso(), producto.getCategoria(),
+                    producto.getCodigo(), producto.getTipo(), producto.isEmpaquetado(), producto.getDireccionImg());
         }
     }
 
