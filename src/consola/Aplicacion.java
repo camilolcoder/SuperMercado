@@ -755,6 +755,11 @@ public class Aplicacion {
         updateDataLotes();
     }
 
+    public void asociarImagenProducto(String direccionImg)
+    {
+        inventario.asociarImagenProducto(direccionImg);
+    }
+
     public void ejecutarCargarPointOfSales() throws IOException {
         pointOfSale = LoaderPointOfSale.cargarArchivos();
     }

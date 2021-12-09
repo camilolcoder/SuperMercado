@@ -330,4 +330,9 @@ public class Inventario {
         //System.out.println("test");
     }
 
+    public void asociarImagenProducto(String direccionImg)
+    {
+        //TODO se podria asociar una imagen a un producto después de haberlo creado
+    }
+
 }

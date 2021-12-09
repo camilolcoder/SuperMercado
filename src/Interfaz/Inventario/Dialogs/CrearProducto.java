@@ -39,13 +39,15 @@ public class CrearProducto extends JDialog implements ActionListener {
     private JComboBox tipoEmpaquetado;
     private JLabel boolEmpaquetadoText;
     private JComboBox boolEmpaquetado;
+    private JLabel asociarImagenText;
+    private JTextField asociarImagen;
     private JLabel crearProductoTexto;
     private JButton crearProducto;
 
     public CrearProducto(InterfazPrincipal Pprincipal) throws IOException {
         principal = Pprincipal;
         setVisible(true);
-        setSize(300, 300);
+        setSize(350, 350);
         setLocationRelativeTo(null);
         String unidadesMedida[] = {"mg", "g", "Kg", "T"};
         //String categoriasLista[] = {"frutas", "verduras", "aseo personal"};
@@ -54,7 +56,7 @@ public class CrearProducto extends JDialog implements ActionListener {
         String tipos[] = {"Gondola", "Congelado", "Refrigerado", "Fresco"};
         String bools[] = {"Si", "No"};
 
-        setLayout(new GridLayout(9, 2));
+        setLayout(new GridLayout(10, 2));
         nombreProductoText = new JLabel("Nombre producto");
         add(nombreProductoText);
 
@@ -103,6 +105,11 @@ public class CrearProducto extends JDialog implements ActionListener {
         boolEmpaquetado = new JComboBox(bools);
         add(boolEmpaquetado);
 
+        asociarImagenText = new JLabel("Asociar Imagen");
+        add(asociarImagenText);
+        asociarImagen = new JTextField();
+        add(asociarImagen);
+
         //----------------------------------
         crearProductoTexto = new JLabel();
         add(crearProductoTexto);
@@ -128,6 +135,7 @@ public class CrearProducto extends JDialog implements ActionListener {
             String tipoEmpaquetadoSeleccionado = (String) tipoEmpaquetado.getItemAt(tipoEmpaquetado.getSelectedIndex());//TIPO EMPAQUETADO
             String seleccionBool = (String) boolEmpaquetado.getItemAt(boolEmpaquetado.getSelectedIndex());
             boolean empaquetadoSeleccionado = tipoEmpaquetadoBool(seleccionBool);//BOOL DE EMPAQUETADO
+            String direccion_img = asociarImagen.getText();
             System.out.println(nombreProducto.getText());
             System.out.println(precioProducto.getText());
             System.out.println(uniMedida);
@@ -137,6 +145,7 @@ public class CrearProducto extends JDialog implements ActionListener {
             //commandClose = 1;
             principal.ejecutarCrearProducto(nombre, precio, precioUnidad, uniMedida, peso,
                     categoriaSeleccionada, tipoEmpaquetadoSeleccionado, empaquetadoSeleccionado);
+            principal.asociarImagenProducto(direccion_img);
             dispose();
         }
     }

@@ -11,6 +11,7 @@ public class Producto {
     private int codigo;
     private String tipo; // 1. Gondola, 2. Congelado, 3. Refrigerado, 4. Fresco
     private boolean empaquetado; // true = empaquetado ; false = NO empaquetado
+    private String direccionImg;
 
     public Producto(String nombre, double precio, double precioPorUnidad,
                     String unidadMedida, double peso,String categoria,
@@ -97,5 +98,15 @@ public class Producto {
 
     public void setEmpaquetado(boolean empaquetado) {
         this.empaquetado = empaquetado;
+    }
+
+    public String getDireccionImg()
+    {
+        return direccionImg;
+    }
+
+    public void setDireccionImg(String nuevaDireccion)
+    {
+        direccionImg = nuevaDireccion;
     }
 }
