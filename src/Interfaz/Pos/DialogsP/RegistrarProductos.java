@@ -38,6 +38,10 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
     private JLabel codigoProductoText;
     private JTextField codigoProducto;
+    private JLabel mostrarImgText;
+    private JButton mostrarImg;
+    private JLabel infoProductoText;
+    private JLabel productoImg;
     private JLabel agregarText;
     private JButton agregar;
     private JLabel idClienteText;
@@ -58,12 +62,12 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         setBackground(new Color(217, 217, 217));
         Border padding = BorderFactory.createEmptyBorder(0, 30, 0, 0);
         setVisible(true);
-        setSize(350, 300);
+        setSize(400, 350);
         setTitle("Canjear compras");
         setLocationRelativeTo(null);
 
         //setLayout(new GridLayout(4, 2));
-        GridLayout gl = new GridLayout(5, 2);
+        GridLayout gl = new GridLayout(7, 2);
         setLayout(gl);//new GridLayout(5, 2));
         gl.setHgap(1);
         gl.setVgap(5);
@@ -80,6 +84,43 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         codigoProducto = new JTextField();
         codigoProducto.setBorder(BorderFactory.createLineBorder(coolGray, 3));
         add(codigoProducto);
+
+        mostrarImgText = new JLabel("Presione para: ", SwingConstants.CENTER);
+        mostrarImgText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        mostrarImgText.setOpaque(true);
+        mostrarImgText.setBackground(new Color(115, 115, 115));
+        mostrarImgText.setForeground(Color.WHITE);
+        add(mostrarImgText);
+
+        mostrarImg = new JButton("Mostrar img del producto");
+        mostrarImg.setActionCommand("MOSTRARIMG");
+        mostrarImg.setBackground(new Color(115, 115, 115));
+        mostrarImg.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        mostrarImg.setForeground(Color.WHITE);
+        mostrarImg.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        mostrarImg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mostrarImg.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mostrarImg.setBackground(new Color(115, 115, 115));
+            }
+        });
+        mostrarImg.addActionListener(this);
+        add(mostrarImg);
+
+        infoProductoText = new JLabel("Imagen Producto", SwingConstants.CENTER);
+        infoProductoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        infoProductoText.setOpaque(true);
+        infoProductoText.setBackground(new Color(115, 115, 115));
+        infoProductoText.setForeground(Color.WHITE);
+        add(infoProductoText);
+
+        productoImg = new JLabel();
+        productoImg.setBackground(new Color(115, 115, 115));
+        //ImageIcon imgPro = new ImageIcon(direccion);
+        add(productoImg);
 
         agregarText = new JLabel("Agregar Producto", SwingConstants.CENTER);
         agregarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
