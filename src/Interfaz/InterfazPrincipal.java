@@ -88,10 +88,10 @@ public class InterfazPrincipal extends JFrame {
 
     public void ejecutarCrearProducto(String nombre, double precio, double precioPorUnidad,
                                       String unidadMedida, double peso, String categoria, String tipo,
-                                      boolean empaquetado)
+                                      boolean empaquetado, String direccionImg)
     {
         aplicacion.ejecutarCrearProducto(nombre, precio, precioPorUnidad, unidadMedida, peso, categoria,
-                tipo, empaquetado);
+                tipo, empaquetado, direccionImg);
     }
 
     public void ejecutarCrearCategoria(String categoria)

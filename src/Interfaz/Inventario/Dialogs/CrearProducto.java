@@ -1,6 +1,7 @@
 package Interfaz.Inventario.Dialogs;
 
 import Interfaz.InterfazPrincipal;
+import Modelo.Producto;
 
 import javax.swing.*;
 import java.awt.*;
@@ -144,8 +145,9 @@ public class CrearProducto extends JDialog implements ActionListener {
             System.out.println(tipoEmpaquetadoSeleccionado);
             //commandClose = 1;
             principal.ejecutarCrearProducto(nombre, precio, precioUnidad, uniMedida, peso,
-                    categoriaSeleccionada, tipoEmpaquetadoSeleccionado, empaquetadoSeleccionado);
-            principal.asociarImagenProducto(direccion_img);
+                    categoriaSeleccionada, tipoEmpaquetadoSeleccionado, empaquetadoSeleccionado,
+                    direccion_img);
+            //principal.asociarImagenProducto(direccion_img);
             dispose();
         }
     }
