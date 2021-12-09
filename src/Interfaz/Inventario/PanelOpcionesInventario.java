@@ -27,6 +27,7 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     public final static String DESEMPGEN = "DESEMPGEN";
     public final static String DESEMPIND = "DESEMPIND";
     public final static String CARGARCSV = "CARGARCSV";
+    public final static String ADDIMG = "ADDIMG";
     public final static String MENUPRIN = "MENUPRIN";
 
     private JButton crearCategoria;
@@ -38,16 +39,18 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
     private JButton desempenoFinancieroGeneral;
     private JButton desempenoFinancieroInd;
     private JButton cargarCSV;
+    private JButton asociarImagenProducto;
+    private JButton visualizarVentasProducto;
     private JButton menuPrincipal;
 
     public PanelOpcionesInventario(InterfazInventario PprincipalInventario, InterfazPrincipal Pprincipal)
     {
         principalInventario = PprincipalInventario;
         principal = Pprincipal;
-        //setSize(400, 400);
+        //setSize(400, 500);
         setBackground(new Color(217, 217, 217));
 
-        GridLayout gl = new GridLayout(5, 2);
+        GridLayout gl = new GridLayout(6, 2);
         setLayout(gl);//new GridLayout(5, 2));
         gl.setHgap(15);
         gl.setVgap(15);
@@ -195,6 +198,42 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         });
         desempenoFinancieroInd.addActionListener(this);
         add(desempenoFinancieroInd);
+
+        asociarImagenProducto = new JButton("Asociar una imagen a un producto");
+        asociarImagenProducto.setBackground(new Color(115, 115, 115));
+        asociarImagenProducto.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        asociarImagenProducto.setForeground(Color.WHITE);
+        asociarImagenProducto.setActionCommand("CARGARCSV");
+        asociarImagenProducto.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        asociarImagenProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                asociarImagenProducto.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                asociarImagenProducto.setBackground(new Color(115, 115, 115));
+            }
+        });
+        asociarImagenProducto.addActionListener(this);
+        add(asociarImagenProducto);
+
+        visualizarVentasProducto = new JButton("Visualizar ventas producto");
+        visualizarVentasProducto.setBackground(new Color(115, 115, 115));
+        visualizarVentasProducto.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        visualizarVentasProducto.setForeground(Color.WHITE);
+        visualizarVentasProducto.setActionCommand("CARGARCSV");
+        visualizarVentasProducto.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        visualizarVentasProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                visualizarVentasProducto.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                visualizarVentasProducto.setBackground(new Color(115, 115, 115));
+            }
+        });
+        visualizarVentasProducto.addActionListener(this);
+        add(visualizarVentasProducto);
 
         cargarCSV = new JButton("Cargar Csv");
         cargarCSV.setBackground(new Color(115, 115, 115));

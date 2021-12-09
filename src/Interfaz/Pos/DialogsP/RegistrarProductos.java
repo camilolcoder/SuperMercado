@@ -321,7 +321,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             //direccionTestImg = "..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg"
             //3, 19
             //TODO mostrar más informacion sobre los productos
-
+            //TODO mostrar cuando no existe imagen asociada al producto
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(direccionImg).getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
             productoImg.setIcon(imageIcon);
             JOptionPane.showMessageDialog(null, productoImg, "About", JOptionPane.PLAIN_MESSAGE, null);
