@@ -13,9 +13,9 @@ public class ListenerMenu implements ActionListener
 
     private InterfazPrincipal ventana;
 
-    public ListenerMenu(InterfazPrincipal interfazLibreria)
+    public ListenerMenu(InterfazPrincipal interfazPrincipal)
     {
-        ventana = interfazLibreria;
+        ventana = interfazPrincipal;
     }
 
     @Override
@@ -24,14 +24,14 @@ public class ListenerMenu implements ActionListener
         String comando = e.getActionCommand();
         if (ABRIR_LIBROS.equals(comando))
         {
-            File archivo_categorias = null;
+            File archivos_lotes = null;
             JFileChooser fc = new JFileChooser("./data");
             fc.setDialogTitle("Seleccione el archivo csv con la informacion de los Lotes");
             fc.setFileFilter(new FiltroCSV());
             int resultado = fc.showOpenDialog(ventana);
             if (resultado == JFileChooser.APPROVE_OPTION)
             {
-                archivo_categorias = fc.getSelectedFile();
+                archivos_lotes = fc.getSelectedFile();
 
                 File archivo_libros = null;
                 fc = new JFileChooser();//"./data");
@@ -42,7 +42,7 @@ public class ListenerMenu implements ActionListener
                 {
                     archivo_libros = fc.getSelectedFile();
 
-                    //ventana.cargarArchivos(archivo_categorias, archivo_libros);
+                    //ventana.ejecutarCargarNuevosLotesCsv(archivos_lotes);
                 }
             }
         }

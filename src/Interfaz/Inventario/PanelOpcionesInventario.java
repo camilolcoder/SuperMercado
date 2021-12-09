@@ -2,6 +2,7 @@ package Interfaz.Inventario;
 
 import Interfaz.InterfazPrincipal;
 import Interfaz.Inventario.Dialogs.*;
+import Interfaz.ListenerMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -303,6 +304,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         {
             String direccion = JOptionPane.showInputDialog(this, "Ingrese la direccion del csv con nuevos lotes");
             try {
+                //cargarCSV.setActionCommand(ListenerMenu.ABRIR_LIBROS);
+                //cargarCSV.addActionListener(new ListenerMenu(this));
                 principal.ejecutarCargarNuevosLotesCsv(direccion);
             } catch (IOException ex) {
                 ex.printStackTrace();
