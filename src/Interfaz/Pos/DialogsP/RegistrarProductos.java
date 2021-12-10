@@ -404,28 +404,28 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
             JDialog dialogFactura = new JDialog();
             dialogFactura.setVisible(true);
-            dialogFactura.setSize(350, 350);
+            dialogFactura.setSize(500, 400);
             dialogFactura.setLocationRelativeTo(this);
             JPanel displayFactura = new JPanel();
             displayFactura.setVisible(true);
-            GridLayout df = new GridLayout(productosFactura.size()+8, 1);
+            GridLayout df = new GridLayout(productosFactura.size()+13, 1);
             displayFactura.setLayout(df);
 
-            JLabel facturaText = new JLabel("FACTURA");
+            JLabel facturaText = new JLabel("FACTURA", SwingConstants.CENTER);
             facturaText.setFont(new Font("Comic Sans", Font.BOLD, 20));
             facturaText.setOpaque(true);
             facturaText.setBackground(new Color(115, 115, 115));
             facturaText.setForeground(Color.WHITE);
             displayFactura.add(facturaText);
 
-            JLabel facturaIdText = new JLabel("Id Factura");
+            JLabel facturaIdText = new JLabel("Id Factura", SwingConstants.CENTER);
             facturaIdText.setFont(new Font("Comic Sans", Font.BOLD, 15));
             facturaIdText.setOpaque(true);
             facturaIdText.setBackground(new Color(115, 115, 115));
             facturaIdText.setForeground(Color.WHITE);
             displayFactura.add(facturaIdText);
 
-            JLabel idClienteText = new JLabel("Codigo cliente : "+idCliente.getText());
+            JLabel idClienteText = new JLabel("Codigo cliente : "+idCliente.getText(), SwingConstants.CENTER);
             idClienteText.setFont(new Font("Comic Sans", Font.BOLD, 15));
             idClienteText.setOpaque(true);
             idClienteText.setBackground(new Color(115, 115, 115));
@@ -451,14 +451,18 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 productoText.setForeground(Color.WHITE);
                 displayFactura.add(productoText);
             }
-            JLabel totalPagarText = new JLabel("TOTAL A PAGAR : "+total);
+            JLabel totalPagarText = new JLabel("TOTAL A PAGAR : "+total, SwingConstants.CENTER);
+            totalPagarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+            totalPagarText.setOpaque(true);
+            totalPagarText.setBackground(new Color(115, 115, 115));
+            totalPagarText.setForeground(Color.WHITE);
             displayFactura.add(totalPagarText);
 
             if (confirmacion) {
-                double puntosAcumulados = principal.calcularPuntosAcumulados(total);
+                double puntosAcumulados = principal.calcularPuntosAcumulados(total-15*descuentoPorPuntos);
                 int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
                 Cliente clienteActual = clientesRegistrados.get(clienteComprando);
-                clienteActual.sumarPuntos(total);
+                clienteActual.sumarPuntos(total-15*descuentoPorPuntos);
                 String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
                 clientesRegistrados.get(clienteComprando).addHistory(total, now);
                 try {
@@ -466,21 +470,31 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                JLabel reportePuntosText = new JLabel("-----REPORTE-DE-PUNTOS-----");
+
+                double totalDescuento = total - 15*descuentoPorPuntos;
+                JLabel totalConPuntos = new JLabel("TOTAL A PAGAR DESCONTANDO PUNTOS USADOS : "+totalDescuento, SwingConstants.CENTER);
+                totalConPuntos.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                totalConPuntos.setOpaque(true);
+                totalConPuntos.setBackground(new Color(115, 115, 115));
+                totalConPuntos.setForeground(Color.WHITE);
+                displayFactura.add(totalConPuntos);
+
+                JLabel reportePuntosText = new JLabel("--------------REPORTE-DE-PUNTOS--------------", SwingConstants.CENTER);
                 reportePuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
                 reportePuntosText.setOpaque(true);
                 reportePuntosText.setBackground(new Color(115, 115, 115));
                 reportePuntosText.setForeground(Color.WHITE);
                 displayFactura.add(reportePuntosText);
 
-                JLabel puntosTotalesAntesText = new JLabel("Puntos totales antes de compra : "+ clienteActual.getPuntos()+descuentoPorPuntos);
+                int puntosTotalesAntes = clienteActual.getPuntos()+descuentoPorPuntos-(int)puntosAcumulados;
+                JLabel puntosTotalesAntesText = new JLabel("Puntos totales antes de compra : "+ puntosTotalesAntes);
                 puntosTotalesAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
                 puntosTotalesAntesText.setOpaque(true);
                 puntosTotalesAntesText.setBackground(new Color(115, 115, 115));
                 puntosTotalesAntesText.setForeground(Color.WHITE);
                 displayFactura.add(puntosTotalesAntesText);
 
-                JLabel puntosRedimAntesText = new JLabel("Puntos redimidos en la compra : "+ descuentoPorPuntos);
+                JLabel puntosRedimAntesText = new JLabel("Puntos usados en la compra : "+ descuentoPorPuntos);
                 puntosRedimAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
                 puntosRedimAntesText.setOpaque(true);
                 puntosRedimAntesText.setBackground(new Color(115, 115, 115));
