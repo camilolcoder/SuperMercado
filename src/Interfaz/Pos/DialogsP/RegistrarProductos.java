@@ -446,6 +446,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 displayFactura.add(idClienteText);
 
                 List<String> productosRegalo = new ArrayList<>();
+
                 for (Producto productoF : productosFactura) {
                     String descuentoAplicado = "";
                     double precio = 0;
@@ -522,7 +523,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                             //System.out.println("TESTING");
                         }
                     }
-                    productoF.updateHistorial();
+                    //productoF.updateHistorial();
                     JLabel productoText = new JLabel(productoF.getNombre() + " : " + String.valueOf(precio) + descuentoAplicado);
                     productoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
                     productoText.setOpaque(true);
@@ -645,8 +646,8 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             productoImg = new JLabel();
             //direccionTestImg = "..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg"
             //3, 19
-            //TODO mostrar más informacion sobre los productos
-            //TODO mostrar cuando no existe imagen asociada al producto
+            //TODO mostrar más informacion sobre los productos - Requerimiento NO funcional
+            //TODO mostrar cuando no existe imagen asociada al producto - Requerimiento NO funcional
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(direccionImg).getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
             productoImg.setIcon(imageIcon);
             JOptionPane.showMessageDialog(null, productoImg, "About", JOptionPane.PLAIN_MESSAGE, null);

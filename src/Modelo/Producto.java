@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Producto {
@@ -113,8 +114,46 @@ public class Producto {
         direccionImg = nuevaDireccion;
     }
 
-    public void updateHistorial()
+    public void addHistoryProducto(int cantidad, String day)
     {
-
+        List<String> historialDay = new ArrayList<>();
+        historialDay.add(String.valueOf(cantidad));
+        historialDay.add(day);
+        historial.add(historialDay);
     }
+
+    public void setHistorialProducto(String Phistorial)
+    {
+        List<List<String>> historialCompleto = new ArrayList<>();
+        String[] partes = Phistorial.split("-");
+        for (String parte : partes)
+        {
+            List<String> datosInd = new ArrayList<>();
+            String[] secciones = parte.split(" ");
+            datosInd.add(secciones[0]);
+            datosInd.add(secciones[1]);
+            System.out.println("");
+            historialCompleto.add(datosInd);
+        }
+        historial = historialCompleto;
+    }
+
+    public String getHistorialProductos()
+    {
+        int counter = 0;
+        String historialTotal = "";
+        for (List<String> secciones : historial)
+        {
+            historialTotal += secciones.get(0);
+            historialTotal += " ";
+            historialTotal += secciones.get(1);
+            if (counter < historial.size()-1)
+            {
+                historialTotal += "-";
+            }
+            counter += 1;
+        }
+        return historialTotal;
+    }
+
 }
