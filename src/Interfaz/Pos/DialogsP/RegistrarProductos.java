@@ -58,6 +58,8 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
     private JDialog pagarPuntosD;
 
+    private Color coolGray;
+
     public RegistrarProductos(InterfazPrincipal Pprincipal)
     {
         principal = Pprincipal;
@@ -86,7 +88,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         //codigoProductoText.setBorder(padding);
         add(codigoProductoText);
 
-        Color coolGray = new Color(115, 115, 115);
+        coolGray = new Color(115, 115, 115);
 
         codigoProducto = new JTextField();
         codigoProducto.setBorder(BorderFactory.createLineBorder(coolGray, 3));
@@ -295,23 +297,69 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             if (confirmacion) {
                 pagarPuntosD = new JDialog();
                 pagarPuntosD.setVisible(true);
-                pagarPuntosD.setSize(350, 350);
+                pagarPuntosD.setSize(450, 200);
                 pagarPuntosD.setLocationRelativeTo(this);
 
                 JPanel displayFactura = new JPanel();
                 displayFactura.setVisible(true);
                 GridLayout df = new GridLayout(4, 2);
+                df.setVgap(5);
                 displayFactura.setLayout(df);
 
-                JLabel totalPagarText = new JLabel("El total a pagar es");
-                JLabel totalPagar = new JLabel(String.valueOf(total));
-                JLabel totalPuntosText = new JLabel("El total de puntos tiene es ");
-                JLabel totalPuntos = new JLabel(String.valueOf(actualCliente.getPuntos()));
-                JLabel puntosGastarText = new JLabel("Cantidad de puntos a gastar");
+                JLabel totalPagarText = new JLabel("El total a pagar es", SwingConstants.CENTER);
+                totalPagarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                totalPagarText.setOpaque(true);
+                totalPagarText.setBackground(new Color(115, 115, 115));
+                totalPagarText.setForeground(Color.WHITE);
+
+                JLabel totalPagar = new JLabel(String.valueOf(total), SwingConstants.CENTER);
+                totalPagar.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                totalPagar.setOpaque(true);
+                totalPagar.setBackground(new Color(115, 115, 115));
+                totalPagar.setForeground(Color.WHITE);
+
+                JLabel totalPuntosText = new JLabel("Total puntos del cliente", SwingConstants.CENTER);
+                totalPuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                totalPuntosText.setOpaque(true);
+                totalPuntosText.setBackground(new Color(115, 115, 115));
+                totalPuntosText.setForeground(Color.WHITE);
+
+                JLabel totalPuntos = new JLabel(String.valueOf(actualCliente.getPuntos()), SwingConstants.CENTER);
+                totalPuntos.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                totalPuntos.setOpaque(true);
+                totalPuntos.setBackground(new Color(115, 115, 115));
+                totalPuntos.setForeground(Color.WHITE);
+
+                JLabel puntosGastarText = new JLabel("Cantidad de puntos a gastar", SwingConstants.CENTER);
+                puntosGastarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                puntosGastarText.setOpaque(true);
+                puntosGastarText.setBackground(new Color(115, 115, 115));
+                puntosGastarText.setForeground(Color.WHITE);
+
                 JTextField puntosGastar = new JTextField();
-                JLabel usarPuntosText = new JLabel("Presione para");
+                puntosGastar.setBorder(BorderFactory.createLineBorder(coolGray, 3));
+
+                JLabel usarPuntosText = new JLabel("Presione para", SwingConstants.CENTER);
+                usarPuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                usarPuntosText.setOpaque(true);
+                usarPuntosText.setBackground(new Color(115, 115, 115));
+                usarPuntosText.setForeground(Color.WHITE);
+
                 JButton usarPuntos = new JButton("Gastar puntos");
                 usarPuntos.setActionCommand("PUNTOSIN");
+                usarPuntos.setBackground(new Color(115, 115, 115));
+                usarPuntos.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                usarPuntos.setForeground(Color.WHITE);
+                usarPuntos.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+                usarPuntos.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseEntered(java.awt.event.MouseEvent evt) {
+                        finalizarCompra.setBackground(new Color(84, 84, 84));
+                    }
+
+                    public void mouseExited(java.awt.event.MouseEvent evt) {
+                        finalizarCompra.setBackground(new Color(115, 115, 115));
+                    }
+                });
                 usarPuntos.addActionListener(this);
 
                 displayFactura.add(totalPagarText);
