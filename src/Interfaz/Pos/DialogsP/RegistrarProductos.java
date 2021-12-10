@@ -409,7 +409,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
             JDialog dialogFactura = new JDialog();
             dialogFactura.setVisible(true);
-            dialogFactura.setSize(500, 400);
+            dialogFactura.setSize(550, 400);
             dialogFactura.setLocationRelativeTo(this);
             JPanel displayFactura = new JPanel();
             displayFactura.setVisible(true);
@@ -466,15 +466,18 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                             //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
                         }
                     } else if (tipoPromocion.equals("regalo")) {
-                        if (!productosRegalo.contains(productoF.getCodigo()+","+promocionActual.getOperacion()))
+                        String informacion = productoF.getCodigo()+","+promocionActual.getOperacion()+","+productoF.getNombre();
+                        if (!productosRegalo.contains(informacion))
                         {
-                            productosRegalo.add(productoF.getCodigo() + "," + promocionActual.getOperacion());
+                            productosRegalo.add(informacion);
                         }
                         //principal.getRegalo(productosCliente, productoF.getCodigo(), promocionActual.getOperacion());
                         if (!productoF.isEmpaquetado()) {
                             total += productoF.getPeso() * productoF.getPrecioPorUnidad();
+                            precio = productoF.getPeso() * productoF.getPrecioPorUnidad();
                         } else {
                             total += productoF.getPrecio();
+                            precio = productoF.getPrecio();
                             //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
                         }
                     } else if (tipoPromocion.equals("combo")) {
@@ -546,14 +549,14 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                     String[] datos = promocionAplicable.split(",");
                     int codigoProducto = Integer.parseInt(datos[0]);
                     String operacionPromocion = datos[1];
-                    principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
+                    int cantidadRegalo = principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
 
-                    JLabel promocionRegalo = new JLabel("Por la compra de ");
-                    promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                    promocionesText.setOpaque(true);
-                    promocionesText.setBackground(new Color(115, 115, 115));
-                    promocionesText.setForeground(Color.WHITE);
-                    displayFactura.add(promocionesText);
+                    JLabel promocionRegalo = new JLabel(" Por la promocion page "+datos[1]+" de "+datos[2]+" lleva "+cantidadRegalo+" adicionales gratis");
+                    promocionRegalo.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    promocionRegalo.setOpaque(true);
+                    promocionRegalo.setBackground(new Color(115, 115, 115));
+                    promocionRegalo.setForeground(Color.WHITE);
+                    displayFactura.add(promocionRegalo);
 
                 }
 
