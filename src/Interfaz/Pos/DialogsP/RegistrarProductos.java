@@ -437,6 +437,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             idClienteText.setForeground(Color.WHITE);
             displayFactura.add(idClienteText);
 
+            List<String> productosRegalo = new ArrayList<>();
             for (Producto productoF : productosFactura)
             {
                 String descuentoAplicado = "";
@@ -465,7 +466,11 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                             //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
                         }
                     } else if (tipoPromocion.equals("regalo")) {
-                        promocionActual.getRegalo(productosCliente);
+                        if (!productosRegalo.contains(productoF.getCodigo()+","+promocionActual.getOperacion()))
+                        {
+                            productosRegalo.add(productoF.getCodigo() + "," + promocionActual.getOperacion());
+                        }
+                        //principal.getRegalo(productosCliente, productoF.getCodigo(), promocionActual.getOperacion());
                         if (!productoF.isEmpaquetado()) {
                             total += productoF.getPeso() * productoF.getPrecioPorUnidad();
                         } else {
@@ -528,6 +533,29 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 totalConPuntos.setBackground(new Color(115, 115, 115));
                 totalConPuntos.setForeground(Color.WHITE);
                 displayFactura.add(totalConPuntos);
+
+                JLabel promocionesText = new JLabel("--------------PROMOCIONES--------------", SwingConstants.CENTER);
+                promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                promocionesText.setOpaque(true);
+                promocionesText.setBackground(new Color(115, 115, 115));
+                promocionesText.setForeground(Color.WHITE);
+                displayFactura.add(promocionesText);
+
+                for (String promocionAplicable : productosRegalo)
+                {
+                    String[] datos = promocionAplicable.split(",");
+                    int codigoProducto = Integer.parseInt(datos[0]);
+                    String operacionPromocion = datos[1];
+                    principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
+
+                    JLabel promocionRegalo = new JLabel("Por la compra de ");
+                    promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    promocionesText.setOpaque(true);
+                    promocionesText.setBackground(new Color(115, 115, 115));
+                    promocionesText.setForeground(Color.WHITE);
+                    displayFactura.add(promocionesText);
+
+                }
 
                 JLabel reportePuntosText = new JLabel("--------------REPORTE-DE-PUNTOS--------------", SwingConstants.CENTER);
                 reportePuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));

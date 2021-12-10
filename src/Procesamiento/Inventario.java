@@ -381,57 +381,27 @@ public class Inventario {
         //System.out.println("test");
     }
 
-    /*public double getTotalPagar(List<Producto> productosCliente)
+    public int getRegalo(List<Producto> productos, int codigoProducto, String operacion)
     {
-        double total = 0;
-        for(Producto producto: productosCliente)
+        String[] regalos = operacion.split("/");
+        int cantidadFinal = 0;
+        int cantidadNecesaria = Integer.parseInt(regalos[0]);
+        int cantidadRegalar = cantidadNecesaria - Integer.parseInt(regalos[1]);
+
+        int totalProductos = 0;
+        for (Producto producto : productos)
         {
-            Promocion promocionActual = promociones.get(producto.getCodigo());
-            if (estaVigente(promocionActual)) {
-                //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
-                String tipoPromocion = "";
-                try {
-                    tipoPromocion = promocionActual.getTipoPromocion();
-                    System.out.println(tipoPromocion);
-                } catch (Exception e) {
-                    tipoPromocion = "NA";
-                }
-                if (tipoPromocion.equals("descuento")) {
-                    if (!producto.isEmpaquetado()) {
-                        total += producto.getPeso() * producto.getPrecioPorUnidad() - producto.getPeso() * producto.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                    } else {
-                        total += producto.getPrecio() - producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                        //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
-                    }
-                } else if (tipoPromocion.equals("regalo")) {
-                    if (!producto.isEmpaquetado()) {
-                        total += producto.getPeso() * producto.getPrecioPorUnidad();
-                    } else {
-                        total += producto.getPrecio();
-                        //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
-                    }
-                } else if (tipoPromocion.equals("combo")) {
-
-
-                } else if (tipoPromocion.equals("multiplicador")) {
-
-                }
-            }
-            else{
-
-                if(!producto.isEmpaquetado())
-                {
-                    total += producto.getPeso()*producto.getPrecioPorUnidad();
-                }
-                else
-                {
-                    total += producto.getPrecio();
-                    System.out.println("TESTING");
-                }
+            if (producto.getCodigo() == codigoProducto)
+            {
+                totalProductos += 1;
             }
         }
-        return total;
-    }*/
+        if (totalProductos >= cantidadNecesaria)
+        {
+            cantidadFinal =  totalProductos/cantidadNecesaria;
+        }
+        return cantidadFinal*cantidadRegalar;
+    }
 
     public void asociarImagenProducto(String direccionImg)
     {

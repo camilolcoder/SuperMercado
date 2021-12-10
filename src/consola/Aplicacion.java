@@ -432,6 +432,11 @@ public class Aplicacion {
         return pointOfSale.buscarClientePorId(idCliente);
     }
 
+    public int getRegalo(List<Producto> productos, int codigoProducto, String operacion)
+    {
+        return inventario.getRegalo(productos, codigoProducto, operacion);
+    }
+
     /*public double getTotalPagar(List<Producto> productosCliente)
     {
         return inventario.getTotalPagar(productosCliente);
