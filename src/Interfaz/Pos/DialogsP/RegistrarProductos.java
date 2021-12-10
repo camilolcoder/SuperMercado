@@ -29,6 +29,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     public static  final String PESO = "PESO";
     public static final String AGREGAR = "AGREGAR";
     public static final String PUNTOS = "PUNTOS";
+    public static final String PUNTOSIN = "PUNTOSIN";
     public static final String FIN = "FIN";
 
     private InterfazPrincipal principal;
@@ -54,6 +55,8 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     private JButton pagarPuntos;
     private JLabel finalizarCompraText;
     private JButton finalizarCompra;
+
+    private JDialog pagarPuntosD;
 
     public RegistrarProductos(InterfazPrincipal Pprincipal)
     {
@@ -187,7 +190,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         infoCliente.addActionListener(this);
         add(infoCliente);
 
-        pagarPuntosText = new JLabel("Presione para: ", SwingConstants.CENTER);
+        pagarPuntosText = new JLabel("Presione para", SwingConstants.CENTER);
         pagarPuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
         pagarPuntosText.setOpaque(true);
         pagarPuntosText.setBackground(new Color(115, 115, 115));
@@ -282,8 +285,63 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         }
         else if (comando.equals("PUNTOS"))
         {
+            boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));
+            Factura factura = principal.ejecutarCrearFactura(productosCliente, Integer.parseInt(idCliente.getText()));
+            double total = factura.getTotalPagar();
+
+            int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
+            Cliente actualCliente = clientesRegistrados.get(clienteComprando);
+
+            if (confirmacion) {
+                pagarPuntosD = new JDialog();
+                pagarPuntosD.setVisible(true);
+                pagarPuntosD.setSize(350, 350);
+                pagarPuntosD.setLocationRelativeTo(this);
+
+                JPanel displayFactura = new JPanel();
+                displayFactura.setVisible(true);
+                GridLayout df = new GridLayout(4, 2);
+                displayFactura.setLayout(df);
+
+                JLabel totalPagarText = new JLabel("El total a pagar es");
+                JLabel totalPagar = new JLabel(String.valueOf(total));
+                JLabel totalPuntosText = new JLabel("El total de puntos tiene es ");
+                JLabel totalPuntos = new JLabel(String.valueOf(actualCliente.getPuntos()));
+                JLabel puntosGastarText = new JLabel("Cantidad de puntos a gastar");
+                JTextField puntosGastar = new JTextField();
+                JLabel usarPuntosText = new JLabel("Presione para");
+                JButton usarPuntos = new JButton("Gastar puntos");
+                usarPuntos.setActionCommand("PUNTOSIN");
+                usarPuntos.addActionListener(this);
+
+                displayFactura.add(totalPagarText);
+                displayFactura.add(totalPagar);
+                displayFactura.add(totalPuntosText);
+                displayFactura.add(totalPuntos);
+                displayFactura.add(puntosGastarText);
+                displayFactura.add(puntosGastar);
+                displayFactura.add(usarPuntosText);
+                displayFactura.add(usarPuntos);
+
+                pagarPuntosD.add(displayFactura);
+
+                //usarPuntos.setActionCommand();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,
+                        "El cliente no esta registrado en el sistema de puntos",
+                        "Error cliente no registrado",
+                        JOptionPane.ERROR_MESSAGE);
+            }
 
         }
+        else if (comando.equals("PUNTOSIN"))
+        {
+            System.out.println("Funciona el cambio");
+            pagarPuntosD.dispose();
+        }
+
         else if (comando.equals("FIN"))
         {
             boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));

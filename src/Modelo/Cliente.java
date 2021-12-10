@@ -132,4 +132,8 @@ public class Cliente {
         double puntosCalculados = Math.round(dineroGastado/1000);
         this.puntos += puntosCalculados;
     }
+    public void restarPuntos(int puntosRestar)
+    {
+        this.puntos -= puntosRestar;
+    }
 }
