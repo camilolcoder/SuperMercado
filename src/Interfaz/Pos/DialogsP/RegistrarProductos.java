@@ -4,6 +4,7 @@ import Interfaz.InterfazPrincipal;
 import Modelo.Cliente;
 import Modelo.Factura;
 import Modelo.Producto;
+import Modelo.Promocion;
 import Procesamiento.Inventario;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -23,6 +24,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class RegistrarProductos  extends JDialog implements ActionListener {
 
@@ -401,7 +403,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             Factura factura = principal.ejecutarCrearFactura(productosCliente, Integer.parseInt(idCliente.getText()));
             List<Producto> productosFactura = factura.getProductos();
             //double total = factura.getTotalPagar();
-            double total = principal.getTotalPagar(productosCliente);
+            double total = 0;//principal.getTotalPagar(productosCliente);
 
 
 
@@ -438,6 +440,50 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             for (Producto productoF : productosFactura)
             {
                 double precio =  0;
+                Map<Integer, Promocion> promociones = principal.getPromociones();
+                Promocion promocionActual = promociones.get(productoF.getCodigo());
+                if (principal.estaVigente(promocionActual)) {
+                    //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
+                    String tipoPromocion = "";
+                    try {
+                        tipoPromocion = promocionActual.getTipoPromocion();
+                        System.out.println(tipoPromocion);
+                    } catch (Exception es) {
+                        tipoPromocion = "NA";
+                    }
+                    if (tipoPromocion.equals("descuento")) {
+                        if (!productoF.isEmpaquetado()) {
+                            total += productoF.getPeso() * productoF.getPrecioPorUnidad() - productoF.getPeso() * productoF.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                        } else {
+                            total += productoF.getPrecio() - productoF.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                            //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                        }
+                    } else if (tipoPromocion.equals("regalo")) {
+                        if (!productoF.isEmpaquetado()) {
+                            total += productoF.getPeso() * productoF.getPrecioPorUnidad();
+                        } else {
+                            total += productoF.getPrecio();
+                            //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                        }
+                    } else if (tipoPromocion.equals("combo")) {
+
+
+                    } else if (tipoPromocion.equals("multiplicador")) {
+
+                    }
+                }
+                else{
+
+                    if(!productoF.isEmpaquetado())
+                    {
+                        total += productoF.getPeso()*productoF.getPrecioPorUnidad();
+                    }
+                    else
+                    {
+                        total += productoF.getPrecio();
+                        System.out.println("TESTING");
+                    }
+                }
                 if (!productoF.isEmpaquetado())
                 {
                     precio = productoF.getPrecioPorUnidad()*productoF.getPeso();

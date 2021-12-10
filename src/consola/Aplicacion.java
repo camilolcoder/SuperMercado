@@ -1,9 +1,6 @@
 package consola;
 
-import Modelo.Cliente;
-import Modelo.Factura;
-import Modelo.Lote;
-import Modelo.Producto;
+import Modelo.*;
 import Procesamiento.Inventario;
 import Procesamiento.LoaderInventario;
 import Procesamiento.LoaderPointOfSale;
@@ -438,6 +435,15 @@ public class Aplicacion {
     public double getTotalPagar(List<Producto> productosCliente)
     {
         return inventario.getTotalPagar(productosCliente);
+    }
+
+    public Map<Integer, Promocion> getPromociones()
+    {
+        return inventario.getPromociones();
+    }
+    public boolean estaVigente(Promocion promocion)
+    {
+        return inventario.estaVigente(promocion);
     }
 
     public void ejecutarRegistrarCompras()

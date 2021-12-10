@@ -401,16 +401,17 @@ public class Inventario {
                         total += producto.getPeso() * producto.getPrecioPorUnidad() - producto.getPeso() * producto.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
                     } else {
                         total += producto.getPrecio() - producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                        System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                        //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
                     }
                 } else if (tipoPromocion.equals("regalo")) {
                     if (!producto.isEmpaquetado()) {
-                        total += producto.getPeso() * producto.getPrecioPorUnidad() - producto.getPeso() * producto.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                        total += producto.getPeso() * producto.getPrecioPorUnidad();
                     } else {
-                        total += producto.getPrecio() - producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                        System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                        total += producto.getPrecio();
+                        //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
                     }
                 } else if (tipoPromocion.equals("combo")) {
+
 
                 } else if (tipoPromocion.equals("multiplicador")) {
 

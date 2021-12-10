@@ -1,9 +1,6 @@
 package Interfaz;
 
-import Modelo.Cliente;
-import Modelo.Factura;
-import Modelo.Lote;
-import Modelo.Producto;
+import Modelo.*;
 import Procesamiento.LoaderInventario;
 import Procesamiento.LoaderPointOfSale;
 import Procesamiento.PointOfSale;
@@ -17,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 //TODO añandir boton para manual de usuario
 
@@ -211,6 +209,16 @@ public class InterfazPrincipal extends JFrame {
     public double getTotalPagar(List<Producto> productos)
     {
         return aplicacion.getTotalPagar(productos);
+    }
+
+    public Map<Integer, Promocion> getPromociones()
+    {
+        return aplicacion.getPromociones();
+    }
+
+    public boolean estaVigente(Promocion promocion)
+    {
+        return aplicacion.estaVigente(promocion);
     }
 
     public static void main(String[] args) throws IOException {
