@@ -509,6 +509,31 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 productoText.setForeground(Color.WHITE);
                 displayFactura.add(productoText);
             }
+            JLabel promocionesText = new JLabel("----------PROMOCIONES-APLICADAS----------", SwingConstants.CENTER);
+            promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+            promocionesText.setOpaque(true);
+            promocionesText.setBackground(new Color(115, 115, 115));
+            promocionesText.setForeground(Color.WHITE);
+            displayFactura.add(promocionesText);
+
+            for (String promocionAplicable : productosRegalo)
+            {
+                String[] datos = promocionAplicable.split(",");
+                int codigoProducto = Integer.parseInt(datos[0]);
+                String operacionPromocion = datos[1];
+                int cantidadRegalo = principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
+
+                JLabel promocionRegalo = new JLabel(" Por la promocion page "+datos[1]+" de "+datos[2]+" lleva "+cantidadRegalo+" adicionales gratis");
+                promocionRegalo.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                promocionRegalo.setOpaque(true);
+                promocionRegalo.setBackground(new Color(115, 115, 115));
+                promocionRegalo.setForeground(Color.WHITE);
+                displayFactura.add(promocionRegalo);
+
+            }
+
+
+
             JLabel totalPagarText = new JLabel("TOTAL A PAGAR : "+total, SwingConstants.CENTER);
             totalPagarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
             totalPagarText.setOpaque(true);
@@ -536,29 +561,6 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 totalConPuntos.setBackground(new Color(115, 115, 115));
                 totalConPuntos.setForeground(Color.WHITE);
                 displayFactura.add(totalConPuntos);
-
-                JLabel promocionesText = new JLabel("--------------PROMOCIONES--------------", SwingConstants.CENTER);
-                promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                promocionesText.setOpaque(true);
-                promocionesText.setBackground(new Color(115, 115, 115));
-                promocionesText.setForeground(Color.WHITE);
-                displayFactura.add(promocionesText);
-
-                for (String promocionAplicable : productosRegalo)
-                {
-                    String[] datos = promocionAplicable.split(",");
-                    int codigoProducto = Integer.parseInt(datos[0]);
-                    String operacionPromocion = datos[1];
-                    int cantidadRegalo = principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
-
-                    JLabel promocionRegalo = new JLabel(" Por la promocion page "+datos[1]+" de "+datos[2]+" lleva "+cantidadRegalo+" adicionales gratis");
-                    promocionRegalo.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                    promocionRegalo.setOpaque(true);
-                    promocionRegalo.setBackground(new Color(115, 115, 115));
-                    promocionRegalo.setForeground(Color.WHITE);
-                    displayFactura.add(promocionRegalo);
-
-                }
 
                 JLabel reportePuntosText = new JLabel("--------------REPORTE-DE-PUNTOS--------------", SwingConstants.CENTER);
                 reportePuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));

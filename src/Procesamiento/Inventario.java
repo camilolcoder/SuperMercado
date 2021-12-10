@@ -403,6 +403,30 @@ public class Inventario {
         return cantidadFinal*cantidadRegalar;
     }
 
+    public String getCombo(List<Producto> productos, int codigoProducto, String operacion)
+    {
+        String[] datos = operacion.split("-");
+        double porcentajeDescuento = Double.parseDouble(datos[0]);
+        String[] datosProductosCombo = datos[1].split("_");
+        double valorTotal = 0;
+        for (String comboDatos : datosProductosCombo)
+        {
+            String[] datosEspc = comboDatos.split("/");
+            int codigProducto = Integer.parseInt(datosEspc[0]);
+            double precioProducto = 0;
+            for (Producto producto : productos)
+            {
+                if (codigProducto == producto.getCodigo())
+                {
+                    precioProducto = producto.getPrecio();
+                }
+            }
+            valorTotal += precioProducto*Integer.parseInt(datosEspc[1]);
+        }
+
+        return "";
+    }
+
     public void asociarImagenProducto(String direccionImg)
     {
         //TODO se podria asociar una imagen a un producto después de haberlo creado
