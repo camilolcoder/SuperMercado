@@ -57,6 +57,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     private JButton finalizarCompra;
 
     private JDialog pagarPuntosD;
+    private JTextField puntosGastar;
 
     private Color coolGray;
 
@@ -336,7 +337,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 puntosGastarText.setBackground(new Color(115, 115, 115));
                 puntosGastarText.setForeground(Color.WHITE);
 
-                JTextField puntosGastar = new JTextField();
+                puntosGastar = new JTextField();
                 puntosGastar.setBorder(BorderFactory.createLineBorder(coolGray, 3));
 
                 JLabel usarPuntosText = new JLabel("Presione para", SwingConstants.CENTER);
@@ -353,11 +354,11 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 usarPuntos.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
                 usarPuntos.addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mouseEntered(java.awt.event.MouseEvent evt) {
-                        finalizarCompra.setBackground(new Color(84, 84, 84));
+                        usarPuntos.setBackground(new Color(84, 84, 84));
                     }
 
                     public void mouseExited(java.awt.event.MouseEvent evt) {
-                        finalizarCompra.setBackground(new Color(115, 115, 115));
+                        usarPuntos.setBackground(new Color(115, 115, 115));
                     }
                 });
                 usarPuntos.addActionListener(this);
@@ -386,7 +387,10 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         }
         else if (comando.equals("PUNTOSIN"))
         {
-            System.out.println("Funciona el cambio");
+            //System.out.println("Funciona el cambio");
+            int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
+            clientesRegistrados.get(clienteComprando).restarPuntos(Integer.parseInt(puntosGastar.getText()));
+            descuentoPorPuntos = Integer.parseInt(puntosGastar.getText());
             pagarPuntosD.dispose();
         }
 
@@ -406,9 +410,28 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             displayFactura.setVisible(true);
             GridLayout df = new GridLayout(productosFactura.size()+8, 1);
             displayFactura.setLayout(df);
-            displayFactura.add(new JLabel("FACTURA"));
-            displayFactura.add(new JLabel("Id factura"));
-            displayFactura.add(new JLabel("Codigo cliente : "+idCliente.getText()));
+
+            JLabel facturaText = new JLabel("FACTURA");
+            facturaText.setFont(new Font("Comic Sans", Font.BOLD, 20));
+            facturaText.setOpaque(true);
+            facturaText.setBackground(new Color(115, 115, 115));
+            facturaText.setForeground(Color.WHITE);
+            displayFactura.add(facturaText);
+
+            JLabel facturaIdText = new JLabel("Id Factura");
+            facturaIdText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+            facturaIdText.setOpaque(true);
+            facturaIdText.setBackground(new Color(115, 115, 115));
+            facturaIdText.setForeground(Color.WHITE);
+            displayFactura.add(facturaIdText);
+
+            JLabel idClienteText = new JLabel("Codigo cliente : "+idCliente.getText());
+            idClienteText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+            idClienteText.setOpaque(true);
+            idClienteText.setBackground(new Color(115, 115, 115));
+            idClienteText.setForeground(Color.WHITE);
+            displayFactura.add(idClienteText);
+
             for (Producto productoF : productosFactura)
             {
                 double precio =  0;
@@ -421,13 +444,21 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                     precio = productoF.getPrecio();
                 }
                 productoF.updateHistorial();
-                displayFactura.add(new JLabel(productoF.getNombre()+" : "+ precio));
+                JLabel productoText = new JLabel(productoF.getNombre()+" : "+ precio);
+                productoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                productoText.setOpaque(true);
+                productoText.setBackground(new Color(115, 115, 115));
+                productoText.setForeground(Color.WHITE);
+                displayFactura.add(productoText);
             }
-            displayFactura.add(new JLabel("TOTAL A PAGAR : "+total));
+            JLabel totalPagarText = new JLabel("TOTAL A PAGAR : "+total);
+            displayFactura.add(totalPagarText);
+
             if (confirmacion) {
                 double puntosAcumulados = principal.calcularPuntosAcumulados(total);
                 int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
-                clientesRegistrados.get(clienteComprando).sumarPuntos(total);
+                Cliente clienteActual = clientesRegistrados.get(clienteComprando);
+                clienteActual.sumarPuntos(total);
                 String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
                 clientesRegistrados.get(clienteComprando).addHistory(total, now);
                 try {
@@ -435,11 +466,49 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                displayFactura.add(new JLabel("Puntos acumulados : " + puntosAcumulados));
+                JLabel reportePuntosText = new JLabel("-----REPORTE-DE-PUNTOS-----");
+                reportePuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                reportePuntosText.setOpaque(true);
+                reportePuntosText.setBackground(new Color(115, 115, 115));
+                reportePuntosText.setForeground(Color.WHITE);
+                displayFactura.add(reportePuntosText);
+
+                JLabel puntosTotalesAntesText = new JLabel("Puntos totales antes de compra : "+ clienteActual.getPuntos()+descuentoPorPuntos);
+                puntosTotalesAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                puntosTotalesAntesText.setOpaque(true);
+                puntosTotalesAntesText.setBackground(new Color(115, 115, 115));
+                puntosTotalesAntesText.setForeground(Color.WHITE);
+                displayFactura.add(puntosTotalesAntesText);
+
+                JLabel puntosRedimAntesText = new JLabel("Puntos redimidos en la compra : "+ descuentoPorPuntos);
+                puntosRedimAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                puntosRedimAntesText.setOpaque(true);
+                puntosRedimAntesText.setBackground(new Color(115, 115, 115));
+                puntosRedimAntesText.setForeground(Color.WHITE);
+                displayFactura.add(puntosRedimAntesText);
+
+                JLabel puntosAcumuladosText = new JLabel("Puntos acumulados por compra: "+ puntosAcumulados);
+                puntosAcumuladosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                puntosAcumuladosText.setOpaque(true);
+                puntosAcumuladosText.setBackground(new Color(115, 115, 115));
+                puntosAcumuladosText.setForeground(Color.WHITE);
+                displayFactura.add(puntosAcumuladosText);
+
+                JLabel puntosTotalesDespText = new JLabel("Puntos totales despues de compra : "+ clienteActual.getPuntos());
+                puntosTotalesDespText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                puntosTotalesDespText.setOpaque(true);
+                puntosTotalesDespText.setBackground(new Color(115, 115, 115));
+                puntosTotalesDespText.setForeground(Color.WHITE);
+                displayFactura.add(puntosTotalesDespText);
             }
             else
             {
-                displayFactura.add(new JLabel("Puntos acumulados : " + 0));
+                JLabel noInscrito = new JLabel("--No-obtiene-beneficios-del-sistema-de-puntos");
+                noInscrito.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                noInscrito.setOpaque(true);
+                noInscrito.setBackground(new Color(115, 115, 115));
+                noInscrito.setForeground(Color.WHITE);
+                displayFactura.add(noInscrito);
             }
             JScrollPane displayInfo = new JScrollPane(displayFactura, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             dialogFactura.add(displayInfo);
