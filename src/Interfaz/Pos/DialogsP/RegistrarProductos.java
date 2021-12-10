@@ -302,7 +302,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             if (confirmacion) {
                 pagarPuntosD = new JDialog();
                 pagarPuntosD.setVisible(true);
-                pagarPuntosD.setSize(450, 200);
+                pagarPuntosD.setSize(500, 200);
                 pagarPuntosD.setLocationRelativeTo(this);
 
                 JPanel displayFactura = new JPanel();
@@ -400,246 +400,242 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
         else if (comando.equals("FIN"))
         {
-            boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));
-            Factura factura = principal.ejecutarCrearFactura(productosCliente, Integer.parseInt(idCliente.getText()));
-            List<Producto> productosFactura = factura.getProductos();
-            //double total = factura.getTotalPagar();
-            double total = 0;//principal.getTotalPagar(productosCliente);
 
-
-
-            JDialog dialogFactura = new JDialog();
-            dialogFactura.setVisible(true);
-            dialogFactura.setSize(550, 400);
-            dialogFactura.setLocationRelativeTo(this);
-            JPanel displayFactura = new JPanel();
-            displayFactura.setVisible(true);
-            GridLayout df = new GridLayout(productosFactura.size()+13, 1);
-            displayFactura.setLayout(df);
-
-            JLabel facturaText = new JLabel("FACTURA", SwingConstants.CENTER);
-            facturaText.setFont(new Font("Comic Sans", Font.BOLD, 20));
-            facturaText.setOpaque(true);
-            facturaText.setBackground(new Color(115, 115, 115));
-            facturaText.setForeground(Color.WHITE);
-            displayFactura.add(facturaText);
-
-            JLabel facturaIdText = new JLabel("Id Factura", SwingConstants.CENTER);
-            facturaIdText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-            facturaIdText.setOpaque(true);
-            facturaIdText.setBackground(new Color(115, 115, 115));
-            facturaIdText.setForeground(Color.WHITE);
-            displayFactura.add(facturaIdText);
-
-            JLabel idClienteText = new JLabel("Codigo cliente : "+idCliente.getText(), SwingConstants.CENTER);
-            idClienteText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-            idClienteText.setOpaque(true);
-            idClienteText.setBackground(new Color(115, 115, 115));
-            idClienteText.setForeground(Color.WHITE);
-            displayFactura.add(idClienteText);
-
-            List<String> productosRegalo = new ArrayList<>();
-            for (Producto productoF : productosFactura)
+            if(idCliente.getText().equals(""))
             {
-                String descuentoAplicado = "";
-                double precio =  0;
-                Map<Integer, Promocion> promociones = principal.getPromociones();
-                Promocion promocionActual = promociones.get(productoF.getCodigo());
-                //System.out.println(promocionActual.getOperacion());
-                if (promocionActual != null  && principal.estaVigente(promocionActual)) {
-                    //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
-                    String tipoPromocion = "";
-                    try {
-                        tipoPromocion = promocionActual.getTipoPromocion();
-                        System.out.println(tipoPromocion);
-                    } catch (Exception es) {
-                        tipoPromocion = "NA";
-                    }
-                    if (tipoPromocion.equals("descuento")) {
-                        if (!productoF.isEmpaquetado()) {
-                            total += productoF.getPeso() * productoF.getPrecioPorUnidad() - productoF.getPeso() * productoF.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                            precio = productoF.getPeso() * productoF.getPrecioPorUnidad() - productoF.getPeso() * productoF.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                            descuentoAplicado = " - "+promocionActual.getOperacion()+"% de descuento aplicado";
-                        } else {
-                            total += productoF.getPrecio() - productoF.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                            precio = productoF.getPrecio() - productoF.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
-                            descuentoAplicado = " - "+promocionActual.getOperacion()+"% de descuento aplicado";
-                            //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                JOptionPane.showMessageDialog(this,
+                        "Debe ingresar la id del cliente",
+                        "Error - no ingresó la id del cliente",
+                        JOptionPane.ERROR_MESSAGE);
+            }else {
+
+                boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));
+                Factura factura = principal.ejecutarCrearFactura(productosCliente, Integer.parseInt(idCliente.getText()));
+                List<Producto> productosFactura = factura.getProductos();
+                //double total = factura.getTotalPagar();
+                double total = 0;//principal.getTotalPagar(productosCliente);
+
+                JDialog dialogFactura = new JDialog();
+                dialogFactura.setVisible(true);
+                dialogFactura.setSize(550, 400);
+                dialogFactura.setLocationRelativeTo(this);
+                JPanel displayFactura = new JPanel();
+                displayFactura.setVisible(true);
+                GridLayout df = new GridLayout(productosFactura.size() + 13, 1);
+                displayFactura.setLayout(df);
+
+                JLabel facturaText = new JLabel("FACTURA", SwingConstants.CENTER);
+                facturaText.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                facturaText.setOpaque(true);
+                facturaText.setBackground(new Color(115, 115, 115));
+                facturaText.setForeground(Color.WHITE);
+                displayFactura.add(facturaText);
+
+                JLabel facturaIdText = new JLabel("Id Factura", SwingConstants.CENTER);
+                facturaIdText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                facturaIdText.setOpaque(true);
+                facturaIdText.setBackground(new Color(115, 115, 115));
+                facturaIdText.setForeground(Color.WHITE);
+                displayFactura.add(facturaIdText);
+
+                JLabel idClienteText = new JLabel("Codigo cliente : " + idCliente.getText(), SwingConstants.CENTER);
+                idClienteText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                idClienteText.setOpaque(true);
+                idClienteText.setBackground(new Color(115, 115, 115));
+                idClienteText.setForeground(Color.WHITE);
+                displayFactura.add(idClienteText);
+
+                List<String> productosRegalo = new ArrayList<>();
+                for (Producto productoF : productosFactura) {
+                    String descuentoAplicado = "";
+                    double precio = 0;
+                    Map<Integer, Promocion> promociones = principal.getPromociones();
+                    Promocion promocionActual = promociones.get(productoF.getCodigo());
+                    //System.out.println(promocionActual.getOperacion());
+                    if (promocionActual != null && principal.estaVigente(promocionActual)) {
+                        //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
+                        String tipoPromocion = "";
+                        try {
+                            tipoPromocion = promocionActual.getTipoPromocion();
+                            System.out.println(tipoPromocion);
+                        } catch (Exception es) {
+                            tipoPromocion = "NA";
                         }
-                    } else if (tipoPromocion.equals("regalo")) {
-                        String informacion = productoF.getCodigo()+","+promocionActual.getOperacion()+","+productoF.getNombre();
-                        if (!productosRegalo.contains(informacion))
-                        {
-                            productosRegalo.add(informacion);
+                        if (tipoPromocion.equals("descuento")) {
+                            if (!productoF.isEmpaquetado()) {
+                                total += productoF.getPeso() * productoF.getPrecioPorUnidad() - productoF.getPeso() * productoF.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                                precio = productoF.getPeso() * productoF.getPrecioPorUnidad() - productoF.getPeso() * productoF.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                                descuentoAplicado = " - " + promocionActual.getOperacion() + "% de descuento aplicado";
+                            } else {
+                                total += productoF.getPrecio() - productoF.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                                precio = productoF.getPrecio() - productoF.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                                descuentoAplicado = " - " + promocionActual.getOperacion() + "% de descuento aplicado";
+                                //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                            }
+                        } else if (tipoPromocion.equals("regalo")) {
+                            String informacion = productoF.getCodigo() + "," + promocionActual.getOperacion() + "," + productoF.getNombre();
+                            if (!productosRegalo.contains(informacion)) {
+                                productosRegalo.add(informacion);
+                            }
+                            //principal.getRegalo(productosCliente, productoF.getCodigo(), promocionActual.getOperacion());
+                            if (!productoF.isEmpaquetado()) {
+                                total += productoF.getPeso() * productoF.getPrecioPorUnidad();
+                                precio = productoF.getPeso() * productoF.getPrecioPorUnidad();
+                            } else {
+                                total += productoF.getPrecio();
+                                precio = productoF.getPrecio();
+                                //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                            }
+                        } else if (tipoPromocion.equals("combo")) {
+                            List<Double> preciosCombo = principal.getCombo(promocionActual.getOperacion());
+                            total += preciosCombo.get(1);
+                            precio = preciosCombo.get(1);
+                            descuentoAplicado = "-" + preciosCombo.get(2) + "% de descuento aplicado a combo";
+
+                        } else if (tipoPromocion.equals("multiplicador")) {
+                            int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
+                            Cliente clienteActual = clientesRegistrados.get(clienteComprando);
+                            if (!productoF.isEmpaquetado()) {
+                                total += productoF.getPeso() * productoF.getPrecioPorUnidad();
+                                precio = productoF.getPeso() * productoF.getPrecioPorUnidad();
+
+                                int puntosMultiplicadores = (int) principal.calcularPuntosAcumulados(precio);
+                                clienteActual.darPuntosEnteros(puntosMultiplicadores * Integer.parseInt(promocionActual.getOperacion()) - puntosMultiplicadores);
+                                descuentoAplicado = "- Los puntos acumulables por este producto son x" + promocionActual.getOperacion();
+                            } else {
+                                total += productoF.getPrecio();
+                                precio = productoF.getPrecio();
+                                int puntosMultiplicadores = (int) principal.calcularPuntosAcumulados(precio);
+                                clienteActual.darPuntosEnteros(puntosMultiplicadores * Integer.parseInt(promocionActual.getOperacion()) - puntosMultiplicadores);
+                                descuentoAplicado = "- Los puntos acumulables por este producto son x" + promocionActual.getOperacion();
+                                //System.out.println("TESTING");
+                            }
                         }
-                        //principal.getRegalo(productosCliente, productoF.getCodigo(), promocionActual.getOperacion());
+                    } else {
+
                         if (!productoF.isEmpaquetado()) {
                             total += productoF.getPeso() * productoF.getPrecioPorUnidad();
                             precio = productoF.getPeso() * productoF.getPrecioPorUnidad();
                         } else {
                             total += productoF.getPrecio();
                             precio = productoF.getPrecio();
-                            //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
-                        }
-                    } else if (tipoPromocion.equals("combo")) {
-                        List<Double> preciosCombo = principal.getCombo(promocionActual.getOperacion());
-                        total +=  preciosCombo.get(1);
-                        precio = preciosCombo.get(1);
-                        descuentoAplicado = "-"+preciosCombo.get(2)+"% de descuento aplicado a combo";
-
-                    } else if (tipoPromocion.equals("multiplicador")) {
-                        int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
-                        Cliente clienteActual = clientesRegistrados.get(clienteComprando);
-                        if(!productoF.isEmpaquetado())
-                        {
-                            total += productoF.getPeso()*productoF.getPrecioPorUnidad();
-                            precio = productoF.getPeso()*productoF.getPrecioPorUnidad();
-
-                            int puntosMultiplicadores = (int) principal.calcularPuntosAcumulados(precio);
-                            clienteActual.darPuntosEnteros(puntosMultiplicadores*Integer.parseInt(promocionActual.getOperacion())-puntosMultiplicadores);
-                            descuentoAplicado = "- Los puntos acumulables por este producto son x"+promocionActual.getOperacion();
-                        }
-                        else
-                        {
-                            total += productoF.getPrecio();
-                            precio = productoF.getPrecio();
-                            int puntosMultiplicadores = (int) principal.calcularPuntosAcumulados(precio);
-                            clienteActual.darPuntosEnteros(puntosMultiplicadores*Integer.parseInt(promocionActual.getOperacion())-puntosMultiplicadores);
-                            descuentoAplicado = "- Los puntos acumulables por este producto son x"+promocionActual.getOperacion();
                             //System.out.println("TESTING");
                         }
                     }
+                    productoF.updateHistorial();
+                    JLabel productoText = new JLabel(productoF.getNombre() + " : " + String.valueOf(precio) + descuentoAplicado);
+                    productoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    productoText.setOpaque(true);
+                    productoText.setBackground(new Color(115, 115, 115));
+                    productoText.setForeground(Color.WHITE);
+                    displayFactura.add(productoText);
                 }
-                else{
 
-                    if(!productoF.isEmpaquetado())
-                    {
-                        total += productoF.getPeso()*productoF.getPrecioPorUnidad();
-                        precio = productoF.getPeso()*productoF.getPrecioPorUnidad();
+                JLabel totalPagarText = new JLabel("TOTAL A PAGAR : " + total, SwingConstants.CENTER);
+                totalPagarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                totalPagarText.setOpaque(true);
+                totalPagarText.setBackground(new Color(115, 115, 115));
+                totalPagarText.setForeground(Color.WHITE);
+                displayFactura.add(totalPagarText);
+
+                if (confirmacion) {
+                    double puntosAcumulados = principal.calcularPuntosAcumulados(total - 15 * descuentoPorPuntos);
+                    int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
+                    Cliente clienteActual = clientesRegistrados.get(clienteComprando);
+                    clienteActual.sumarPuntos(total - 15 * descuentoPorPuntos);
+                    String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                    clientesRegistrados.get(clienteComprando).addHistory(total, now);
+                    try {
+                        principal.updateDataClientes();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
-                    else
-                    {
-                        total += productoF.getPrecio();
-                        precio = productoF.getPrecio();
-                        //System.out.println("TESTING");
-                    }
+
+                    double totalDescuento = total - 15 * descuentoPorPuntos;
+                    JLabel totalConPuntos = new JLabel("TOTAL A PAGAR DESCONTANDO PUNTOS USADOS : " + totalDescuento, SwingConstants.CENTER);
+                    totalConPuntos.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    totalConPuntos.setOpaque(true);
+                    totalConPuntos.setBackground(new Color(115, 115, 115));
+                    totalConPuntos.setForeground(Color.WHITE);
+                    displayFactura.add(totalConPuntos);
+
+                    JLabel reportePuntosText = new JLabel("--------------REPORTE-DE-PUNTOS--------------", SwingConstants.CENTER);
+                    reportePuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    reportePuntosText.setOpaque(true);
+                    reportePuntosText.setBackground(new Color(115, 115, 115));
+                    reportePuntosText.setForeground(Color.WHITE);
+                    displayFactura.add(reportePuntosText);
+
+                    int puntosTotalesAntes = clienteActual.getPuntos() + descuentoPorPuntos - (int) puntosAcumulados;
+                    JLabel puntosTotalesAntesText = new JLabel("Puntos totales antes de compra : " + puntosTotalesAntes);
+                    puntosTotalesAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    puntosTotalesAntesText.setOpaque(true);
+                    puntosTotalesAntesText.setBackground(new Color(115, 115, 115));
+                    puntosTotalesAntesText.setForeground(Color.WHITE);
+                    displayFactura.add(puntosTotalesAntesText);
+
+                    JLabel puntosRedimAntesText = new JLabel("Puntos usados en la compra : " + descuentoPorPuntos);
+                    puntosRedimAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    puntosRedimAntesText.setOpaque(true);
+                    puntosRedimAntesText.setBackground(new Color(115, 115, 115));
+                    puntosRedimAntesText.setForeground(Color.WHITE);
+                    displayFactura.add(puntosRedimAntesText);
+
+                    JLabel puntosAcumuladosText = new JLabel("Puntos acumulados por compra: " + puntosAcumulados);
+                    puntosAcumuladosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    puntosAcumuladosText.setOpaque(true);
+                    puntosAcumuladosText.setBackground(new Color(115, 115, 115));
+                    puntosAcumuladosText.setForeground(Color.WHITE);
+                    displayFactura.add(puntosAcumuladosText);
+
+                    JLabel puntosTotalesDespText = new JLabel("Puntos totales despues de compra : " + clienteActual.getPuntos());
+                    puntosTotalesDespText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    puntosTotalesDespText.setOpaque(true);
+                    puntosTotalesDespText.setBackground(new Color(115, 115, 115));
+                    puntosTotalesDespText.setForeground(Color.WHITE);
+                    displayFactura.add(puntosTotalesDespText);
+                } else {
+                    JLabel noInscrito = new JLabel("--No-obtiene-beneficios-del-sistema-de-puntos");
+                    noInscrito.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    noInscrito.setOpaque(true);
+                    noInscrito.setBackground(new Color(115, 115, 115));
+                    noInscrito.setForeground(Color.WHITE);
+                    displayFactura.add(noInscrito);
                 }
-                productoF.updateHistorial();
-                JLabel productoText = new JLabel(productoF.getNombre()+" : "+String.valueOf(precio)+descuentoAplicado);
-                productoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                productoText.setOpaque(true);
-                productoText.setBackground(new Color(115, 115, 115));
-                productoText.setForeground(Color.WHITE);
-                displayFactura.add(productoText);
-            }
 
-            JLabel totalPagarText = new JLabel("TOTAL A PAGAR : "+total, SwingConstants.CENTER);
-            totalPagarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-            totalPagarText.setOpaque(true);
-            totalPagarText.setBackground(new Color(115, 115, 115));
-            totalPagarText.setForeground(Color.WHITE);
-            displayFactura.add(totalPagarText);
+                JLabel promocionesText = new JLabel("----------PROMOCIONES-ADICIONALES----------", SwingConstants.CENTER);
+                promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                promocionesText.setOpaque(true);
+                promocionesText.setBackground(new Color(115, 115, 115));
+                promocionesText.setForeground(Color.WHITE);
+                displayFactura.add(promocionesText);
 
-            if (confirmacion) {
-                double puntosAcumulados = principal.calcularPuntosAcumulados(total-15*descuentoPorPuntos);
-                int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
-                Cliente clienteActual = clientesRegistrados.get(clienteComprando);
-                clienteActual.sumarPuntos(total-15*descuentoPorPuntos);
-                String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-                clientesRegistrados.get(clienteComprando).addHistory(total, now);
+                for (String promocionAplicable : productosRegalo) {
+                    String[] datos = promocionAplicable.split(",");
+                    int codigoProducto = Integer.parseInt(datos[0]);
+                    String operacionPromocion = datos[1];
+                    int cantidadRegalo = principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
+
+                    JLabel promocionRegalo = new JLabel(" Por la promocion page " + datos[1] + " de " + datos[2] + " lleva " + cantidadRegalo + " adicionales gratis");
+                    promocionRegalo.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                    promocionRegalo.setOpaque(true);
+                    promocionRegalo.setBackground(new Color(115, 115, 115));
+                    promocionRegalo.setForeground(Color.WHITE);
+                    displayFactura.add(promocionRegalo);
+
+                }
+
+                JScrollPane displayInfo = new JScrollPane(displayFactura, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                dialogFactura.add(displayInfo);
+                principal.updateLotesAfterCompra(productosCliente, pesosNoEmpaquetado);
                 try {
-                    principal.updateDataClientes();
+                    principal.updateDataLotes();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-
-                double totalDescuento = total - 15*descuentoPorPuntos;
-                JLabel totalConPuntos = new JLabel("TOTAL A PAGAR DESCONTANDO PUNTOS USADOS : "+totalDescuento, SwingConstants.CENTER);
-                totalConPuntos.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                totalConPuntos.setOpaque(true);
-                totalConPuntos.setBackground(new Color(115, 115, 115));
-                totalConPuntos.setForeground(Color.WHITE);
-                displayFactura.add(totalConPuntos);
-
-                JLabel reportePuntosText = new JLabel("--------------REPORTE-DE-PUNTOS--------------", SwingConstants.CENTER);
-                reportePuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                reportePuntosText.setOpaque(true);
-                reportePuntosText.setBackground(new Color(115, 115, 115));
-                reportePuntosText.setForeground(Color.WHITE);
-                displayFactura.add(reportePuntosText);
-
-                int puntosTotalesAntes = clienteActual.getPuntos()+descuentoPorPuntos-(int)puntosAcumulados;
-                JLabel puntosTotalesAntesText = new JLabel("Puntos totales antes de compra : "+ puntosTotalesAntes);
-                puntosTotalesAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                puntosTotalesAntesText.setOpaque(true);
-                puntosTotalesAntesText.setBackground(new Color(115, 115, 115));
-                puntosTotalesAntesText.setForeground(Color.WHITE);
-                displayFactura.add(puntosTotalesAntesText);
-
-                JLabel puntosRedimAntesText = new JLabel("Puntos usados en la compra : "+ descuentoPorPuntos);
-                puntosRedimAntesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                puntosRedimAntesText.setOpaque(true);
-                puntosRedimAntesText.setBackground(new Color(115, 115, 115));
-                puntosRedimAntesText.setForeground(Color.WHITE);
-                displayFactura.add(puntosRedimAntesText);
-
-                JLabel puntosAcumuladosText = new JLabel("Puntos acumulados por compra: "+ puntosAcumulados);
-                puntosAcumuladosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                puntosAcumuladosText.setOpaque(true);
-                puntosAcumuladosText.setBackground(new Color(115, 115, 115));
-                puntosAcumuladosText.setForeground(Color.WHITE);
-                displayFactura.add(puntosAcumuladosText);
-
-                JLabel puntosTotalesDespText = new JLabel("Puntos totales despues de compra : "+ clienteActual.getPuntos());
-                puntosTotalesDespText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                puntosTotalesDespText.setOpaque(true);
-                puntosTotalesDespText.setBackground(new Color(115, 115, 115));
-                puntosTotalesDespText.setForeground(Color.WHITE);
-                displayFactura.add(puntosTotalesDespText);
+                //System.out.println(total);
+                dispose();
             }
-            else
-            {
-                JLabel noInscrito = new JLabel("--No-obtiene-beneficios-del-sistema-de-puntos");
-                noInscrito.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                noInscrito.setOpaque(true);
-                noInscrito.setBackground(new Color(115, 115, 115));
-                noInscrito.setForeground(Color.WHITE);
-                displayFactura.add(noInscrito);
-            }
-
-            JLabel promocionesText = new JLabel("----------PROMOCIONES-ADICIONALES----------", SwingConstants.CENTER);
-            promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-            promocionesText.setOpaque(true);
-            promocionesText.setBackground(new Color(115, 115, 115));
-            promocionesText.setForeground(Color.WHITE);
-            displayFactura.add(promocionesText);
-
-            for (String promocionAplicable : productosRegalo)
-            {
-                String[] datos = promocionAplicable.split(",");
-                int codigoProducto = Integer.parseInt(datos[0]);
-                String operacionPromocion = datos[1];
-                int cantidadRegalo = principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
-
-                JLabel promocionRegalo = new JLabel(" Por la promocion page "+datos[1]+" de "+datos[2]+" lleva "+cantidadRegalo+" adicionales gratis");
-                promocionRegalo.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                promocionRegalo.setOpaque(true);
-                promocionRegalo.setBackground(new Color(115, 115, 115));
-                promocionRegalo.setForeground(Color.WHITE);
-                displayFactura.add(promocionRegalo);
-
-            }
-
-            JScrollPane displayInfo = new JScrollPane(displayFactura, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-            dialogFactura.add(displayInfo);
-            principal.updateLotesAfterCompra(productosCliente, pesosNoEmpaquetado);
-            try {
-                principal.updateDataLotes();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            //System.out.println(total);
-            dispose();
         }
         else if (comando.equals("MOSTRARIMG"))
         {
