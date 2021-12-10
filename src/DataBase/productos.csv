@@ -1,9 +1,9 @@
-Nombre,precio,precioPorUnidad,unidadMedida,peso,categoria,codigo,tipo,empaquetado,direccionImg,historial
+Nombre,precio,precioPorUnidad,unidadMedida,peso,categoria,codigo,tipo,empaquetado,direccionImg
 0,0.0,0.0,0,0.0,0,0,0,false,0,0 0
 arroz,3200.0,12.0,g,123.0,alimentos de nutricion,1,gondola,true,c,3 10/16/2021-14 11/16/2021
 empanadas congeladas,1500.0,12.0,43,344.0,fritos,2,congelado,true,c,4 10/16/2021
 frutloops,12500.0,12.0,g,344.0,congelados,3,gondola,true,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg,3 10/16/2021
-pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true,caracoles,3 10/16/2021
+pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true,caracoles,3 10/16/2021-3 12/10/2021
 cebolla,200.0,2500.0,kg,12.0,vegetales,5,fresco,false,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg,3 10/16/2021
 galletas oreos,12500.0,120.0,g,270.0,galleticas,6,gondola,true,c,3 10/16/2021
 Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true,c,3 10/16/2021
@@ -19,4 +19,4 @@ Hierva buena,800.0,200.0,g,1200.0,verduras,16,Gondola,true,c,3 10/16/2021
 gaseosa x,12000.0,200.0,g,1200.0,gaseosas,17,Refrigerado,true,c,3 10/16/2021
 pasteles congelados,12700.0,700.0,g,200.0,pasteles,18,Congelado,true,c,3 10/16/2021
 bananas,12333.0,122.0,g,5.0,proteina animal,19,Gondola,false,..\\SuperMercado\\src\\DataBase\\Images\\bananas.jpg,3 10/16/2021
-combo lonchera,0,700.0,g,200.0,pasteles,20,Congelado,true,c,3 10/16/2021
+combo lonchera,0.0,700.0,g,200.0,pasteles,20,Congelado,true,c,3 10/16/2021
