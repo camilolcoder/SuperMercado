@@ -387,51 +387,34 @@ public class Inventario {
         for(Producto producto: productosCliente)
         {
             Promocion promocionActual = promociones.get(producto.getCodigo());
-            if (!estaVigente(promocionActual))
-            {
+            if (estaVigente(promocionActual)) {
+                //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
+                String tipoPromocion = "";
+                try {
+                    tipoPromocion = promocionActual.getTipoPromocion();
+                    System.out.println(tipoPromocion);
+                } catch (Exception e) {
+                    tipoPromocion = "NA";
+                }
+                if (tipoPromocion.equals("descuento")) {
+                    if (!producto.isEmpaquetado()) {
+                        total += producto.getPeso() * producto.getPrecioPorUnidad() - producto.getPeso() * producto.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                    } else {
+                        total += producto.getPrecio() - producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                        System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                    }
+                } else if (tipoPromocion.equals("regalo")) {
+                    if (!producto.isEmpaquetado()) {
+                        total += producto.getPeso() * producto.getPrecioPorUnidad() - producto.getPeso() * producto.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                    } else {
+                        total += producto.getPrecio() - producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                        System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
+                    }
+                } else if (tipoPromocion.equals("combo")) {
 
-            }
-            //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
-            String tipoPromocion = "";
-            try {
-                tipoPromocion = promocionActual.getTipoPromocion();
-                System.out.println(tipoPromocion);
-            }
-            catch (Exception e)
-            {
-                tipoPromocion = "NA";
-            }
-            if (tipoPromocion.equals("descuento"))
-            {
-                if(!producto.isEmpaquetado())
-                {
-                    total += producto.getPeso()*producto.getPrecioPorUnidad() - producto.getPeso()*producto.getPrecioPorUnidad()*(Double.parseDouble(promocionActual.getOperacion())/100);
-                }
-                else
-                {
-                    total += producto.getPrecio() - producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100);
-                    System.out.println(producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100));
-                }
-            }
-            else if(tipoPromocion.equals("regalo"))
-            {
-                if(!producto.isEmpaquetado())
-                {
-                    total += producto.getPeso()*producto.getPrecioPorUnidad() - producto.getPeso()*producto.getPrecioPorUnidad()*(Double.parseDouble(promocionActual.getOperacion())/100);
-                }
-                else
-                {
-                    total += producto.getPrecio() - producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100);
-                    System.out.println(producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100));
-                }
-            }
-            else if(tipoPromocion.equals("combo"))
-            {
+                } else if (tipoPromocion.equals("multiplicador")) {
 
-            }
-            else if(tipoPromocion.equals("multiplicador"))
-            {
-
+                }
             }
             else{
 
