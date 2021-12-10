@@ -93,6 +93,37 @@ public class Inventario {
         return chequeo;
     }
 
+    public boolean chequearFechaInicio(String fechaVencimiento)
+    {
+        boolean chequeo = true;
+        List<String> fechas = Arrays.asList(fechaVencimiento.split("/"));
+        String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        List<String> fechasHoy = Arrays.asList(now.split("/"));
+        int anoProducto = Integer.parseInt(fechas.get(2));
+        int anoHoy = Integer.parseInt(fechasHoy.get(2));
+        int mesProducto = Integer.parseInt(fechas.get(1));
+        int mesHoy = Integer.parseInt(fechasHoy.get(1));
+        int diaProducto = Integer.parseInt(fechas.get(0));
+        int diaHoy = Integer.parseInt(fechasHoy.get(0));
+        //System.out.println(anoProducto +" "+ anoHoy +" "+ mesProducto +" "+mesHoy +" "+diaProducto+" "+diaHoy);
+        if (anoProducto > anoHoy)
+        {
+            chequeo = false;
+            //System.out.println("UNO");
+        }
+        else if (mesProducto > mesHoy && anoProducto == anoHoy)
+        {
+            chequeo = false;
+            //System.out.println("DOS");
+        }
+        else if (diaProducto > diaHoy && mesProducto >= mesHoy && anoProducto == anoHoy)
+        {
+            chequeo = false;
+            //System.out.println("TRES");
+        }
+        return chequeo;
+    }
+
     public Producto getProductoByCodigo(int codigoProducto)
     {
         Producto productoCodigo = null;
@@ -342,7 +373,7 @@ public class Inventario {
         for(Producto producto: productosCliente)
         {
             Promocion promocionActual = promociones.get(producto.getCodigo());
-            System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
+            //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
             String tipoPromocion = "";
             try {
                 tipoPromocion = promocionActual.getTipoPromocion();
@@ -366,7 +397,15 @@ public class Inventario {
             }
             else if(tipoPromocion.equals("regalo"))
             {
-
+                if(!producto.isEmpaquetado())
+                {
+                    total += producto.getPeso()*producto.getPrecioPorUnidad() - producto.getPeso()*producto.getPrecioPorUnidad()*(Double.parseDouble(promocionActual.getOperacion())/100);
+                }
+                else
+                {
+                    total += producto.getPrecio() - producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100);
+                    System.out.println(producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100));
+                }
             }
             else if(tipoPromocion.equals("combo"))
             {
