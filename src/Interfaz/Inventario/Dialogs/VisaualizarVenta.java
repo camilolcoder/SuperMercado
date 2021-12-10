@@ -25,6 +25,10 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
 
     private JLabel codigoProductoText;
     private JTextField codigoProducto;
+    private JLabel fechaInicialText;
+    private JTextField fechaInicial;
+    private JLabel fechaFinalText;
+    private JTextField fechaFinal;
     private JLabel mostrarText;
     private JButton mostrar;
 
@@ -34,7 +38,7 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
         setBackground(new Color(217, 217, 217));
         Border padding = BorderFactory.createEmptyBorder(0, 30, 0, 0);
         setVisible(true);
-        setSize(400, 150);
+        setSize(400, 250);
         setTitle("Visualizar producto");
         setLocationRelativeTo(null);
 
@@ -54,6 +58,28 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
         codigoProducto = new JTextField();
         codigoProducto.setBorder(BorderFactory.createLineBorder(coolGray, 3));
         add(codigoProducto);
+
+        fechaInicialText = new JLabel("Ingrese la fecha inicial", SwingConstants.CENTER);
+        fechaInicialText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        fechaInicialText.setOpaque(true);
+        fechaInicialText.setBackground(new Color(115, 115, 115));
+        fechaInicialText.setForeground(Color.WHITE);
+        add(fechaInicialText);
+
+        fechaInicial = new JTextField();
+        fechaInicial.setBorder(BorderFactory.createLineBorder(coolGray, 3));
+        add(fechaInicial);
+
+        fechaFinalText = new JLabel("Ingrese la fecha final", SwingConstants.CENTER);
+        fechaFinalText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        fechaFinalText.setOpaque(true);
+        fechaFinalText.setBackground(new Color(115, 115, 115));
+        fechaFinalText.setForeground(Color.WHITE);
+        add(fechaFinalText);
+
+        fechaFinal = new JTextField();
+        fechaFinal.setBorder(BorderFactory.createLineBorder(coolGray, 3));
+        add(fechaFinal);
 
         mostrarText = new JLabel("Presione para", SwingConstants.CENTER);
         mostrarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
