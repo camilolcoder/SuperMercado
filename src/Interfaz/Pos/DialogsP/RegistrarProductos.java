@@ -4,6 +4,7 @@ import Interfaz.InterfazPrincipal;
 import Modelo.Cliente;
 import Modelo.Factura;
 import Modelo.Producto;
+import Procesamiento.Inventario;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
@@ -399,7 +400,8 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));
             Factura factura = principal.ejecutarCrearFactura(productosCliente, Integer.parseInt(idCliente.getText()));
             List<Producto> productosFactura = factura.getProductos();
-            double total = factura.getTotalPagar();
+            //double total = factura.getTotalPagar();
+            double total = principal.getTotalPagar(productosCliente);
 
 
 

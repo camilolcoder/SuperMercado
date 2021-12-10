@@ -208,6 +208,11 @@ public class InterfazPrincipal extends JFrame {
         aplicacion.asociarImagenProducto(direccionImg);
     }
 
+    public double getTotalPagar(List<Producto> productos)
+    {
+        return aplicacion.getTotalPagar(productos);
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);

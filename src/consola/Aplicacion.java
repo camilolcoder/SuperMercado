@@ -435,6 +435,11 @@ public class Aplicacion {
         return pointOfSale.buscarClientePorId(idCliente);
     }
 
+    public double getTotalPagar(List<Producto> productosCliente)
+    {
+        return inventario.getTotalPagar(productosCliente);
+    }
+
     public void ejecutarRegistrarCompras()
     {
         List<Producto> productosCliente = new ArrayList<>();

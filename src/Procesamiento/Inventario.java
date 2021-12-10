@@ -7,6 +7,7 @@ import Modelo.Promocion;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.rmi.UnexpectedException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -338,11 +339,19 @@ public class Inventario {
     public double getTotalPagar(List<Producto> productosCliente)
     {
         double total = 0;
-        for(Producto producto: productos)
+        for(Producto producto: productosCliente)
         {
             Promocion promocionActual = promociones.get(producto.getCodigo());
-            String tipoPromocion = promocionActual.getTipoPromocion();
-
+            System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
+            String tipoPromocion = "";
+            try {
+                tipoPromocion = promocionActual.getTipoPromocion();
+                System.out.println(tipoPromocion);
+            }
+            catch (Exception e)
+            {
+                tipoPromocion = "NA";
+            }
             if (tipoPromocion.equals("descuento"))
             {
                 if(!producto.isEmpaquetado())
@@ -352,6 +361,7 @@ public class Inventario {
                 else
                 {
                     total += producto.getPrecio() - producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100);
+                    System.out.println(producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100));
                 }
             }
             else if(tipoPromocion.equals("regalo"))
@@ -375,6 +385,7 @@ public class Inventario {
                 else
                 {
                     total += producto.getPrecio();
+                    System.out.println("TESTING");
                 }
             }
         }

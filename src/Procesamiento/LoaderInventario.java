@@ -89,6 +89,7 @@ public class LoaderInventario {
             String[] partesl2 = lineal4.split(",");
             Promocion promocion = new Promocion(Integer.parseInt(partesl2[0]),partesl2[1],partesl2[2],
                     partesl2[3],partesl2[4]);
+            promociones.put(Integer.parseInt(partesl2[0]),promocion);
             lineal4 = brl33.readLine();
 
         }
