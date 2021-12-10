@@ -231,6 +231,11 @@ public class InterfazPrincipal extends JFrame {
         return aplicacion.getCombo(operacion);
     }
 
+    public boolean dentroDeRango(String fecha)
+    {
+        return aplicacion.dentroDeRango(fecha);
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);

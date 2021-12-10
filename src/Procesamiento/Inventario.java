@@ -124,6 +124,22 @@ public class Inventario {
         return chequeo;
     }
 
+    public boolean dentroDeRango(String fecha)
+    {
+        boolean chequeo = true;
+
+        if (!chequearFechaInicio(fecha) && !chequearFechaVencimiento(fecha))
+        {
+            chequeo = true;
+        }
+        else
+        {
+            chequeo = false;
+        }
+
+        return chequeo;
+    }
+
     public boolean estaVigente(Promocion promocion)
     {
         boolean chequeo = true;

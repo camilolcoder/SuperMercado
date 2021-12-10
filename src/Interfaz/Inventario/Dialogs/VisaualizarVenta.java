@@ -42,7 +42,7 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
         setTitle("Visualizar producto");
         setLocationRelativeTo(null);
 
-        GridLayout gl = new GridLayout(2, 2);
+        GridLayout gl = new GridLayout(4, 2);
         setLayout(gl);
         gl.setVgap(5);
 
@@ -131,9 +131,12 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
             int counter = 0;
             for (List<String> secciones : historialProductos)
             {
-                System.out.println(secciones.get(0)+" "+secciones.get(1));
-                data.setValue(Double.parseDouble(secciones.get(0)), "Gastos", secciones.get(1)+"-"+String.valueOf(counter));
-                counter += 1;
+                if (principal.dentroDeRango(secciones.get(1)));
+                {
+                    System.out.println(secciones.get(0) + " " + secciones.get(1));
+                    data.setValue(Double.parseDouble(secciones.get(0)), "Gastos", secciones.get(1) + "-" + String.valueOf(counter));
+                    counter += 1;
+                }
             }
 
 

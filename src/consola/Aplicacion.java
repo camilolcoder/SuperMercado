@@ -835,6 +835,11 @@ public class Aplicacion {
         inventario.asociarImagenProducto(direccionImg);
     }
 
+    public boolean dentroDeRango(String fecha)
+    {
+        return inventario.dentroDeRango(fecha);
+    }
+
     public void ejecutarCargarPointOfSales() throws IOException {
         pointOfSale = LoaderPointOfSale.cargarArchivos();
     }
