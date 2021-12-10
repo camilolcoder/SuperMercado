@@ -481,7 +481,10 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                             //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
                         }
                     } else if (tipoPromocion.equals("combo")) {
-
+                        List<Double> preciosCombo = principal.getCombo(promocionActual.getOperacion());
+                        total +=  preciosCombo.get(1);
+                        precio = preciosCombo.get(0);
+                        descuentoAplicado = "-"+"Descuento aplicado a combo : "+preciosCombo.get(2)+"%";
 
                     } else if (tipoPromocion.equals("multiplicador")) {
 
@@ -509,6 +512,14 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 productoText.setForeground(Color.WHITE);
                 displayFactura.add(productoText);
             }
+
+            JLabel totalPagarText = new JLabel("TOTAL A PAGAR : "+total, SwingConstants.CENTER);
+            totalPagarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+            totalPagarText.setOpaque(true);
+            totalPagarText.setBackground(new Color(115, 115, 115));
+            totalPagarText.setForeground(Color.WHITE);
+            displayFactura.add(totalPagarText);
+
             JLabel promocionesText = new JLabel("----------PROMOCIONES-APLICADAS----------", SwingConstants.CENTER);
             promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
             promocionesText.setOpaque(true);
@@ -531,15 +542,6 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 displayFactura.add(promocionRegalo);
 
             }
-
-
-
-            JLabel totalPagarText = new JLabel("TOTAL A PAGAR : "+total, SwingConstants.CENTER);
-            totalPagarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-            totalPagarText.setOpaque(true);
-            totalPagarText.setBackground(new Color(115, 115, 115));
-            totalPagarText.setForeground(Color.WHITE);
-            displayFactura.add(totalPagarText);
 
             if (confirmacion) {
                 double puntosAcumulados = principal.calcularPuntosAcumulados(total-15*descuentoPorPuntos);

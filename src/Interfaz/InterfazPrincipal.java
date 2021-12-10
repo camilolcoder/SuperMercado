@@ -226,6 +226,11 @@ public class InterfazPrincipal extends JFrame {
         return aplicacion.getRegalo(productos, codigoProducto, operacion);
     }
 
+    public List<Double> getCombo(String operacion)
+    {
+        return aplicacion.getCombo(operacion);
+    }
+
     public static void main(String[] args) throws IOException {
         InterfazPrincipal ventana = new InterfazPrincipal();
         ventana.setLocationRelativeTo(null);

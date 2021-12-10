@@ -403,8 +403,9 @@ public class Inventario {
         return cantidadFinal*cantidadRegalar;
     }
 
-    public String getCombo(List<Producto> productos, int codigoProducto, String operacion)
+    public List<Double> getCombo(String operacion)
     {
+        List<Double> datosFinales = new ArrayList<>();
         String[] datos = operacion.split("-");
         double porcentajeDescuento = Double.parseDouble(datos[0]);
         String[] datosProductosCombo = datos[1].split("_");
@@ -423,8 +424,12 @@ public class Inventario {
             }
             valorTotal += precioProducto*Integer.parseInt(datosEspc[1]);
         }
+        double valorConDescuento = valorTotal-valorTotal*(porcentajeDescuento/100);
+        datosFinales.add(valorTotal);
+        datosFinales.add(valorConDescuento);
+        datosFinales.add(porcentajeDescuento);
 
-        return "";
+        return datosFinales;
     }
 
     public void asociarImagenProducto(String direccionImg)

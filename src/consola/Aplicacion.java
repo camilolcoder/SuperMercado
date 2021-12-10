@@ -442,6 +442,11 @@ public class Aplicacion {
         return inventario.getTotalPagar(productosCliente);
     }*/
 
+    public List<Double> getCombo(String operacion)
+    {
+        return inventario.getCombo(operacion);
+    }
+
     public Map<Integer, Promocion> getPromociones()
     {
         return inventario.getPromociones();
