@@ -3,13 +3,16 @@ package Procesamiento;
 import Modelo.Cliente;
 import Modelo.Lote;
 import Modelo.Producto;
+import Modelo.Promocion;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LoaderInventario {
 
@@ -73,7 +76,25 @@ public class LoaderInventario {
 
         }
         brl21.close();
-        Inventario inventario = new Inventario(productos, lotes, categorias);
+        //----------------------------------------------------------------------------------------------
+        String filepathPromociones = "..\\SuperMercado\\src\\DataBase\\categorias.csv";
+
+
+        Map<Integer,Promocion> promociones = new HashMap<>();
+        BufferedReader brl33 = new BufferedReader(new FileReader(filepathPromociones));
+        String lineal4 = brl33.readLine();
+        lineal4 = brl33.readLine();
+        while (lineal4 != null)
+        {
+            String[] partesl2 = lineal4.split(",");
+            String categoria = partesl2[0];
+            categorias.add(categoria);
+            lineal4 = brl33.readLine();
+
+        }
+        brl33.close();
+
+        Inventario inventario = new Inventario(productos, lotes, categorias, promociones);
         return inventario;
     }
 

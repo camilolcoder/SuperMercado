@@ -2,27 +2,27 @@ package Procesamiento;
 
 import Modelo.Lote;
 import Modelo.Producto;
+import Modelo.Promocion;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Inventario {
 
     private List<Producto> productos;
     private List<Lote> lotes;
     private List<String> categorias;
+    private Map<Integer, Promocion> promociones;
 
-    public Inventario(List<Producto> productos, List<Lote> lotes, List<String>categorias) {
+    public Inventario(List<Producto> productos, List<Lote> lotes, List<String>categorias, Map<Integer, Promocion>promociones) {
         this.productos = productos;
         this.lotes = lotes;
         this.categorias = categorias;
+        this.promociones = promociones;
     }
 
     public List<Producto> getProductos() {
@@ -31,6 +31,11 @@ public class Inventario {
 
     public List<Lote> getLotes() {
         return lotes;
+    }
+
+    public Map<Integer, Promocion> getPromociones()
+    {
+        return promociones;
     }
 
     public void createProduct(String nombre, double precio, double precioPorUnidad,
