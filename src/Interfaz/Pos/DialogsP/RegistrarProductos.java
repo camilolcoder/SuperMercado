@@ -28,6 +28,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     public static final String INFO = "INFO";
     public static  final String PESO = "PESO";
     public static final String AGREGAR = "AGREGAR";
+    public static final String PUNTOS = "PUNTOS";
     public static final String FIN = "FIN";
 
     private InterfazPrincipal principal;
@@ -35,6 +36,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     private List<Producto> productosCliente;// = new ArrayList<>();
     private List<Double> pesosNoEmpaquetado;// = new ArrayList<>();
     private List<Cliente> clientesRegistrados;// = principal.getClientes();
+    private int descuentoPorPuntos;
 
     private JLabel codigoProductoText;
     private JTextField codigoProducto;
@@ -48,6 +50,8 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     private JTextField idCliente;
     private JLabel infoClienteText;
     private JButton infoCliente;
+    private JLabel pagarPuntosText;
+    private JButton pagarPuntos;
     private JLabel finalizarCompraText;
     private JButton finalizarCompra;
 
@@ -67,7 +71,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         setLocationRelativeTo(null);
 
         //setLayout(new GridLayout(4, 2));
-        GridLayout gl = new GridLayout(6, 2);
+        GridLayout gl = new GridLayout(7, 2);
         setLayout(gl);//new GridLayout(5, 2));
         gl.setHgap(1);
         gl.setVgap(5);
@@ -183,6 +187,31 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         infoCliente.addActionListener(this);
         add(infoCliente);
 
+        pagarPuntosText = new JLabel("Presione para: ", SwingConstants.CENTER);
+        pagarPuntosText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        pagarPuntosText.setOpaque(true);
+        pagarPuntosText.setBackground(new Color(115, 115, 115));
+        pagarPuntosText.setForeground(Color.WHITE);
+        add(pagarPuntosText);
+
+        pagarPuntos = new JButton("Pagar con puntos");
+        pagarPuntos.setActionCommand("PUNTOS");
+        pagarPuntos.setBackground(new Color(115, 115, 115));
+        pagarPuntos.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        pagarPuntos.setForeground(Color.WHITE);
+        pagarPuntos.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+        pagarPuntos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pagarPuntos.setBackground(new Color(84, 84, 84));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pagarPuntos.setBackground(new Color(115, 115, 115));
+            }
+        });
+        pagarPuntos.addActionListener(this);
+        add(pagarPuntos);
+
         finalizarCompraText = new JLabel("Presione para ", SwingConstants.CENTER);
         finalizarCompraText.setFont(new Font("Comic Sans", Font.BOLD, 15));
         finalizarCompraText.setOpaque(true);
@@ -251,6 +280,10 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             }
             productosCliente.add(productoCliente);
         }
+        else if (comando.equals("PUNTOS"))
+        {
+
+        }
         else if (comando.equals("FIN"))
         {
             boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));
@@ -281,6 +314,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 {
                     precio = productoF.getPrecio();
                 }
+                productoF.updateHistorial();
                 displayFactura.add(new JLabel(productoF.getNombre()+" : "+ precio));
             }
             displayFactura.add(new JLabel("TOTAL A PAGAR : "+total));

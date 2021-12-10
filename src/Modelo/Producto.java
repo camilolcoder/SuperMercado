@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.List;
+
 public class Producto {
 
     private String nombre;
@@ -12,6 +14,7 @@ public class Producto {
     private String tipo; // 1. Gondola, 2. Congelado, 3. Refrigerado, 4. Fresco
     private boolean empaquetado; // true = empaquetado ; false = NO empaquetado
     private String direccionImg;
+    private List<List<String>> historial;
 
     public Producto(String nombre, double precio, double precioPorUnidad,
                     String unidadMedida, double peso,String categoria,
@@ -108,5 +111,10 @@ public class Producto {
     public void setDireccionImg(String nuevaDireccion)
     {
         direccionImg = nuevaDireccion;
+    }
+
+    public void updateHistorial()
+    {
+
     }
 }
