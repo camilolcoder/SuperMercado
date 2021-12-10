@@ -347,7 +347,8 @@ public class PanelOpcionesInventario extends JPanel implements ActionListener {
         }
         else if (comando.equals("VENTAS"))
         {
-
+            VisaualizarVenta visualizarVenta = null;
+            visualizarVenta = new VisaualizarVenta(principal);
         }
         else if (comando.equals("CARGARCSV"))
         {

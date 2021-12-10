@@ -1,12 +1,20 @@
 package Interfaz.Inventario.Dialogs;
 
 import Interfaz.InterfazPrincipal;
+import Modelo.Producto;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class VisaualizarVenta extends JDialog implements ActionListener {
 
@@ -26,16 +34,20 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
         setBackground(new Color(217, 217, 217));
         Border padding = BorderFactory.createEmptyBorder(0, 30, 0, 0);
         setVisible(true);
-        setSize(300, 200);
+        setSize(400, 150);
         setTitle("Visualizar producto");
         setLocationRelativeTo(null);
 
-        codigoProductoText = new JLabel("Ingrese codigo producto");
+        GridLayout gl = new GridLayout(2, 2);
+        setLayout(gl);
+        gl.setVgap(5);
+
+        codigoProductoText = new JLabel("Ingrese codigo producto", SwingConstants.CENTER);
         codigoProductoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
         codigoProductoText.setOpaque(true);
         codigoProductoText.setBackground(new Color(115, 115, 115));
         codigoProductoText.setForeground(Color.WHITE);
-        add(codigoProducto);
+        add(codigoProductoText);
 
         Color coolGray = new Color(115, 115, 115);
 
@@ -43,11 +55,11 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
         codigoProducto.setBorder(BorderFactory.createLineBorder(coolGray, 3));
         add(codigoProducto);
 
-        mostrarText = new JLabel("Presione para");
-        codigoProductoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-        codigoProductoText.setOpaque(true);
-        codigoProductoText.setBackground(new Color(115, 115, 115));
-        codigoProductoText.setForeground(Color.WHITE);
+        mostrarText = new JLabel("Presione para", SwingConstants.CENTER);
+        mostrarText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        mostrarText.setOpaque(true);
+        mostrarText.setBackground(new Color(115, 115, 115));
+        mostrarText.setForeground(Color.WHITE);
         add(mostrarText);
 
         mostrar = new JButton("Visualizar ventas");
@@ -75,7 +87,38 @@ public class VisaualizarVenta extends JDialog implements ActionListener {
 
         if (comando.equals("VISUALIZAR"))
         {
-            System.out.println("WORKING");
+            JDialog dialogInfo = new JDialog();
+            dialogInfo.setVisible(true);
+            dialogInfo.setSize(700, 400);
+            dialogInfo.setLocationRelativeTo(this);
+            JPanel displayFactura = new JPanel();
+            displayFactura.setVisible(true);
+            GridLayout df = new GridLayout(1, 1);
+            displayFactura.setLayout(df);
+
+            List<Producto> productos = principal.getProductos();
+            Producto producto = principal.getProducto(Integer.parseInt(codigoProducto.getText()), productos);
+            List<List<String>> historialProductos = producto.getHistorialProductoLista();
+
+            //System.out.println("WORKING");
+            DefaultCategoryDataset data = new DefaultCategoryDataset();
+            int counter = 0;
+            for (List<String> secciones : historialProductos)
+            {
+                System.out.println(secciones.get(0)+" "+secciones.get(1));
+                data.setValue(Double.parseDouble(secciones.get(0)), "Gastos", secciones.get(1)+"-"+String.valueOf(counter));
+                counter += 1;
+            }
+
+
+            JFreeChart jchart = ChartFactory.createBarChart("Historial unidades vendidas de "+producto.getNombre(),
+                    "Fecha", "Productos adquiridos", data, PlotOrientation.VERTICAL,
+                    false, true, false);
+            CategoryPlot plot = jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.BLACK);
+
+            ChartPanel chartPanel = new ChartPanel(jchart);
+            dialogInfo.add(chartPanel);
         }
     }
 }
