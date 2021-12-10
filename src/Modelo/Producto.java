@@ -156,4 +156,9 @@ public class Producto {
         return historialTotal;
     }
 
+    public List<List<String>> getHistorialProductoLista()
+    {
+        return historial;
+    }
+
 }
