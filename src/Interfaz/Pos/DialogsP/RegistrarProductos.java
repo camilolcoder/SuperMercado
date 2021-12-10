@@ -524,6 +524,15 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                         }
                     }
                     //productoF.updateHistorial();
+                    String now = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                    productoF.addHistoryProducto(1, now);
+
+                    try {
+                        principal.updateDataProductos();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
                     JLabel productoText = new JLabel(productoF.getNombre() + " : " + String.valueOf(precio) + descuentoAplicado);
                     productoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
                     productoText.setOpaque(true);

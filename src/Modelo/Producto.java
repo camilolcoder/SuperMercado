@@ -116,10 +116,23 @@ public class Producto {
 
     public void addHistoryProducto(int cantidad, String day)
     {
-        List<String> historialDay = new ArrayList<>();
-        historialDay.add(String.valueOf(cantidad));
-        historialDay.add(day);
-        historial.add(historialDay);
+        boolean adicional = false;
+        for (List<String> data : historial)
+        {
+            if(data.get(1).equals(day))
+            {
+                int cantidadActual = Integer.parseInt(data.get(0));
+                data.set(0, String.valueOf(cantidadActual+1));
+                adicional = true;
+            }
+        }
+        if(!adicional)
+        {
+            List<String> historialDay = new ArrayList<>();
+            historialDay.add(String.valueOf(cantidad));
+            historialDay.add(day);
+            historial.add(historialDay);
+        }
     }
 
     public void setHistorialProducto(String Phistorial)
