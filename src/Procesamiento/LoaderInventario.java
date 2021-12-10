@@ -33,6 +33,7 @@ public class LoaderInventario {
                     Boolean.parseBoolean(partes[8]));
             producto.setCodigo(Integer.parseInt(partes[6]));
             producto.setDireccionImg(partes[9]);
+            producto.setHistorialProducto(partes[10]);
             productos.add(producto);
             linea = br.readLine();
 

@@ -1,22 +1,22 @@
-Nombre,precio,precioPorUnidad,unidadMedida,peso,categoria,codigo,tipo,empaquetado,direccionImg
-0,0.0,0.0,0,0.0,0,0,0,false,0
-arroz,3200.0,12.0,g,123.0,alimentos de nutricion,1,gondola,true,c
-empanadas congeladas,1500.0,12.0,43,344.0,fritos,2,congelado,true,c
-frutloops,12500.0,12.0,g,344.0,congelados,3,gondola,true,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg
-pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true,caracoles
-cebolla,200.0,2500.0,kg,12.0,vegetales,5,fresco,false,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg
-galletas oreos,12500.0,120.0,g,270.0,galleticas,6,gondola,true,c
-Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true,c
-Tomate,500.0,800.0,g,600.0,frutas,8,fresco,false,c
-aguacate,1200.0,200.0,kg,0.5,frutas,9,fresco,false,c
-caramelo cafe,1200.0,122.0,g,12.0,caramelos,10,gondola,true,c
-caramelo pimienta,1700.0,2000.0,g,270.0,caramelos,11,gondola,true,c
-proteina en barra,12300.0,250.0,g,125.0,verduras,12,Gondola,true,c
-brownies puros,22750.0,750.0,g,430.0,verduras,13,Gondola,true,c
-carro,124700.0,12500.0,Kg,2.8,verduras,14,Gondola,true,c
-Gaseosa Coca Cola,3700.0,200.0,g,1200.0,gaseosas,15,Refrigerado,true,c
-Hierva buena,800.0,200.0,g,1200.0,verduras,16,Gondola,true,c
-gaseosa x,12000.0,200.0,g,1200.0,gaseosas,17,Refrigerado,true,c
-pasteles congelados,12700.0,700.0,g,200.0,pasteles,18,Congelado,true,c
-bananas,12333.0,122.0,g,5.0,proteina animal,19,Gondola,false,..\\SuperMercado\\src\\DataBase\\Images\\bananas.jpg
-combo lonchera,0,700.0,g,200.0,pasteles,20,Congelado,true,c
+Nombre,precio,precioPorUnidad,unidadMedida,peso,categoria,codigo,tipo,empaquetado,direccionImg,historial
+0,0.0,0.0,0,0.0,0,0,0,false,0,0 0
+arroz,3200.0,12.0,g,123.0,alimentos de nutricion,1,gondola,true,c,3 10/16/2021-14 11/16/2021
+empanadas congeladas,1500.0,12.0,43,344.0,fritos,2,congelado,true,c,4 10/16/2021
+frutloops,12500.0,12.0,g,344.0,congelados,3,gondola,true,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg,3 10/16/2021
+pizza congelada,12500.0,45.0,kg,1.2,congelados,4,congelados,true,caracoles,3 10/16/2021
+cebolla,200.0,2500.0,kg,12.0,vegetales,5,fresco,false,..\\SuperMercado\\src\\DataBase\\Images\\froot_loops.jpg,3 10/16/2021
+galletas oreos,12500.0,120.0,g,270.0,galleticas,6,gondola,true,c,3 10/16/2021
+Sprite,1200.0,200.0,ml,600.0,gaseosas,7,refrigerado,true,c,3 10/16/2021
+Tomate,500.0,800.0,g,600.0,frutas,8,fresco,false,c,3 10/16/2021
+aguacate,1200.0,200.0,kg,0.5,frutas,9,fresco,false,c,3 10/16/2021
+caramelo cafe,1200.0,122.0,g,12.0,caramelos,10,gondola,true,c,3 10/16/2021
+caramelo pimienta,1700.0,2000.0,g,270.0,caramelos,11,gondola,true,c,3 10/16/2021
+proteina en barra,12300.0,250.0,g,125.0,verduras,12,Gondola,true,c,3 10/16/2021
+brownies puros,22750.0,750.0,g,430.0,verduras,13,Gondola,true,c,3 10/16/2021
+carro,124700.0,12500.0,Kg,2.8,verduras,14,Gondola,true,c,3 10/16/2021
+Gaseosa Coca Cola,3700.0,200.0,g,1200.0,gaseosas,15,Refrigerado,true,c,3 10/16/2021
+Hierva buena,800.0,200.0,g,1200.0,verduras,16,Gondola,true,c,3 10/16/2021
+gaseosa x,12000.0,200.0,g,1200.0,gaseosas,17,Refrigerado,true,c,3 10/16/2021
+pasteles congelados,12700.0,700.0,g,200.0,pasteles,18,Congelado,true,c,3 10/16/2021
+bananas,12333.0,122.0,g,5.0,proteina animal,19,Gondola,false,..\\SuperMercado\\src\\DataBase\\Images\\bananas.jpg,3 10/16/2021
+combo lonchera,0,700.0,g,200.0,pasteles,20,Congelado,true,c,3 10/16/2021

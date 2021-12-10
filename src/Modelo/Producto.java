@@ -131,6 +131,7 @@ public class Producto {
             List<String> datosInd = new ArrayList<>();
             String[] secciones = parte.split(" ");
             datosInd.add(secciones[0]);
+            //System.out.println(secciones[0]);
             datosInd.add(secciones[1]);
             System.out.println("");
             historialCompleto.add(datosInd);
