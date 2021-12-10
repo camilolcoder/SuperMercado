@@ -124,6 +124,20 @@ public class Inventario {
         return chequeo;
     }
 
+    public boolean estaVigente(Promocion promocion)
+    {
+        boolean chequeo = true;
+        String fechaInicio = promocion.getFechaInicial();
+        String fechaFinal = promocion.getFechaFinal();
+
+        if(!chequearFechaVencimiento(fechaFinal) | !chequearFechaInicio(fechaInicio))
+        {
+            chequeo = false;
+        }
+
+        return chequeo;
+    }
+
     public Producto getProductoByCodigo(int codigoProducto)
     {
         Producto productoCodigo = null;
@@ -373,6 +387,10 @@ public class Inventario {
         for(Producto producto: productosCliente)
         {
             Promocion promocionActual = promociones.get(producto.getCodigo());
+            if (!estaVigente(promocionActual))
+            {
+
+            }
             //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
             String tipoPromocion = "";
             try {
