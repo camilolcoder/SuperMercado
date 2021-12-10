@@ -398,9 +398,10 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
         {
             boolean confirmacion = principal.chequerId(Integer.parseInt(idCliente.getText()));
             Factura factura = principal.ejecutarCrearFactura(productosCliente, Integer.parseInt(idCliente.getText()));
+            List<Producto> productosFactura = factura.getProductos();
             double total = factura.getTotalPagar();
 
-            List<Producto> productosFactura = factura.getProductos();
+
 
             JDialog dialogFactura = new JDialog();
             dialogFactura.setVisible(true);

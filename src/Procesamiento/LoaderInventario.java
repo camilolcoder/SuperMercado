@@ -77,7 +77,7 @@ public class LoaderInventario {
         }
         brl21.close();
         //----------------------------------------------------------------------------------------------
-        String filepathPromociones = "..\\SuperMercado\\src\\DataBase\\categorias.csv";
+        String filepathPromociones = "..\\SuperMercado\\src\\Promociones\\promociones.csv";
 
 
         Map<Integer,Promocion> promociones = new HashMap<>();
@@ -87,8 +87,8 @@ public class LoaderInventario {
         while (lineal4 != null)
         {
             String[] partesl2 = lineal4.split(",");
-            String categoria = partesl2[0];
-            categorias.add(categoria);
+            Promocion promocion = new Promocion(Integer.parseInt(partesl2[0]),partesl2[1],partesl2[2],
+                    partesl2[3],partesl2[4]);
             lineal4 = brl33.readLine();
 
         }

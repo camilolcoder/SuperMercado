@@ -6,12 +6,23 @@ public class Promocion {
     private String fechaInicial;
     private String fechaFinal;
     private String tipoPromocion;
+    private String operacion;
 
-    public Promocion(int codigoProducto, String fechaInicial, String fechaFinal, String tipoPromocion) {
+    public Promocion(int codigoProducto, String fechaInicial, String fechaFinal, String tipoPromocion,
+                     String operacion) {
         this.codigoProducto = codigoProducto;
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
         this.tipoPromocion = tipoPromocion;
+        this.operacion = operacion;
+    }
+
+    public String getOperacion() {
+        return operacion;
+    }
+
+    public void setOperacion(String operacion) {
+        this.operacion = operacion;
     }
 
     public int getCodigoProducto() {
