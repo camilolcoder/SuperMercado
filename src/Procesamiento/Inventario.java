@@ -335,6 +335,52 @@ public class Inventario {
         //System.out.println("test");
     }
 
+    public double getTotalPagar(List<Producto> productosCliente)
+    {
+        double total = 0;
+        for(Producto producto: productos)
+        {
+            Promocion promocionActual = promociones.get(producto.getCodigo());
+            String tipoPromocion = promocionActual.getTipoPromocion();
+
+            if (tipoPromocion.equals("descuento"))
+            {
+                if(!producto.isEmpaquetado())
+                {
+                    total += producto.getPeso()*producto.getPrecioPorUnidad() - producto.getPeso()*producto.getPrecioPorUnidad()*(Double.parseDouble(promocionActual.getOperacion())/100);
+                }
+                else
+                {
+                    total += producto.getPrecio() - producto.getPrecio()*(Double.parseDouble(promocionActual.getOperacion())/100);
+                }
+            }
+            else if(tipoPromocion.equals("regalo"))
+            {
+
+            }
+            else if(tipoPromocion.equals("combo"))
+            {
+
+            }
+            else if(tipoPromocion.equals("multiplicador"))
+            {
+
+            }
+            else{
+
+                if(!producto.isEmpaquetado())
+                {
+                    total += producto.getPeso()*producto.getPrecioPorUnidad();
+                }
+                else
+                {
+                    total += producto.getPrecio();
+                }
+            }
+        }
+        return total;
+    }
+
     public void asociarImagenProducto(String direccionImg)
     {
         //TODO se podria asociar una imagen a un producto después de haberlo creado

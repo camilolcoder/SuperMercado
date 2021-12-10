@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.util.List;
+import java.util.Map;
+
 public class Promocion {
 
     private int codigoProducto;
@@ -56,4 +59,23 @@ public class Promocion {
     public void setTipoPromocion(String tipoPromocion) {
         this.tipoPromocion = tipoPromocion;
     }
+
+    /*public double getTotalPagar(Map<>List<Producto> productos)
+    {
+        double total = 0;
+        for(Producto producto: productos)
+        {
+            if ()
+
+            if(!producto.isEmpaquetado())
+            {
+                total += producto.getPeso()*producto.getPrecioPorUnidad();
+            }
+            else
+            {
+                total += producto.getPrecio();
+            }
+        }
+        return total;
+    }*/
 }
