@@ -41,6 +41,7 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
     private List<Double> pesosNoEmpaquetado;// = new ArrayList<>();
     private List<Cliente> clientesRegistrados;// = principal.getClientes();
     private int descuentoPorPuntos;
+    //private int puntosMultiplicadores;
 
     private JLabel codigoProductoText;
     private JTextField codigoProducto;
@@ -483,11 +484,30 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                     } else if (tipoPromocion.equals("combo")) {
                         List<Double> preciosCombo = principal.getCombo(promocionActual.getOperacion());
                         total +=  preciosCombo.get(1);
-                        precio = preciosCombo.get(0);
-                        descuentoAplicado = "-"+"Descuento aplicado a combo : "+preciosCombo.get(2)+"%";
+                        precio = preciosCombo.get(1);
+                        descuentoAplicado = "-"+preciosCombo.get(2)+"% de descuento aplicado a combo";
 
                     } else if (tipoPromocion.equals("multiplicador")) {
+                        int clienteComprando = principal.buscarClientePorId(Integer.parseInt(idCliente.getText()));
+                        Cliente clienteActual = clientesRegistrados.get(clienteComprando);
+                        if(!productoF.isEmpaquetado())
+                        {
+                            total += productoF.getPeso()*productoF.getPrecioPorUnidad();
+                            precio = productoF.getPeso()*productoF.getPrecioPorUnidad();
 
+                            int puntosMultiplicadores = (int) principal.calcularPuntosAcumulados(precio);
+                            clienteActual.darPuntosEnteros(puntosMultiplicadores*Integer.parseInt(promocionActual.getOperacion())-puntosMultiplicadores);
+                            descuentoAplicado = "- Los puntos acumulables por este producto son x"+promocionActual.getOperacion();
+                        }
+                        else
+                        {
+                            total += productoF.getPrecio();
+                            precio = productoF.getPrecio();
+                            int puntosMultiplicadores = (int) principal.calcularPuntosAcumulados(precio);
+                            clienteActual.darPuntosEnteros(puntosMultiplicadores*Integer.parseInt(promocionActual.getOperacion())-puntosMultiplicadores);
+                            descuentoAplicado = "- Los puntos acumulables por este producto son x"+promocionActual.getOperacion();
+                            //System.out.println("TESTING");
+                        }
                     }
                 }
                 else{
@@ -519,29 +539,6 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
             totalPagarText.setBackground(new Color(115, 115, 115));
             totalPagarText.setForeground(Color.WHITE);
             displayFactura.add(totalPagarText);
-
-            JLabel promocionesText = new JLabel("----------PROMOCIONES-APLICADAS----------", SwingConstants.CENTER);
-            promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
-            promocionesText.setOpaque(true);
-            promocionesText.setBackground(new Color(115, 115, 115));
-            promocionesText.setForeground(Color.WHITE);
-            displayFactura.add(promocionesText);
-
-            for (String promocionAplicable : productosRegalo)
-            {
-                String[] datos = promocionAplicable.split(",");
-                int codigoProducto = Integer.parseInt(datos[0]);
-                String operacionPromocion = datos[1];
-                int cantidadRegalo = principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
-
-                JLabel promocionRegalo = new JLabel(" Por la promocion page "+datos[1]+" de "+datos[2]+" lleva "+cantidadRegalo+" adicionales gratis");
-                promocionRegalo.setFont(new Font("Comic Sans", Font.BOLD, 15));
-                promocionRegalo.setOpaque(true);
-                promocionRegalo.setBackground(new Color(115, 115, 115));
-                promocionRegalo.setForeground(Color.WHITE);
-                displayFactura.add(promocionRegalo);
-
-            }
 
             if (confirmacion) {
                 double puntosAcumulados = principal.calcularPuntosAcumulados(total-15*descuentoPorPuntos);
@@ -609,6 +606,30 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                 noInscrito.setForeground(Color.WHITE);
                 displayFactura.add(noInscrito);
             }
+
+            JLabel promocionesText = new JLabel("----------PROMOCIONES-ADICIONALES----------", SwingConstants.CENTER);
+            promocionesText.setFont(new Font("Comic Sans", Font.BOLD, 15));
+            promocionesText.setOpaque(true);
+            promocionesText.setBackground(new Color(115, 115, 115));
+            promocionesText.setForeground(Color.WHITE);
+            displayFactura.add(promocionesText);
+
+            for (String promocionAplicable : productosRegalo)
+            {
+                String[] datos = promocionAplicable.split(",");
+                int codigoProducto = Integer.parseInt(datos[0]);
+                String operacionPromocion = datos[1];
+                int cantidadRegalo = principal.getRegalo(productosCliente, codigoProducto, operacionPromocion);
+
+                JLabel promocionRegalo = new JLabel(" Por la promocion page "+datos[1]+" de "+datos[2]+" lleva "+cantidadRegalo+" adicionales gratis");
+                promocionRegalo.setFont(new Font("Comic Sans", Font.BOLD, 15));
+                promocionRegalo.setOpaque(true);
+                promocionRegalo.setBackground(new Color(115, 115, 115));
+                promocionRegalo.setForeground(Color.WHITE);
+                displayFactura.add(promocionRegalo);
+
+            }
+
             JScrollPane displayInfo = new JScrollPane(displayFactura, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             dialogFactura.add(displayInfo);
             principal.updateLotesAfterCompra(productosCliente, pesosNoEmpaquetado);

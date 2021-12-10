@@ -127,6 +127,11 @@ public class Cliente {
         return historial;
     }
 
+    public void darPuntosEnteros(int puntosMultiplicados)
+    {
+        this.puntos += puntos;
+    }
+
     public void sumarPuntos(double dineroGastado)
     {
         double puntosCalculados = Math.round(dineroGastado/1000);
