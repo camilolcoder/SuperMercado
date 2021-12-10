@@ -60,22 +60,11 @@ public class Promocion {
         this.tipoPromocion = tipoPromocion;
     }
 
-    /*public double getTotalPagar(Map<>List<Producto> productos)
+    public void getRegalo(List<Producto> productos)
     {
-        double total = 0;
-        for(Producto producto: productos)
+        for (Producto producto : productos)
         {
-            if ()
 
-            if(!producto.isEmpaquetado())
-            {
-                total += producto.getPeso()*producto.getPrecioPorUnidad();
-            }
-            else
-            {
-                total += producto.getPrecio();
-            }
         }
-        return total;
-    }*/
+    }
 }

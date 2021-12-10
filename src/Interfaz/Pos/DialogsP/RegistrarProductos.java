@@ -439,10 +439,12 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
 
             for (Producto productoF : productosFactura)
             {
+                String descuentoAplicado = "";
                 double precio =  0;
                 Map<Integer, Promocion> promociones = principal.getPromociones();
                 Promocion promocionActual = promociones.get(productoF.getCodigo());
-                if (principal.estaVigente(promocionActual)) {
+                //System.out.println(promocionActual.getOperacion());
+                if (promocionActual != null  && principal.estaVigente(promocionActual)) {
                     //System.out.println(promocionActual.getOperacion()+""+String.valueOf(promocionActual.getCodigoProducto()));
                     String tipoPromocion = "";
                     try {
@@ -454,11 +456,16 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                     if (tipoPromocion.equals("descuento")) {
                         if (!productoF.isEmpaquetado()) {
                             total += productoF.getPeso() * productoF.getPrecioPorUnidad() - productoF.getPeso() * productoF.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                            precio = productoF.getPeso() * productoF.getPrecioPorUnidad() - productoF.getPeso() * productoF.getPrecioPorUnidad() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                            descuentoAplicado = " - "+promocionActual.getOperacion()+"% de descuento aplicado";
                         } else {
                             total += productoF.getPrecio() - productoF.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                            precio = productoF.getPrecio() - productoF.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100);
+                            descuentoAplicado = " - "+promocionActual.getOperacion()+"% de descuento aplicado";
                             //System.out.println(producto.getPrecio() * (Double.parseDouble(promocionActual.getOperacion()) / 100));
                         }
                     } else if (tipoPromocion.equals("regalo")) {
+                        promocionActual.getRegalo(productosCliente);
                         if (!productoF.isEmpaquetado()) {
                             total += productoF.getPeso() * productoF.getPrecioPorUnidad();
                         } else {
@@ -477,23 +484,17 @@ public class RegistrarProductos  extends JDialog implements ActionListener {
                     if(!productoF.isEmpaquetado())
                     {
                         total += productoF.getPeso()*productoF.getPrecioPorUnidad();
+                        precio = productoF.getPeso()*productoF.getPrecioPorUnidad();
                     }
                     else
                     {
                         total += productoF.getPrecio();
-                        System.out.println("TESTING");
+                        precio = productoF.getPrecio();
+                        //System.out.println("TESTING");
                     }
                 }
-                if (!productoF.isEmpaquetado())
-                {
-                    precio = productoF.getPrecioPorUnidad()*productoF.getPeso();
-                }
-                else
-                {
-                    precio = productoF.getPrecio();
-                }
                 productoF.updateHistorial();
-                JLabel productoText = new JLabel(productoF.getNombre()+" : "+ precio);
+                JLabel productoText = new JLabel(productoF.getNombre()+" : "+String.valueOf(precio)+descuentoAplicado);
                 productoText.setFont(new Font("Comic Sans", Font.BOLD, 15));
                 productoText.setOpaque(true);
                 productoText.setBackground(new Color(115, 115, 115));

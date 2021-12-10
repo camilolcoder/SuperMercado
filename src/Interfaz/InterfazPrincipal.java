@@ -206,10 +206,10 @@ public class InterfazPrincipal extends JFrame {
         aplicacion.asociarImagenProducto(direccionImg);
     }
 
-    public double getTotalPagar(List<Producto> productos)
+    /*public double getTotalPagar(List<Producto> productos)
     {
         return aplicacion.getTotalPagar(productos);
-    }
+    }*/
 
     public Map<Integer, Promocion> getPromociones()
     {

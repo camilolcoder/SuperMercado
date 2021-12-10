@@ -381,7 +381,7 @@ public class Inventario {
         //System.out.println("test");
     }
 
-    public double getTotalPagar(List<Producto> productosCliente)
+    /*public double getTotalPagar(List<Producto> productosCliente)
     {
         double total = 0;
         for(Producto producto: productosCliente)
@@ -431,7 +431,7 @@ public class Inventario {
             }
         }
         return total;
-    }
+    }*/
 
     public void asociarImagenProducto(String direccionImg)
     {
