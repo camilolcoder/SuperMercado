@@ -29,8 +29,8 @@ public class FirstPanel extends JPanel implements ActionListener {
         gl.setVgap(30);
 
         setLayout(gl);//new GridLayout(2, 1));
-        ImageIcon inventarioIcon = new ImageIcon("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\Interfaz\\Diseno\\2test.jpg");
-        ImageIcon posIcon = new ImageIcon("C:\\Users\\juank\\IdeaProjects\\SuperMercado\\src\\Interfaz\\Diseno\\posIcon.jpg");
+        ImageIcon inventarioIcon = new ImageIcon("..\\SuperMercado\\src\\Interfaz\\Diseno\\2test.jpg");
+        ImageIcon posIcon = new ImageIcon("..\\SuperMercado\\src\\Interfaz\\Diseno\\posIcon.jpg");
         pointOfSale = new JButton("Point of Sale");
         //pointOfSale.setBounds(500, 500, 400, 400);
         pointOfSale.setBackground(new Color(115, 115, 115));
